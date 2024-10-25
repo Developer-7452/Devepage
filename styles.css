@@ -1,37 +1,74 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  width: 100%;
+    text-align: center;
+    margin-top: 20px;
 }
 
-#addons-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  width: 80%;
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 40px 0;
+    width: 80%;
+}
+
+.addons-section {
+    width: 60%;
 }
 
 .addon {
-  border: 1px solid #ddd;
-  padding: 15px;
-  text-align: center;
-  border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.addon img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+.addon button {
+    width: 150px;
+    height: 100px;
+    margin-right: 20px;
+    background-color: #666;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.addon p {
+    font-size: 1.2em;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a {
+    margin-bottom: 20px;
+}
+
+.social-links img {
+    width: 50px;
+    height: 50px;
 }
