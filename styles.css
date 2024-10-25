@@ -13,7 +13,6 @@ header {
     margin-top: 20px;
     position: relative;
     width: 100%;
-    padding-bottom: 20px; /* Añadido espacio abajo del header */
 }
 
 header h1 {
@@ -34,6 +33,7 @@ header p {
     margin-top: 10px; /* Añadido espacio arriba para separar del texto */
 }
 
+/* Menú icono */
 .menu-icon {
     position: absolute;
     top: 20px;
@@ -86,15 +86,15 @@ header p {
 
 .addons-section {
     width: 60%;
-    display: flex; /* Usar flexbox */
+    display: flex; /* Usar flexbox para organizar los addons */
     flex-direction: column; /* Alinear elementos verticalmente */
     align-items: flex-start; /* Alinear a la izquierda */
 }
 
 .addon {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Mantener el texto centrado debajo de las imágenes */
+    flex-direction: row; /* Organizar imagen y texto en fila */
+    align-items: center; /* Centrar verticalmente la imagen y el texto */
     margin-bottom: 20px;
 }
 
@@ -104,6 +104,7 @@ header p {
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
 }
 
 .addon img:hover {
@@ -112,8 +113,7 @@ header p {
 
 .addon p {
     font-size: 1.2em;
-    margin-top: 10px;
-    text-align: center; /* Centrar texto */
+    margin: 0; /* Eliminar margen superior para evitar separación */
 }
 
 /* Redes sociales fijadas a la derecha */
