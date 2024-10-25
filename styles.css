@@ -33,7 +33,7 @@ header p {
 /* Línea gris que cubre el título */
 .top-line {
     width: 100%;
-    height: 100%; /* Ajusta la altura aquí */
+    height: 60px; /* Ajusta la altura aquí */
     background-color: #ccc;
     position: absolute; /* Posiciona la línea gris en el encabezado */
     top: 0; /* Posiciona la línea debajo del título y subtítulo */
@@ -44,7 +44,7 @@ header p {
 /* Menú icono */
 .menu-icon {
     position: absolute;
-    top: 20px; /* Mantiene el botón del menú arriba de la línea gris */
+    top: 10px; /* Ajusta la posición según sea necesario */
     right: 20px;
     cursor: pointer;
     z-index: 3; /* Asegura que el botón del menú esté encima de la línea gris */
@@ -58,13 +58,14 @@ header p {
 #dropdown-menu {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 60px; /* Asegúrate de que esté alineado con el ícono */
     right: 20px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 150px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 4; /* Asegura que el menú desplegable esté encima de la línea gris */
 }
 
 #dropdown-menu ul {
