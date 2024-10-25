@@ -33,7 +33,7 @@ header p {
 /* Línea gris que cubre el título */
 .top-line {
     width: 100%;
-    height: 10px; /* Ajusta la altura aquí */
+    height: 100%; /* Ajusta la altura aquí */
     background-color: #ccc;
     position: absolute; /* Posiciona la línea gris en el encabezado */
     top: 60px; /* Posiciona la línea debajo del título y subtítulo */
