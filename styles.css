@@ -36,7 +36,7 @@ header p {
     height: 10px; /* Ajusta la altura aquí */
     background-color: #ccc;
     position: absolute; /* Posiciona la línea gris en el encabezado */
-    top: 0; /* Posiciona la línea en la parte superior del encabezado */
+    top: 60px; /* Posiciona la línea debajo del título y subtítulo */
     left: 0; /* Alinea la línea a la izquierda */
     z-index: 1; /* Asegura que la línea esté detrás del título y subtítulo */
 }
@@ -44,10 +44,10 @@ header p {
 /* Menú icono */
 .menu-icon {
     position: absolute;
-    top: 20px;
+    top: 20px; /* Mantiene el botón del menú arriba de la línea gris */
     right: 20px;
     cursor: pointer;
-    z-index: 2; /* Asegura que el botón del menú esté encima de la línea gris */
+    z-index: 3; /* Asegura que el botón del menú esté encima de la línea gris */
 }
 
 .menu-icon img {
