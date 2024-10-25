@@ -22,9 +22,10 @@ header {
 
 header h1 {
     font-size: 2.5em;
-    margin-bottom: 0; /* Eliminar margen inferior */
-    position: relative; /* Necesario para que la línea gris se superponga */
-    z-index: 2; /* Asegura que el título esté encima de la línea gris */
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+    font-family: 'MinecraftFont', Arial, sans-serif; /* Cambia aquí a la fuente Minecraft */
 }
 
 header p {
