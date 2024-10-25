@@ -52,7 +52,7 @@ main {
 }
 
 .addon img {
-    width: 300px;
+    width: 200px; /* Tamaño ajustado */
     height: auto;
     border-radius: 8px;
     cursor: pointer;
@@ -80,6 +80,6 @@ main {
 }
 
 .social-links img {
-    width: 50px;
-    height: 50px;
+    width: 40px; /* Tamaño ajustado de los iconos de redes sociales */
+    height: 40px;
 }
