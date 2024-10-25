@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'MinecraftFont';
+    src: url('fonts/Minecraft.ttf') format('truetype'); /* Asegúrate de que la ruta y el formato sean correctos */
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
