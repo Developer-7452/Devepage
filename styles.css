@@ -29,8 +29,12 @@ header p {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 2em;
     cursor: pointer;
+}
+
+.menu-icon img {
+    width: 40px; /* Ajusta el tamaño del ícono del menú */
+    height: 40px;
 }
 
 #dropdown-menu {
