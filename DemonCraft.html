@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DemonCraft</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo para el fondo de video */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Video de fondo */
+        .bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        /* Estilo del contenedor del botón */
+        .button-container {
+            position: relative;
+            z-index: 1; /* Asegurarse de que esté encima del video */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* Estilo del botón */
+        .play-button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .play-button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <video class="bg-video" autoplay loop muted>
+        <source src="ruta/del/video.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+    </video>
+
+    <div class="button-container">
+        <a href="minecraft://join/TU_SERVIDOR" target="_blank">
+            <button class="play-button">Jugar DemonCraft</button>
+        </a>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
