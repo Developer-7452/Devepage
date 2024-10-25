@@ -17,7 +17,7 @@ header {
 
 header h1 {
     font-size: 2.5em;
-    margin-bottom: 0; /* Eliminar el margen inferior */
+    margin-bottom: 0; /* Eliminar margen inferior */
 }
 
 header p {
@@ -26,7 +26,7 @@ header p {
     margin-bottom: 10px; /* Espacio entre el texto y la línea gris */
 }
 
-/* Línea gris inferior */
+/* Línea gris debajo del título */
 .top-line {
     width: 100%;
     height: 10px; /* Ajusta la altura aquí */
@@ -93,8 +93,8 @@ header p {
 
 .addon {
     display: flex;
-    flex-direction: row; /* Organizar imagen y texto en fila */
-    align-items: center; /* Centrar verticalmente la imagen y el texto */
+    flex-direction: column; /* Alinear imagen y texto en columna */
+    align-items: flex-start; /* Alinear a la izquierda */
     margin-bottom: 20px;
 }
 
@@ -104,7 +104,6 @@ header p {
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s;
-    margin-right: 10px; /* Espacio entre la imagen y el texto */
 }
 
 .addon img:hover {
@@ -113,7 +112,7 @@ header p {
 
 .addon p {
     font-size: 1.2em;
-    margin: 0; /* Eliminar margen superior para evitar separación */
+    margin: 10px 0 0 0; /* Margen superior para separación del texto */
 }
 
 /* Redes sociales fijadas a la derecha */
