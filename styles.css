@@ -13,29 +13,27 @@ header {
     margin-top: 20px;
     position: relative;
     width: 100%;
-    padding-bottom: 20px; /* Añadido espacio abajo del header */
 }
 
 header h1 {
     font-size: 2.5em;
-    margin-bottom: 10px;
+    margin-bottom: 0; /* Eliminar margen inferior */
 }
 
 header p {
     font-size: 1.2em;
     color: #555;
+    margin-bottom: 10px; /* Espacio entre el texto y la línea gris */
 }
 
-/* Línea gris superior */
+/* Línea gris debajo del título */
 .top-line {
     width: 100%;
-    height: 5px;
+    height: 10px; /* Ajusta la altura aquí */
     background-color: #ccc;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
+/* Menú icono */
 .menu-icon {
     position: absolute;
     top: 20px;
@@ -88,12 +86,15 @@ header p {
 
 .addons-section {
     width: 60%;
+    display: flex; /* Usar flexbox para organizar los addons */
+    flex-direction: column; /* Alinear elementos verticalmente */
+    align-items: flex-start; /* Alinear a la izquierda */
 }
 
 .addon {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Alinear imagen y texto en columna */
+    align-items: flex-start; /* Alinear a la izquierda */
     margin-bottom: 20px;
 }
 
@@ -111,7 +112,7 @@ header p {
 
 .addon p {
     font-size: 1.2em;
-    margin-top: 10px;
+    margin: 10px 0 0 0; /* Margen superior para separación del texto */
 }
 
 /* Redes sociales fijadas a la derecha */
