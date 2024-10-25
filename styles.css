@@ -11,6 +11,7 @@ body {
 header {
     text-align: center;
     margin-top: 20px;
+    position: relative;
 }
 
 header h1 {
@@ -21,6 +22,14 @@ header h1 {
 header p {
     font-size: 1.2em;
     color: #555;
+}
+
+.menu-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2em;
+    cursor: pointer;
 }
 
 main {
@@ -37,24 +46,26 @@ main {
 
 .addon {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.addon button {
-    width: 150px;
-    height: 100px;
-    margin-right: 20px;
-    background-color: #666;
-    color: #fff;
-    font-size: 1em;
-    border: none;
-    border-radius: 10px;
+.addon img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
     cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.addon img:hover {
+    transform: scale(1.05);
 }
 
 .addon p {
     font-size: 1.2em;
+    margin-top: 10px;
 }
 
 .social-links {
