@@ -36,7 +36,7 @@ header p {
     height: 100%; /* Ajusta la altura aquí */
     background-color: #ccc;
     position: absolute; /* Posiciona la línea gris en el encabezado */
-    top: 60px; /* Posiciona la línea debajo del título y subtítulo */
+    top: 0; /* Posiciona la línea debajo del título y subtítulo */
     left: 0; /* Alinea la línea a la izquierda */
     z-index: 1; /* Asegura que la línea esté detrás del título y subtítulo */
 }
