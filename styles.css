@@ -47,6 +47,7 @@ header p {
     top: 20px;
     right: 20px;
     cursor: pointer;
+    z-index: 2;
 }
 
 .menu-icon img {
