@@ -13,6 +13,7 @@ header {
     margin-top: 20px;
     position: relative;
     width: 100%;
+    padding-bottom: 20px; /* Añadido espacio abajo del header */
 }
 
 header h1 {
@@ -23,6 +24,16 @@ header h1 {
 header p {
     font-size: 1.2em;
     color: #555;
+}
+
+/* Línea gris superior */
+.top-line {
+    width: 100%;
+    height: 5px;
+    background-color: #ccc;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .menu-icon {
@@ -103,14 +114,16 @@ header p {
     margin-top: 10px;
 }
 
+/* Redes sociales fijadas a la derecha */
 .social-links {
     position: fixed;
     top: 50%;
-    right: 20px;
+    right: 0;  /* Fijado a la derecha */
     display: flex;
     flex-direction: column;
     align-items: center;
     transform: translateY(-50%);
+    padding-right: 10px; /* Añadir espacio a la derecha */
 }
 
 .social-links a {
