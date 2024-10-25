@@ -12,6 +12,7 @@ header {
     text-align: center;
     margin-top: 20px;
     position: relative;
+    width: 100%;
 }
 
 header h1 {
@@ -32,12 +33,42 @@ header p {
     cursor: pointer;
 }
 
-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 40px 0;
-    width: 80%;
+#dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#dropdown-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#dropdown-menu ul li {
+    border-bottom: 1px solid #ccc;
+}
+
+#dropdown-menu ul li:last-child {
+    border-bottom: none;
+}
+
+#dropdown-menu ul li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+}
+
+#dropdown-menu ul li a:hover {
+    background-color: #f0f0f0;
 }
 
 .addons-section {
@@ -80,6 +111,11 @@ main {
 }
 
 .social-links img {
-    width: 40px; /* Tamaño ajustado de los iconos de redes sociales */
+    width: 40px;
     height: 40px;
+}
+
+/* Mostrar menú cuando se hace clic */
+.show-menu {
+    display: block;
 }
