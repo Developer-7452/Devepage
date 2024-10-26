@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'MinecraftFont';
-    src: url('fonts/Minecraft.ttf') format('truetype'); /* Asegúrate de que la ruta y el formato sean correctos */
+    src: url('fonts/Minecraft.ttf') format('truetype');
 }
 
 body {
@@ -25,53 +25,51 @@ header h1 {
     margin-bottom: 0;
     position: relative;
     z-index: 2;
-    font-family: 'MinecraftFont', Arial, sans-serif; /* Cambia aquí a la fuente Minecraft */
+    font-family: 'MinecraftFont', Arial, sans-serif;
 }
 
 header p {
     font-size: 1.2em;
     color: #555;
-    margin-bottom: 10px; /* Espacio entre el texto y la línea gris */
-    position: relative; /* Para que el subtítulo esté también encima de la línea gris */
-    z-index: 2; /* Asegura que el subtítulo esté encima de la línea gris */
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
 }
 
-/* Línea gris que cubre el título */
 .top-line {
     width: 100%;
-    height: 100%; /* Ajusta la altura aquí */
+    height: 100%;
     background-color: #ccc;
-    position: absolute; /* Posiciona la línea gris en el encabezado */
-    top: 0; /* Posiciona la línea debajo del título y subtítulo */
-    left: 0; /* Alinea la línea a la izquierda */
-    z-index: 1; /* Asegura que la línea esté detrás del título y subtítulo */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
-/* Menú icono */
 .menu-icon {
     position: absolute;
-    top: 10px; /* Ajusta la posición según sea necesario */
+    top: 10px;
     right: 20px;
     cursor: pointer;
-    z-index: 3; /* Asegura que el botón del menú esté encima de la línea gris */
+    z-index: 3;
 }
 
 .menu-icon img {
-    width: 40px; /* Ajusta el tamaño del ícono del menú */
+    width: 40px;
     height: 40px;
 }
 
 #dropdown-menu {
     display: none;
     position: absolute;
-    top: 60px; /* Asegúrate de que esté alineado con el ícono */
+    top: 60px;
     right: 20px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 150px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 4; /* Asegura que el menú desplegable esté encima de la línea gris */
+    z-index: 4;
 }
 
 #dropdown-menu ul {
@@ -102,20 +100,20 @@ header p {
 
 .addons-section {
     width: 60%;
-    display: flex; /* Usar flexbox para organizar los addons */
-    flex-direction: column; /* Alinear elementos verticalmente */
-    align-items: flex-start; /* Alinear a la izquierda */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .addon {
     display: flex;
-    flex-direction: column; /* Alinear imagen y texto en columna */
-    align-items: flex-start; /* Alinear a la izquierda */
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 20px;
 }
 
 .addon img {
-    width: 200px; /* Tamaño ajustado */
+    width: 200px;
     height: auto;
     border-radius: 8px;
     cursor: pointer;
@@ -128,19 +126,18 @@ header p {
 
 .addon p {
     font-size: 1.2em;
-    margin: 10px 0 0 0; /* Margen superior para separación del texto */
+    margin: 10px 0 0 0;
 }
 
-/* Redes sociales fijadas a la derecha */
 .social-links {
     position: fixed;
     top: 50%;
-    right: 0;  /* Fijado a la derecha */
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     transform: translateY(-50%);
-    padding-right: 10px; /* Añadir espacio a la derecha */
+    padding-right: 10px;
 }
 
 .social-links a {
@@ -152,7 +149,47 @@ header p {
     height: 40px;
 }
 
-/* Mostrar menú cuando se hace clic */
-.show-menu {
-    display: block;
+/* Tema oscuro */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode header p {
+    color: #ddd;
+}
+
+body.dark-mode .top-line {
+    background-color: #555;
+}
+
+body.dark-mode #dropdown-menu {
+    background-color: #444;
+    border-color: #666;
+}
+
+body.dark-mode #dropdown-menu ul li a {
+    color: #fff;
+}
+
+/* Botón de cambio de tema */
+button#theme-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button#theme-toggle:hover {
+    background-color: #555;
+}
+
+body.dark-mode button#theme-toggle {
+    background-color: #ddd;
+    color: #333;
 }
