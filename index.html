@@ -9,6 +9,7 @@
 <body>
     <!-- Botón de cambio de tema -->
     <button id="theme-toggle" onclick="toggleTheme()">Cambiar Tema</button>
+    <a href="/login" id="login-btn">Iniciar sesión con Discord</a>
 
     <header>
         <div class="top-line"></div> <!-- Línea gris -->
@@ -16,6 +17,11 @@
         <p>Minecraft bedrock addon maker</p>
         <div class="menu-icon" id="menu-icon" onclick="toggleMenu()">
             <img src="images/menu.png" alt="Menú">
+        </div>
+        <div id="user-info" style="display: none;">
+            <img id="user-avatar" alt="Avatar de Usuario" width="40" height="40">
+            <span id="user-name"></span>
+            <a href="/logout">Cerrar sesión</a>
         </div>
     </header>
 
@@ -64,5 +70,25 @@
     </aside>
 
     <script src="scripts.js"></script>
+    <script>
+        // Obtener información del usuario desde la sesión
+        async function fetchUserData() {
+            try {
+                const response = await fetch('/session');
+                const user = await response.json();
+
+                if (user) {
+                    document.getElementById('login-btn').style.display = 'none';
+                    document.getElementById('user-info').style.display = 'block';
+                    document.getElementById('user-avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+                    document.getElementById('user-name').textContent = user.username;
+                }
+            } catch (error) {
+                console.error('Error al obtener la información del usuario:', error);
+            }
+        }
+
+        fetchUserData();
+    </script>
 </body>
 </html>
