@@ -1,3 +1,5 @@
+require('dotenv').config(); // Asegúrate de tener dotenv instalado y cargado
+
 const express = require('express');
 const axios = require('axios');
 const session = require('express-session');
@@ -5,14 +7,14 @@ const app = express();
 
 // Configuración de sesión
 app.use(session({
-    secret: 'secret', // Cambia esto por una clave secreta segura
+    secret: process.env.SESSION_SECRET || 'secret', // Cambia esto por una clave secreta segura
     resave: false,
     saveUninitialized: true,
 }));
 
 // Credenciales de Discord
-const CLIENT_ID = '1299613996600524830'; // Reemplaza con tu Client ID
-const CLIENT_SECRET = '6Z3gjafvS7eGJ1JE0_-7hjZW9AQrbb1C'; // Reemplaza con tu Client Secret
+const CLIENT_ID = process.env.1299613996600524830; // Usar variable de entorno
+const CLIENT_SECRET = process.env.6Z3gjafvS7eGJ1JE0_-7hjZW9AQrbb1C; // Usar variable de entorno
 const REDIRECT_URI = 'https://developer-7452.github.io/Devepage/oauth2/discord/callback'; // Cambia a tu URL de redirección
 
 app.get('/login', (req, res) => {
@@ -43,7 +45,7 @@ app.get('/auth/discord/callback', async (req, res) => {
         res.redirect('/');
     } catch (error) {
         console.error('Error en la autenticación de Discord:', error);
-        res.redirect('/');
+        res.redirect('/error'); // Podrías tener una página de error para manejar fallos
     }
 });
 
