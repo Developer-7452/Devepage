@@ -149,6 +149,35 @@ header p {
     height: 40px;
 }
 
+/* Estilos para el botón de inicio de sesión */
+#login-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #7289da; /* Color de fondo de Discord */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#login-btn:hover {
+    background-color: #5b6eae; /* Color al pasar el mouse */
+}
+
+/* Estilos para la información del usuario */
+#user-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; /* Ajusta según necesites */
+    z-index: 2;
+}
+
+#user-avatar {
+    border-radius: 50%; /* Para que el avatar sea redondo */
+    margin-right: 10px; /* Espacio entre el avatar y el nombre */
+}
+
 /* Tema oscuro */
 body.dark-mode {
     background-color: #333;
@@ -173,9 +202,8 @@ body.dark-mode #dropdown-menu ul li a {
 }
 
 /* Botón de cambio de tema */
-/* Botón de cambio de tema */
 button#theme-toggle {
-    position: absolute; /* Cambiado a 'absolute' para posicionarlo sobre la línea */
+    position: absolute;
     top: 10px; /* Ajusta la posición superior */
     left: 10px; /* Ajusta la posición izquierda */
     padding: 10px 15px;
