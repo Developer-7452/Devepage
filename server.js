@@ -13,7 +13,7 @@ app.use(session({
 // Credenciales de Discord
 const CLIENT_ID = '1299613996600524830'; // Reemplaza con tu Client ID
 const CLIENT_SECRET = '6Z3gjafvS7eGJ1JE0_-7hjZW9AQrbb1C'; // Reemplaza con tu Client Secret
-const REDIRECT_URI = 'https://developer-7452.github.io/Devepage//oauth2/discord/callback'; // Cambia a tu URL de redirección
+const REDIRECT_URI = 'https://developer-7452.github.io/Devepage/oauth2/discord/callback'; // Cambia a tu URL de redirección
 
 app.get('/login', (req, res) => {
     const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=identify`;
