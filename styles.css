@@ -173,16 +173,18 @@ body.dark-mode #dropdown-menu ul li a {
 }
 
 /* Botón de cambio de tema */
+/* Botón de cambio de tema */
 button#theme-toggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
+    position: absolute; /* Cambiado a 'absolute' para posicionarlo sobre la línea */
+    top: 10px; /* Ajusta la posición superior */
+    left: 10px; /* Ajusta la posición izquierda */
     padding: 10px 15px;
     background-color: #333;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 5; /* Mayor que la línea gris */
 }
 
 button#theme-toggle:hover {
