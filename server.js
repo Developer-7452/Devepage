@@ -1,4 +1,4 @@
-require('dotenv').config(); // Asegúrate de tener dotenv instalado y cargado
+require('dotenv').config(); // Cargar las variables de entorno
 
 const express = require('express');
 const axios = require('axios');
@@ -7,20 +7,19 @@ const app = express();
 
 // Configuración de sesión
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'secret', // Cambia esto por una clave secreta segura
+    secret: process.env.SESSION_SECRET || 'default_secret', // Usa la variable de entorno o un valor por defecto
     resave: false,
     saveUninitialized: true,
 }));
 
 // Credenciales de Discord
-const CLIENT_ID = process.env.1299613996600524830; // Usar variable de entorno
-const CLIENT_SECRET = process.env.6Z3gjafvS7eGJ1JE0_-7hjZW9AQrbb1C; // Usar variable de entorno
-const REDIRECT_URI = 'https://developer-7452.github.io/Devepage/oauth2/discord/callback'; // Cambia a tu URL de redirección
+const CLIENT_ID = '1299613996600524830'; // Tu Client ID
+const CLIENT_SECRET = TU-0-796j99hTDjGYamVxp6MMjDMeZPu; // Obtener el Client Secret desde las variables de entorno
+const REDIRECT_URI = 'https://developer-7452.github.io/Devepage/'; // URL de redirección
 
 app.get('/login', (req, res) => {
-    const discordAuthUrl = `https://discord.com/oauth2/authorize?client_id=1299613996600524830&response_type=code&redirect_uri=https%3A%2F%2Fdeveloper-7452.github.io%2FDevepage%2F&scope=identify`;
+    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=identify`;
     res.redirect(discordAuthUrl);
-    
 });
 
 app.get('/auth/discord/callback', async (req, res) => {
@@ -46,7 +45,7 @@ app.get('/auth/discord/callback', async (req, res) => {
         res.redirect('/');
     } catch (error) {
         console.error('Error en la autenticación de Discord:', error);
-        res.redirect('/error'); // Podrías tener una página de error para manejar fallos
+        res.redirect('/error'); // Manejar el error adecuadamente
     }
 });
 
