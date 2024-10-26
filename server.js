@@ -18,7 +18,7 @@ const CLIENT_SECRET = process.env.6Z3gjafvS7eGJ1JE0_-7hjZW9AQrbb1C; // Usar vari
 const REDIRECT_URI = 'https://developer-7452.github.io/Devepage/oauth2/discord/callback'; // Cambia a tu URL de redirección
 
 app.get('/login', (req, res) => {
-    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=1299613996600524830&redirect_uri=https://developer-7452.github.io/Devepage//oauth2/discord/callback&response_type=code&scope=identify`;
+    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=1299613996600524830&redirect_uri=https://developer-7452.github.io/Devepage/oauth2/discord/callback&response_type=code&scope=identify`;
     res.redirect(discordAuthUrl);
     
 });
