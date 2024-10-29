@@ -3,92 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer7452 - Minecraft Addons</title>
+    <title>Mis Addons de Minecraft Bedrock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Botón de cambio de tema -->
-    <button id="theme-toggle" onclick="toggleTheme()">Cambiar Tema</button>
-    <a href="/login" id="login-btn">Iniciar sesión con Discord</a>
 
-    <header>
-        <div class="top-line"></div> <!-- Línea gris -->
-        <h1>Developer7452</h1>
-        <p>Minecraft bedrock addon maker</p>
-        <div class="menu-icon" id="menu-icon" onclick="toggleMenu()">
-            <img src="images/menu.png" alt="Menú">
-        </div>
-        <div id="user-info" style="display: none;">
-            <img id="user-avatar" alt="Avatar de Usuario" width="40" height="40">
-            <span id="user-name"></span>
-            <a href="/logout">Cerrar sesión</a>
-        </div>
-    </header>
-
-    <nav id="dropdown-menu" class="hidden">
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
         <ul>
-            <li><a href="developer7452.html">Developer7452</a></li>
-            <li><a href="comisiones.html">Comisiones</a></li>
-            <li><a href="ideas.html">Ideas</a></li>
-            <li><a href="ayuda.html">Ayuda</a></li>
+            <li><a href="#addons">Addons</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contacto</a></li>
         </ul>
     </nav>
 
-    <main>
-        <div class="addons-section">
-            <div class="addon">
-                <a href="blank.html" target="_blank">
-                    <img src="images/dedsafio3.png" alt="UI de Dedsafio 3">
-                </a>
-                <p>UI de Dedsafio 3</p>
+    <!-- Portada -->
+    <section class="portada">
+        <h1>Mis Addons de Minecraft Bedrock</h1>
+        <p>Creaciones personalizadas para una experiencia única en Minecraft</p>
+        <a href="#addons" class="boton">Explorar Addons</a>
+    </section>
+
+    <!-- Sección de Addons -->
+    <section id="addons" class="addons">
+        <h2>Galería de Addons</h2>
+        <div class="galeria">
+            <!-- Tarjeta de Addon -->
+            <div class="tarjeta">
+                <img src="addon1.jpg" alt="Addon 1">
+                <h3>Addon 1</h3>
+                <p>Descripción breve del addon 1.</p>
+                <div class="valoracion">
+                    <span>⭐️⭐️⭐️⭐️☆</span>
+                </div>
+                <a href="#" class="boton">Ver Más</a>
             </div>
-            <div class="addon">
-                <a href="blank.html" target="_blank">
-                    <img src="images/magicland.png" alt="UI de MagicLand">
-                </a>
-                <p>UI de MagicLand</p>
-            </div>
-            <div class="addon">
-                <a href="blank.html" target="_blank">
-                    <img src="images/ruleta.png" alt="Ruletas de dedsafio">
-                </a>
-                <p>Ruletas de Dedsafio</p>
-            </div>
+            <!-- Repite las tarjetas de addon aquí -->
         </div>
-    </main>
+    </section>
 
-    <aside class="social-links">
-        <a href="https://x.com/Developer7452?t=yUA4whJw0yyZKS4LS419Ow&s=09" target="_blank">
-            <img src="images/x-logo.png" alt="X Logo">
-        </a>
-        <a href="https://discord.gg/qXmRGqNV5T" target="_blank">
-            <img src="images/discord-logo.png" alt="Discord Logo">
-        </a>
-        <a href="https://youtube.com/@developer-7452?si=AtyFDe1VJaHOvAPd" target="_blank">
-            <img src="images/youtube-logo.png" alt="YouTube Logo">
-        </a>
-    </aside>
+    <!-- Sección Sobre Mí -->
+    <section id="about" class="about">
+        <h2>Sobre Mí</h2>
+        <p>Soy un creador apasionado de addons para Minecraft, buscando mejorar la experiencia de juego para todos.</p>
+    </section>
 
-    <script src="scripts.js"></script>
-    <script>
-        // Obtener información del usuario desde la sesión
-        async function fetchUserData() {
-            try {
-                const response = await fetch('/session');
-                const user = await response.json();
+    <!-- Sección de Testimonios -->
+    <section id="testimonios" class="testimonios">
+        <h2>Testimonios</h2>
+        <div class="testimonio">
+            <p>"Los addons de este creador han transformado mi experiencia en Minecraft. ¡Son increíbles!"</p>
+            <cite>- Jugador A</cite>
+        </div>
+        <div class="testimonio">
+            <p>"Siempre espero los nuevos addons. ¡Sigue creando!"</p>
+            <cite>- Jugador B</cite>
+        </div>
+    </section>
 
-                if (user) {
-                    document.getElementById('login-btn').style.display = 'none';
-                    document.getElementById('user-info').style.display = 'block';
-                    document.getElementById('user-avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-                    document.getElementById('user-name').textContent = user.username;
-                }
-            } catch (error) {
-                console.error('Error al obtener la información del usuario:', error);
-            }
-        }
+    <!-- Sección de Blog -->
+    <section id="blog" class="blog">
+        <h2>Blog</h2>
+        <article class="entrada-blog">
+            <h3>Últimas Actualizaciones</h3>
+            <p>Siempre estoy trabajando en nuevos addons y mejoras. Aquí puedes encontrar lo último en mis proyectos.</p>
+            <a href="#" class="boton">Leer Más</a>
+        </article>
+    </section>
 
-        fetchUserData();
-    </script>
+    <!-- Sección de Contacto -->
+    <section id="contact" class="contact">
+        <h2>Contacto</h2>
+        <p>Puedes seguirme en mis redes sociales:</p>
+        <p>
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </p>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer>
+        <p>&copy; 2024 - Mis Addons de Minecraft Bedrock</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Añadir script para animaciones -->
 </body>
 </html>
