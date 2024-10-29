@@ -1,76 +1,95 @@
-const formRegistro = document.getElementById('formRegistro');
-const formComentario = document.getElementById('formComentario');
-const comentariosList = document.getElementById('comentariosList');
-const userIcon = document.getElementById('userIcon');
-const userImage = document.getElementById('userImage');
-const userName = document.getElementById('userName');
+// Obtener elementos del DOM
+const toggleRegistro = document.querySelector('.usuario');
+const formularioRegistro = document.querySelector('.formulario-registro');
+const botonRegistrar = document.querySelector('.registrar');
+const inputNombre = document.querySelector('#nombre');
+const inputFoto = document.querySelector('#foto');
+const comentariosContenedor = document.querySelector('.comentarios');
+const botonModo = document.querySelector('.boton-modo');
 
-let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-let comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
+// Inicializar variables
+let perfil = {
+    nombre: '',
+    foto: '',
+};
 
-// Función para mostrar/ocultar el formulario de registro
-function toggleRegistro() {
-    const registroSection = document.getElementById('registro');
-    registroSection.style.display = registroSection.style.display === 'none' ? 'block' : 'none';
+// Mostrar/ocultar formulario de registro
+toggleRegistro.addEventListener('click', () => {
+    formularioRegistro.classList.toggle('activo');
+});
+
+// Registrar nuevo usuario
+botonRegistrar.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevenir el envío del formulario
+    const nombre = inputNombre.value.trim();
+    const foto = inputFoto.files[0];
+
+    if (nombre && foto) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            perfil = {
+                nombre: nombre,
+                foto: e.target.result, // Usar el resultado de FileReader
+            };
+            // Actualizar el ícono de usuario
+            actualizarPerfil();
+            formularioRegistro.classList.remove('activo'); // Ocultar formulario
+            inputNombre.value = ''; // Limpiar el campo de nombre
+            inputFoto.value = ''; // Limpiar el campo de archivo
+        };
+        reader.readAsDataURL(foto); // Leer la imagen como URL
+    }
+});
+
+// Actualizar perfil de usuario
+function actualizarPerfil() {
+    const iconoUsuario = document.querySelector('.usuario img');
+    const nombreUsuario = document.querySelector('.usuario span');
+
+    iconoUsuario.src = perfil.foto; // Cambiar la imagen del perfil
+    iconoUsuario.style.borderRadius = '50%'; // Asegurarse de que sea circular
+    iconoUsuario.style.width = '40px'; // Tamaño pequeño
+    iconoUsuario.style.height = '40px'; // Tamaño pequeño
+    nombreUsuario.textContent = perfil.nombre; // Mostrar el nombre
 }
 
-// Manejo de registro
-formRegistro.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const profileImage = document.getElementById('profileImage').files[0];
+// Agregar un nuevo comentario
+const nuevoComentario = (nombre, foto, texto) => {
+    const comentarioDiv = document.createElement('div');
+    comentarioDiv.classList.add('comentario');
 
-    if (usuarios.find(user => user.username === username)) {
-        alert('El nombre de usuario ya está en uso.');
-        return;
+    const img = document.createElement('img');
+    img.src = foto;
+    img.alt = 'Perfil de ' + nombre;
+
+    const nombreSpan = document.createElement('span');
+    nombreSpan.textContent = nombre;
+
+    const textoP = document.createElement('p');
+    textoP.textContent = texto;
+
+    comentarioDiv.appendChild(img);
+    comentarioDiv.appendChild(nombreSpan);
+    comentarioDiv.appendChild(textoP);
+    comentariosContenedor.appendChild(comentarioDiv);
+};
+
+// Enviar un nuevo comentario
+document.querySelector('.enviar-comentario').addEventListener('click', (event) => {
+    event.preventDefault();
+    const comentarioTexto = document.querySelector('#comentario').value.trim();
+    if (comentarioTexto) {
+        nuevoComentario(perfil.nombre, perfil.foto, comentarioTexto);
+        document.querySelector('#comentario').value = ''; // Limpiar el campo de comentario
     }
-
-    const reader = new FileReader();
-    reader.onload = function (event) {
-        const userData = { username, password, image: event.target.result };
-        usuarios.push(userData);
-        localStorage.setItem('usuarios', JSON.stringify(usuarios));
-        alert('Registro exitoso.');
-
-        // Actualiza el ícono del usuario
-        userImage.src = event.target.result;
-        userName.textContent = username;
-        userIcon.style.cursor = 'default'; // Desactiva el clic en el ícono
-        userIcon.onclick = null; // Elimina el evento clic
-        toggleRegistro(); // Cierra el formulario
-    };
-    reader.readAsDataURL(profileImage);
 });
 
-// Manejo de comentarios
-formComentario.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const comentarioText = document.getElementById('comentario').value;
-    const username = userName.textContent;
-
-    if (!username) {
-        alert('Debes registrarte primero.');
-        return;
-    }
-
-    const comentario = { username, text: comentarioText };
-    comentarios.push(comentario);
-    localStorage.setItem('comentarios', JSON.stringify(comentarios));
-    mostrarComentarios();
-    formComentario.reset();
-});
-
-// Mostrar comentarios
-function mostrarComentarios() {
-    comentariosList.innerHTML = '';
-    comentarios.forEach(comentario => {
-        const div = document.createElement('div');
-        div.className = 'comentario';
-        div.innerText = `${comentario.username}: ${comentario.text}`;
-        comentariosList.appendChild(div);
+// Modo oscuro
+botonModo.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const elementos = document.querySelectorAll('.navbar, .portada, .comentarios');
+    elementos.forEach(elemento => {
+        elemento.classList.toggle('dark-mode');
     });
-}
-
-// Cargar comentarios al inicio
-mostrarComentarios();
+    botonModo.classList.toggle('dark-mode');
+});
