@@ -6,6 +6,106 @@
     <title>Mis Addons de Minecraft Bedrock</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .navbar li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .portada {
+            background: url('portada.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .boton {
+            background: #555;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .tarjeta {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            width: 30%;
+        }
+
+        .comentarios {
+            padding: 20px;
+        }
+
+        .comentario {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .comentario img {
+            border-radius: 50%;
+            width: 30px; /* Tamaño pequeño para el comentario */
+            height: 30px; /* Tamaño pequeño para el comentario */
+            margin-right: 10px;
+        }
+
+        .registro {
+            position: relative;
+            padding: 20px;
+        }
+
+        .usuario {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #perfil-icono {
+            border-radius: 50%;
+            width: 40px; /* Tamaño pequeño para el icono */
+            height: 40px; /* Tamaño pequeño para el icono */
+            border: 2px solid #555;
+            margin-right: 10px;
+        }
+
+        /* Resto de estilos */
+    </style>
 </head>
 <body>
 
@@ -43,6 +143,31 @@
             </div>
             <!-- Repite las tarjetas de addon aquí -->
         </div>
+    </section>
+
+    <!-- Sección de Registro -->
+    <section class="registro">
+        <div class="usuario" onclick="toggleRegistro()">
+            <img id="perfil-icono" src="icono_usuario.png" alt="Icono Usuario">
+            <span id="nombre-usuario" style="display:none;">Usuario</span>
+        </div>
+        <form id="formulario-registro" style="display:none;" onsubmit="return registrarUsuario(event);">
+            <h2>Registro</h2>
+            <input type="text" id="nombre" placeholder="Nombre de usuario" required>
+            <input type="password" id="contrasena" placeholder="Contraseña" required>
+            <input type="file" id="imagen-perfil" accept="image/*" required>
+            <button type="submit" class="boton">Registrarse</button>
+        </form>
+    </section>
+
+    <!-- Sección de Comentarios -->
+    <section class="comentarios">
+        <h2>Comentarios</h2>
+        <div id="lista-comentarios">
+            <!-- Comentarios se agregarán aquí -->
+        </div>
+        <textarea id="nuevo-comentario" rows="4" placeholder="Escribe tu comentario aquí..."></textarea>
+        <button class="boton" onclick="agregarComentario()">Enviar Comentario</button>
     </section>
 
     <!-- Sección Sobre Mí -->
@@ -89,6 +214,63 @@
         <p>&copy; 2024 - Mis Addons de Minecraft Bedrock</p>
     </footer>
 
-    <script src="script.js"></script> <!-- Añadir script para animaciones -->
+    <script>
+        let usuarioRegistrado = null;
+
+        function toggleRegistro() {
+            const formulario = document.getElementById("formulario-registro");
+            formulario.style.display = formulario.style.display === "none" ? "block" : "none";
+        }
+
+        function registrarUsuario(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById("nombre").value;
+            const contrasena = document.getElementById("contrasena").value;
+            const imagenPerfil = document.getElementById("imagen-perfil").files[0];
+
+            if (imagenPerfil) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    usuarioRegistrado = {
+                        nombre: nombre,
+                        contrasena: contrasena,
+                        imagen: e.target.result
+                    };
+                    actualizarPerfil();
+                    document.getElementById("formulario-registro").reset();
+                    toggleRegistro();
+                };
+                reader.readAsDataURL(imagenPerfil);
+            }
+        }
+
+        function actualizarPerfil() {
+            document.getElementById("perfil-icono").src = usuarioRegistrado.imagen;
+            document.getElementById("perfil-icono").style.borderRadius = "50%";
+            document.getElementById("nombre-usuario").innerText = usuarioRegistrado.nombre;
+            document.getElementById("nombre-usuario").style.display = "inline";
+        }
+
+        function agregarComentario() {
+            const comentarioTexto = document.getElementById("nuevo-comentario").value;
+            if (comentarioTexto.trim() === "") return;
+
+            const nuevoComentario = document.createElement("div");
+            nuevoComentario.classList.add("comentario");
+
+            const imagenComentario = document.createElement("img");
+            imagenComentario.src = usuarioRegistrado ? usuarioRegistrado.imagen : "icono_usuario.png"; // Icono por defecto si no hay usuario registrado
+
+            const textoComentario = document.createElement("span");
+            textoComentario.textContent = `${usuarioRegistrado ? usuarioRegistrado.nombre : "Anónimo"}: ${comentarioTexto}`;
+
+            nuevoComentario.appendChild(imagenComentario);
+            nuevoComentario.appendChild(textoComentario);
+
+            document.getElementById("lista-comentarios").appendChild(nuevoComentario);
+            document.getElementById("nuevo-comentario").value = ""; // Limpiar el textarea
+        }
+    </script>
 </body>
 </html>
