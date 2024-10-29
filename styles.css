@@ -1,225 +1,285 @@
-@font-face {
-    font-family: 'MinecraftFont';
-    src: url('fonts/Minecraft.ttf') format('truetype');
+/* Resetear márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-family: 'Press Start 2P', sans-serif;
+    background-color: #7d8c42; /* Color de fondo estilo Minecraft */
+    color: #333;
 }
 
-header {
+/* Menú de Navegación */
+.navbar {
+    background-color: #3b3b3b; /* Color oscuro */
+    padding: 15px;
     text-align: center;
-    margin-top: 20px;
-    position: relative;
-    width: 100%;
+    border-bottom: 5px solid #60492c; /* Color de tierra */
 }
 
-header h1 {
-    font-size: 2.5em;
-    margin-bottom: 0;
-    position: relative;
-    z-index: 2;
-    font-family: 'MinecraftFont', Arial, sans-serif;
+.navbar ul {
+    list-style: none;
 }
 
-header p {
-    font-size: 1.2em;
-    color: #555;
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 2;
+.navbar ul li {
+    display: inline;
+    margin: 0 15px;
 }
 
-.top-line {
-    width: 100%;
-    height: 100%;
-    background-color: #ccc;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.menu-icon {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.menu-icon img {
-    width: 40px;
-    height: 40px;
-}
-
-#dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 4;
-}
-
-#dropdown-menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#dropdown-menu ul li {
-    border-bottom: 1px solid #ccc;
-}
-
-#dropdown-menu ul li:last-child {
-    border-bottom: none;
-}
-
-#dropdown-menu ul li a {
-    display: block;
-    padding: 10px;
+.navbar a {
+    color: #55cc44; /* Verde característico */
     text-decoration: none;
-    color: black;
     font-size: 1.2em;
+    border: 2px solid transparent;
+    padding: 5px;
+    transition: border 0.3s, color 0.3s;
 }
 
-#dropdown-menu ul li a:hover {
-    background-color: #f0f0f0;
+.navbar a:hover {
+    border: 2px solid #55cc44; /* Resaltar el link */
+    color: #fff; /* Cambia el color del texto al hacer hover */
 }
 
-.addons-section {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+/* Portada */
+.portada {
+    background-image: url('textures/grass_block.png'); /* Textura de bloque de pasto */
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    border-bottom: 5px solid #60492c; /* Color de tierra */
 }
 
-.addon {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.portada h1 {
+    font-size: 2.5em;
+    color: #55cc44;
+    text-shadow: 3px 3px 0 #000;
+}
+
+.portada p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #d3d3d3;
+}
+
+.portada .boton {
+    display: inline-block;
+    padding: 12px 24px;
+    background-image: url('textures/stone_block.png'); /* Textura de bloque de piedra */
+    background-size: cover;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 2px solid #333;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.portada .boton:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Efecto al pasar el ratón */
+    transform: scale(1.05); /* Aumentar el tamaño */
+}
+
+/* Sección de Addons */
+.addons {
+    padding: 50px 20px;
+    text-align: center;
+    background-image: url('textures/wood_planks.png'); /* Textura de bloques de madera */
+    background-size: cover;
+    color: #fff;
+}
+
+.addons h2 {
+    font-size: 2em;
+    color: #e6dbb1; /* Color crema madera */
     margin-bottom: 20px;
 }
 
-.addon img {
-    width: 200px;
-    height: auto;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s;
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-.addon img:hover {
+.tarjeta {
+    background-image: url('textures/cobblestone_block.png'); /* Textura de bloque de piedra */
+    background-size: cover;
+    width: 250px;
+    border-radius: 5px;
+    border: 3px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.2s; /* Efecto de hover */
+}
+
+.tarjeta:hover {
+    transform: scale(1.05); /* Agrandar tarjeta al pasar el mouse */
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 3px solid #333;
+}
+
+.tarjeta h3 {
+    margin: 15px 0;
+    font-size: 1.2em;
+    color: #55cc44;
+}
+
+.tarjeta p {
+    font-size: 0.9em;
+    padding: 0 15px;
+}
+
+.valoracion {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.tarjeta .boton {
+    display: inline-block;
+    margin: 15px;
+    padding: 10px 20px;
+    background-image: url('textures/wood_button.png'); /* Textura de botón de madera */
+    background-size: cover;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 2px solid #333;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.tarjeta .boton:hover {
+    background-color: rgba(0, 0, 0, 0.5);
     transform: scale(1.05);
 }
 
-.addon p {
-    font-size: 1.2em;
-    margin: 10px 0 0 0;
+/* Sección Sobre Mí */
+.about {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #b3c99a; /* Color claro estilo Minecraft */
 }
 
-.social-links {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: translateY(-50%);
-    padding-right: 10px;
-}
-
-.social-links a {
+.about h2 {
+    font-size: 2em;
+    color: #333;
     margin-bottom: 20px;
 }
 
-.social-links img {
-    width: 40px;
-    height: 40px;
+.about p {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* Estilos para el botón de inicio de sesión */
-#login-btn {
-    display: inline-block;
+/* Sección de Testimonios */
+.testimonios {
+    padding: 50px 20px;
+    text-align: center;
+    background-image: url('textures/grass_block.png');
+    background-size: cover;
+    color: #fff;
+}
+
+.testimonios h2 {
+    font-size: 2em;
+    color: #e6dbb1;
+    margin-bottom: 20px;
+}
+
+.testimonio {
+    margin: 20px 0;
+    font-style: italic;
+}
+
+.testimonio cite {
+    display: block;
     margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #7289da; /* Color de fondo de Discord */
+    color: #ccc;
+}
+
+/* Sección de Blog */
+.blog {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #7d8c42;
     color: #fff;
+}
+
+.blog h2 {
+    font-size: 2em;
+    color: #e6dbb1;
+    margin-bottom: 20px;
+}
+
+.entrada-blog {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    transition: transform 0.2s;
+}
+
+.entrada-blog:hover {
+    transform: scale(1.05);
+}
+
+.entrada-blog h3 {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+
+.entrada-blog p {
+    font-size: 1em;
+}
+
+/* Sección de Contacto */
+.contact {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #3b3b3b;
+    color: #fff;
+}
+
+.contact h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.contact a {
+    color: #55cc44;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    font-weight: bold;
 }
 
-#login-btn:hover {
-    background-color: #5b6eae; /* Color al pasar el mouse */
-}
-
-/* Estilos para la información del usuario */
-#user-info {
-    display: flex;
-    align-items: center;
-    margin-top: 10px; /* Ajusta según necesites */
-    z-index: 2;
-}
-
-#user-avatar {
-    border-radius: 50%; /* Para que el avatar sea redondo */
-    margin-right: 10px; /* Espacio entre el avatar y el nombre */
-}
-
-/* Tema oscuro */
-body.dark-mode {
-    background-color: #333;
+/* Pie de Página */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3b3b3b;
     color: #fff;
+    position: relative;
 }
 
-body.dark-mode header p {
-    color: #ddd;
+/* Animaciones generales */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-body.dark-mode .top-line {
-    background-color: #555;
-}
-
-body.dark-mode #dropdown-menu {
-    background-color: #444;
-    border-color: #666;
-}
-
-body.dark-mode #dropdown-menu ul li a {
-    color: #fff;
-}
-
-/* Botón de cambio de tema */
-button#theme-toggle {
-    position: absolute;
-    top: 10px; /* Ajusta la posición superior */
-    left: 10px; /* Ajusta la posición izquierda */
-    padding: 10px 15px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 5; /* Mayor que la línea gris */
-}
-
-button#theme-toggle:hover {
-    background-color: #555;
-}
-
-body.dark-mode button#theme-toggle {
-    background-color: #ddd;
-    color: #333;
+body {
+    animation: fadeIn 1s ease-in; /* Animación al cargar la página */
 }
