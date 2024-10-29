@@ -7,8 +7,9 @@
 
 body {
     font-family: 'Press Start 2P', sans-serif;
-    background-color: #7d8c42; /* Color de fondo estilo Minecraft */
+    background-color: #d9d9d9; /* Color de fondo claro */
     color: #333;
+    transition: background-color 0.3s, color 0.3s; /* Transición para el cambio de modo */
 }
 
 /* Menú de Navegación */
@@ -40,6 +41,24 @@ body {
 .navbar a:hover {
     border: 2px solid #55cc44; /* Resaltar el link */
     color: #fff; /* Cambia el color del texto al hacer hover */
+}
+
+/* Botón Modo Oscuro */
+.boton-modo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #55cc44; /* Verde característico */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-modo:hover {
+    background-color: #45b33f; /* Color de hover */
 }
 
 /* Portada */
@@ -265,94 +284,110 @@ body {
     font-weight: bold;
 }
 
-/* Estilos para el Registro */
-#icono-registro {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
-}
-
-#formulario-registro {
-    display: none;
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
+/* Estilo para Comentarios */
+.comentarios {
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
 }
 
-#formulario-registro label {
-    display: block;
+.comentarios h2 {
+    font-size: 1.8em;
     margin-bottom: 10px;
+    color: #333;
 }
 
-#formulario-registro input[type="text"],
-#formulario-registro input[type="file"] {
-    width: 100%;
-    padding: 8px;
+.comentarios form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comentarios input,
+.comentarios textarea {
     margin-bottom: 10px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
-#formulario-registro button {
+.comentarios button {
+    padding: 10px;
     background-color: #55cc44;
     color: white;
     border: none;
-    padding: 10px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-#formulario-registro button:hover {
-    background-color: #45a036;
+.comentarios button:hover {
+    background-color: #45b33f; /* Color al pasar el mouse */
 }
 
-/* Estilos para Comentarios */
-.lista-comentarios {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
+/* Estilos para cada comentario */
 .comentario {
     display: flex;
     align-items: center;
-    margin: 10px 0;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.comentario:last-child {
+    border-bottom: none; /* Sin borde en el último comentario */
 }
 
 .comentario img {
-    width: 40px; /* Tamaño de la imagen del comentario */
-    height: 40px;
+    width: 40px; /* Tamaño pequeño de la imagen */
+    height: 40px; /* Tamaño pequeño de la imagen */
     border-radius: 50%; /* Redondear la imagen */
-    margin-right: 10px;
+    margin-right: 10px; /* Espaciado entre imagen y texto */
 }
 
 .comentario span {
-    font-size: 0.9em; /* Tamaño de fuente para el nombre del usuario */
-    color: #333; /* Color del texto del nombre */
+    font-weight: bold; /* Nombre en negrita */
+    margin-right: 5px;
 }
 
 .comentario p {
-    margin: 0;
-    font-size: 0.8em; /* Tamaño de fuente para el comentario */
-    color: #555; /* Color del texto del comentario */
+    margin: 0; /* Sin margen en el párrafo */
 }
 
-/* Estilo del botón de enviar comentario */
-#formulario-comentarios button {
-    background-color: #55cc44; /* Color de fondo del botón */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    padding: 10px 20px; /* Espaciado interno */
-    cursor: pointer; /* Cursor de puntero al pasar el ratón */
-    border-radius: 5px; /* Esquinas redondeadas */
-    transition: background-color 0.3s; /* Transición suave */
+/* Modo oscuro */
+body.dark-mode {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #eaeaea; /* Color de texto claro */
 }
 
-#formulario-comentarios button:hover {
-    background-color: #45a036; /* Color más oscuro al hacer hover */
+.navbar.dark-mode {
+    background-color: #222; /* Fondo oscuro para la barra de navegación */
+}
+
+.portada.dark-mode {
+    background-color: #333; /* Fondo oscuro para la portada */
+}
+
+.comentarios.dark-mode {
+    background-color: #444; /* Fondo oscuro para los comentarios */
+}
+
+.comentarios.dark-mode h2,
+.about.dark-mode h2,
+.testimonios.dark-mode h2,
+.blog.dark-mode h2,
+.contact.dark-mode h2 {
+    color: #eaeaea; /* Color de texto claro para los títulos */
+}
+
+.comentarios.dark-mode input,
+.comentarios.dark-mode textarea {
+    border: 1px solid #555; /* Borde más oscuro para inputs */
+    background-color: #333; /* Fondo oscuro para inputs */
+    color: #eaeaea; /* Texto claro en inputs */
+}
+
+/* Botón de alternancia de modo oscuro */
+.boton-modo.dark-mode {
+    background-color: #777; /* Fondo para botón en modo oscuro */
 }
