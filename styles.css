@@ -265,21 +265,94 @@ body {
     font-weight: bold;
 }
 
-/* Pie de Página */
-footer {
-    text-align: center;
+/* Estilos para el Registro */
+#icono-registro {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
+#formulario-registro {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
     padding: 20px;
-    background-color: #3b3b3b;
-    color: #fff;
-    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Animaciones generales */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+#formulario-registro label {
+    display: block;
+    margin-bottom: 10px;
 }
 
-body {
-    animation: fadeIn 1s ease-in; /* Animación al cargar la página */
+#formulario-registro input[type="text"],
+#formulario-registro input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#formulario-registro button {
+    background-color: #55cc44;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#formulario-registro button:hover {
+    background-color: #45a036;
+}
+
+/* Estilos para Comentarios */
+.lista-comentarios {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.comentario {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.comentario img {
+    width: 40px; /* Tamaño de la imagen del comentario */
+    height: 40px;
+    border-radius: 50%; /* Redondear la imagen */
+    margin-right: 10px;
+}
+
+.comentario span {
+    font-size: 0.9em; /* Tamaño de fuente para el nombre del usuario */
+    color: #333; /* Color del texto del nombre */
+}
+
+.comentario p {
+    margin: 0;
+    font-size: 0.8em; /* Tamaño de fuente para el comentario */
+    color: #555; /* Color del texto del comentario */
+}
+
+/* Estilo del botón de enviar comentario */
+#formulario-comentarios button {
+    background-color: #55cc44; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    cursor: pointer; /* Cursor de puntero al pasar el ratón */
+    border-radius: 5px; /* Esquinas redondeadas */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+#formulario-comentarios button:hover {
+    background-color: #45a036; /* Color más oscuro al hacer hover */
 }
