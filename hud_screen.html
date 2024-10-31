@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de JSON - Hud Screen</title>
+    <style>
+        body {
+            background-color: #2e2e2e;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background-color: #3a3a3a;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        label, select, input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button#update-json { background-color: #4CAF50; color: white; }
+        button#download-json { background-color: #008CBA; color: white; }
+        button#view-json { background-color: #555555; color: white; }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #3a3a3a;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            color: #f0f0f0;
+        }
+        .modal-content pre {
+            background-color: #2e2e2e;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            color: #d4d4d4;
+        }
+        .close-button {
+            background-color: #444;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Editor de JSON - Hud Screen</h1>
+    <div class="container">
+        <!-- Links y créditos -->
+        <p>//hud screen de developer7452 espero y te guste esto y me des apoyo</p>
+        <p>Links:</p>
+        <ul>
+            <li><a href="https://youtube.com/@developer-7452?si=7jTT6joHPnoq4KqZ" target="_blank">YouTube</a></li>
+            <li><a href="https://x.com/Developer7452?t=bRmIQ_Cs-Bz0XUaeFXTABg&s=09" target="_blank">Twitter</a></li>
+            <li><a href="https://discord.gg/hxjZBwtDw8" target="_blank">Discord</a></li>
+        </ul>
+
+        <!-- Campos de entrada -->
+        <label for="texture">Nombre de textura:</label>
+        <input type="text" id="texture" placeholder="textures/ui/tu_textura">
+
+        <label for="duration">Duración:</label>
+        <input type="number" id="duration" placeholder="Duración en milisegundos">
+
+        <label for="uv-size">UV Tamaño (Ancho, Alto):</label>
+        <input type="text" id="uv-size" placeholder="Ejemplo: 256, 256">
+
+        <label for="offset">Offset (Ancho, Alto):</label>
+        <input type="text" id="offset" placeholder="Ejemplo: 0, 0">
+
+        <label for="size">Tamaño (Ancho, Alto):</label>
+        <input type="text" id="size" placeholder="Ejemplo: 128, 128">
+
+        <label for="anchor-from">Anchor From:</label>
+        <select id="anchor-from">
+            <option value="">Seleccione una opción</option>
+            <option value="top_left">Top Left</option>
+            <option value="top_right">Top Right</option>
+            <option value="bottom_left">Bottom Left</option>
+            <option value="bottom_right">Bottom Right</option>
+        </select>
+
+        <label for="anchor-to">Anchor To:</label>
+        <select id="anchor-to">
+            <option value="">Seleccione una opción</option>
+            <option value="top_left">Top Left</option>
+            <option value="top_right">Top Right</option>
+            <option value="bottom_left">Bottom Left</option>
+            <option value="bottom_right">Bottom Right</option>
+        </select>
+
+        <!-- Botones -->
+        <div class="button-container">
+            <button id="update-json" onclick="updateJson()">Actualizar JSON</button>
+            <button id="view-json" onclick="showModal()">Ver Código</button>
+            <button id="download-json" onclick="downloadJson()">Descargar JSON</button>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar el JSON -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>JSON Actualizado</h2>
+            <pre id="json-code"></pre>
+            <button class="close-button" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        let jsonData = {
+            "hud_screen": {
+                "always_accepts_input": true,
+                "render_only_when_topmost": false,
+                "$use_loading_bars": false,
+                "$screen_animations": []
+            },
+            "root_panel": {
+                "modifications": [
+                    {
+                        "array_name": "controls",
+                        "operation": "insert_front",
+                        "value": [
+                            {
+                                "title_factory": {
+                                    "type": "panel",
+                                    "factory": {
+                                        "name": "hud_title_text_factory",
+                                        "control_ids": {
+                                            "hud_title_text": "@hud.title"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "title@hud.content_image": {
+                "texture": "textures/ui/",
+                "anchor_from": "",
+                "anchor_to": "",
+                "size": [],
+                "offset": [],
+                "anims": ["@hud.anim_title"],
+                "bindings": [
+                    {
+                        "binding_name": "#hud_title_text_string",
+                        "binding_name_override": "#text"
+                    },
+                    {
+                        "binding_type": "view",
+                        "source_property_name": "(#text = 'title')",
+                        "target_property_name": "#visible"
+                    }
+                ]
+            },
+            "content_image": {
+                "type": "image",
+                "layer": 999,
+                "uv_size": [],
+                "uv": "@hud.image_anim"
+            },
+            "image_anim": {
+                "anim_type": "aseprite_flip_book",
+                "initial_uv": [0, 0]
+            },
+            "anim_title": {
+                "anim_type": "wait",
+                "duration": null
+            },
+            "hud_title_text/title_frame/title": {
+                "modifications": [
+                    {
+                        "array_name": "bindings",
+                        "operation": "insert_back",
+                        "value": {
+                            "binding_type": "view",
+                            "source_property_name": "(not (#text = 'title'))",
+                            "target_property_name": "#visible"
+                        }
+                    }
+                ]
+            }
+        };
+
+        function updateJson() {
+            jsonData["title@hud.content_image"].texture = "textures/ui/" + document.getElementById("texture").value;
+
+            const durationValue = parseInt(document.getElementById("duration").value);
+            if (!isNaN(durationValue)) {
+                jsonData.anim_title.duration = durationValue;
+            }
+
+            const uvSize = document.getElementById("uv-size").value.split(',').map(Number);
+            if (uvSize.length === 2 && uvSize.every(Number.isFinite)) {
+                jsonData.content_image.uv_size = uvSize;
+            }
+
+            const offset = document.getElementById("offset").value.split(',').map(Number);
+            if (offset.length === 2 && offset.every(Number.isFinite)) {
+                jsonData["title@hud.content_image"].offset = offset;
+            }
+
+            const size = document.getElementById("size").value.split(',').map(Number);
+            if (size.length === 2 && size.every(Number.isFinite)) {
+                jsonData["title@hud.content_image"].size = size;
+            }
+
+            jsonData["title@hud.content_image"].anchor_from = document.getElementById("anchor-from").value;
+            jsonData["title@hud.content_image"].anchor_from = document.getElementById("anchor-from").value;
+            jsonData["title@hud.content_image"].anchor_to = document.getElementById("anchor-to").value;
+        }
+
+        function showModal() {
+            const jsonCodeElement = document.getElementById("json-code");
+            jsonCodeElement.textContent = JSON.stringify(jsonData, null, 2);
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function downloadJson() {
+            const jsonContent = JSON.stringify(jsonData, null, 2);
+            const blob = new Blob([jsonContent], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "hud_screen.json";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
