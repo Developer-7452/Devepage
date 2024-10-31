@@ -14,135 +14,26 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-
-        .navbar {
-            background: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        .navbar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .navbar li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .portada {
-            background: url('portada.jpg') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .boton {
-            background: #555;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .galeria {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
-
-        .tarjeta {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 10px;
-            width: 30%;
-        }
-
-        .comentarios {
-            padding: 20px;
-        }
-
-        .comentario {
-            display: flex;
-            align-items: center;
-            margin: 5px 0;
-        }
-
-        .comentario img {
-            border-radius: 50%;
-            width: 30px; /* Tamaño pequeño para el comentario */
-            height: 30px; /* Tamaño pequeño para el comentario */
-            margin-right: 10px;
-        }
-
-        .registro {
-            position: relative;
-            padding: 20px;
-        }
-
-        .usuario {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        #perfil-icono {
-            border-radius: 50%;
-            width: 40px; /* Tamaño pequeño para el icono */
-            height: 40px; /* Tamaño pequeño para el icono */
-            border: 2px solid #555;
-            margin-right: 10px;
-        }
-
-        /* Resto de estilos */
+        /* Agregar otros estilos aquí */
     </style>
 </head>
 <body>
 
-    <!-- Menú de Navegación -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="#addons">Addons</a></li>
-            <li><a href="#about">Sobre Mí</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
-    </nav>
+   <!-- Menú de Navegación -->
+<nav>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="about.html">Acerca de</a></li>
+    <li><a href="contact.html">Contacto</a></li>
+    <li><a href="hud_screen.html">Hud_screen</a></li> <!-- Nuevo elemento -->
+  </ul>
+</nav>
 
     <!-- Portada -->
     <section class="portada">
         <h1>Mis Addons de Minecraft Bedrock</h1>
         <p>Creaciones personalizadas para una experiencia única en Minecraft</p>
         <a href="#addons" class="boton">Explorar Addons</a>
-    </section>
-
-    <!-- Sección de Addons -->
-    <section id="addons" class="addons">
-        <h2>Galería de Addons</h2>
-        <div class="galeria">
-            <!-- Tarjeta de Addon -->
-            <div class="tarjeta">
-                <img src="addon1.jpg" alt="Addon 1">
-                <h3>Addon 1</h3>
-                <p>Descripción breve del addon 1.</p>
-                <div class="valoracion">
-                    <span>⭐️⭐️⭐️⭐️☆</span>
-                </div>
-                <a href="#" class="boton">Ver Más</a>
-            </div>
-            <!-- Repite las tarjetas de addon aquí -->
-        </div>
     </section>
 
     <!-- Sección de Registro -->
@@ -170,44 +61,7 @@
         <button class="boton" onclick="agregarComentario()">Enviar Comentario</button>
     </section>
 
-    <!-- Sección Sobre Mí -->
-    <section id="about" class="about">
-        <h2>Sobre Mí</h2>
-        <p>Soy un creador apasionado de addons para Minecraft, buscando mejorar la experiencia de juego para todos.</p>
-    </section>
-
-    <!-- Sección de Testimonios -->
-    <section id="testimonios" class="testimonios">
-        <h2>Testimonios</h2>
-        <div class="testimonio">
-            <p>"Los addons de este creador han transformado mi experiencia en Minecraft. ¡Son increíbles!"</p>
-            <cite>- Jugador A</cite>
-        </div>
-        <div class="testimonio">
-            <p>"Siempre espero los nuevos addons. ¡Sigue creando!"</p>
-            <cite>- Jugador B</cite>
-        </div>
-    </section>
-
-    <!-- Sección de Blog -->
-    <section id="blog" class="blog">
-        <h2>Blog</h2>
-        <article class="entrada-blog">
-            <h3>Últimas Actualizaciones</h3>
-            <p>Siempre estoy trabajando en nuevos addons y mejoras. Aquí puedes encontrar lo último en mis proyectos.</p>
-            <a href="#" class="boton">Leer Más</a>
-        </article>
-    </section>
-
-    <!-- Sección de Contacto -->
-    <section id="contact" class="contact">
-        <h2>Contacto</h2>
-        <p>Puedes seguirme en mis redes sociales:</p>
-        <p>
-            <a href="#">Twitter</a> | 
-            <a href="#">Instagram</a>
-        </p>
-    </section>
+    <!-- Agregar otras secciones aquí -->
 
     <!-- Pie de Página -->
     <footer>
@@ -260,7 +114,7 @@
             nuevoComentario.classList.add("comentario");
 
             const imagenComentario = document.createElement("img");
-            imagenComentario.src = usuarioRegistrado ? usuarioRegistrado.imagen : "icono_usuario.png"; // Icono por defecto si no hay usuario registrado
+            imagenComentario.src = usuarioRegistrado ? usuarioRegistrado.imagen : "icono_usuario.png";
 
             const textoComentario = document.createElement("span");
             textoComentario.textContent = `${usuarioRegistrado ? usuarioRegistrado.nombre : "Anónimo"}: ${comentarioTexto}`;
@@ -269,7 +123,7 @@
             nuevoComentario.appendChild(textoComentario);
 
             document.getElementById("lista-comentarios").appendChild(nuevoComentario);
-            document.getElementById("nuevo-comentario").value = ""; // Limpiar el textarea
+            document.getElementById("nuevo-comentario").value = "";
         }
     </script>
 </body>
