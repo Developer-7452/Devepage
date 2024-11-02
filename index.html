@@ -7,12 +7,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #d9d9d9; /* Fondo gris */
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #333;
+            background-color: #4d4d4d; /* Gris oscuro */
             color: #fff;
             padding: 20px;
             display: flex;
@@ -22,34 +22,44 @@
         h1 {
             margin: 0;
         }
-        .dropdown {
+        .menu {
+            cursor: pointer;
             position: relative;
             display: inline-block;
         }
-        .dropdown-content {
+        .menu-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
+            background-color: #f2f2f2; /* Gris claro */
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-        .dropdown:hover .dropdown-content {
+        .menu:hover .menu-content {
             display: block;
         }
         .addon-section {
             margin: 20px;
             padding: 20px;
-            background-color: #fff;
+            background-color: #bfbfbf; /* Gris medio */
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow-y: auto;
-            max-height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .addon {
+            background-color: #a6a6a6; /* Gris más claro */
+            border-radius: 5px;
+            padding: 10px;
+            width: calc(25% - 20px); /* Cuadritos */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-align: center;
         }
         .comment-section {
             margin: 20px;
             padding: 20px;
-            background-color: #fff;
+            background-color: #f2f2f2; /* Gris claro */
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -62,15 +72,30 @@
             border-radius: 50%;
             margin-right: 10px;
         }
-        .addon {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+        .registration-panel {
+            margin: 20px;
+            padding: 20px;
+            background-color: #bfbfbf; /* Gris medio */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .addon img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
+        .registration-panel input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #888;
+        }
+        .registration-panel button {
+            padding: 10px 15px;
+            background-color: #4d4d4d; /* Gris oscuro */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .registration-panel button:hover {
+            background-color: #333; /* Gris más oscuro */
         }
     </style>
 </head>
@@ -81,9 +106,9 @@
             <span>Developer7452</span>
         </div>
         <h1>Developer7452 página</h1>
-        <div class="dropdown">
-            <button>Menú</button>
-            <div class="dropdown-content">
+        <div class="menu">
+            <div>☰</div>
+            <div class="menu-content">
                 <a href="#">Comprar</a>
                 <a href="#">Developer7452</a>
                 <a href="#">Hud_screen</a>
@@ -91,53 +116,54 @@
         </div>
     </header>
 
+    <section class="registration-panel">
+        <h2>Registro</h2>
+        <input type="text" placeholder="Nombre de usuario" required>
+        <input type="password" placeholder="Contraseña" required>
+        <button>Registrarse</button>
+    </section>
+
     <section class="addon-section">
         <h2>Addons de Developer7452</h2>
         <div class="addon">
             <img src="addon1.jpg" alt="Addon 1">
-            <div>
-                <strong>Addon 1</strong>
-                <p>Descripción del addon 1.</p>
-                <a href="#">Ver más</a>
-            </div>
+            <strong>Addon 1</strong>
+            <p>Descripción del addon 1.</p>
+            <a href="#">Ver más</a>
         </div>
         <div class="addon">
             <img src="addon2.jpg" alt="Addon 2">
-            <div>
-                <strong>Addon 2</strong>
-                <p>Descripción del addon 2.</p>
-                <a href="#">Ver más</a>
-            </div>
+            <strong>Addon 2</strong>
+            <p>Descripción del addon 2.</p>
+            <a href="#">Ver más</a>
         </div>
         <div class="addon">
             <img src="addon3.jpg" alt="Addon 3">
-            <div>
-                <strong>Addon 3</strong>
-                <p>Descripción del addon 3.</p>
-                <a href="#">Ver más</a>
-            </div>
+            <strong>Addon 3</strong>
+            <p>Descripción del addon 3.</p>
+            <a href="#">Ver más</a>
         </div>
         <div class="addon">
             <img src="addon4.jpg" alt="Addon 4">
-            <div>
-                <strong>Addon 4</strong>
-                <p>Descripción del addon 4.</p>
-                <a href="#">Ver más</a>
-            </div>
+            <strong>Addon 4</strong>
+            <p>Descripción del addon 4.</p>
+            <a href="#">Ver más</a>
         </div>
         <div class="addon">
             <img src="addon5.jpg" alt="Addon 5">
-            <div>
-                <strong>Addon 5</strong>
-                <p>Descripción del addon 5.</p>
-                <a href="#">Ver más</a>
-            </div>
+            <strong>Addon 5</strong>
+            <p>Descripción del addon 5.</p>
+            <a href="#">Ver más</a>
         </div>
         <!-- Añade más addons aquí -->
     </section>
 
     <section class="comment-section">
         <h2>Comentarios</h2>
+        <div class="comment">
+            <input type="text" placeholder="Tu comentario aquí..." required>
+            <button>Enviar</button>
+        </div>
         <div class="comment">
             <img src="usuario1.jpg" alt="Usuario 1" class="image">
             <strong>Usuario 1</strong>: ¡Gran addon!
