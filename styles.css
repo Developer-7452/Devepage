@@ -7,9 +7,27 @@
 
 body {
     font-family: 'Press Start 2P', sans-serif;
-    background-color: #d9d9d9; /* Color de fondo claro */
-    color: #333;
+    background-color: #333; /* Color de fondo oscuro */
+    color: #ddd;
     transition: background-color 0.3s, color 0.3s; /* Transición para el cambio de modo */
+}
+
+/* Botón para cambiar a modo oscuro */
+#boton-modo {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 15px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#boton-modo:hover {
+    background-color: #333;
 }
 
 /* Menú de Navegación */
@@ -17,7 +35,7 @@ body {
     background-color: #3b3b3b; /* Color oscuro */
     padding: 15px;
     text-align: center;
-    border-bottom: 5px solid #60492c; /* Color de tierra */
+    border-bottom: 5px solid #60492c;
 }
 
 .navbar ul {
@@ -30,7 +48,7 @@ body {
 }
 
 .navbar a {
-    color: #55cc44; /* Verde característico */
+    color: #55cc44;
     text-decoration: none;
     font-size: 1.2em;
     border: 2px solid transparent;
@@ -39,26 +57,8 @@ body {
 }
 
 .navbar a:hover {
-    border: 2px solid #55cc44; /* Resaltar el link */
-    color: #fff; /* Cambia el color del texto al hacer hover */
-}
-
-/* Botón Modo Oscuro */
-.boton-modo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 15px;
-    background-color: #55cc44; /* Verde característico */
+    border: 2px solid #55cc44;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.boton-modo:hover {
-    background-color: #45b33f; /* Color de hover */
 }
 
 /* Portada */
@@ -68,7 +68,7 @@ body {
     color: #fff;
     text-align: center;
     padding: 100px 20px;
-    border-bottom: 5px solid #60492c; /* Color de tierra */
+    border-bottom: 5px solid #60492c;
 }
 
 .portada h1 {
@@ -79,315 +79,65 @@ body {
 
 .portada p {
     font-size: 1.2em;
-    margin: 10px 0;
     color: #d3d3d3;
 }
 
-.portada .boton {
-    display: inline-block;
-    padding: 12px 24px;
-    background-image: url('textures/stone_block.png'); /* Textura de bloque de piedra */
-    background-size: cover;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1em;
-    border-radius: 8px;
-    border: 2px solid #333;
-    margin-top: 20px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.portada .boton:hover {
-    background-color: rgba(0, 0, 0, 0.5); /* Efecto al pasar el ratón */
-    transform: scale(1.05); /* Aumentar el tamaño */
-}
-
-/* Sección de Addons */
-.addons {
-    padding: 50px 20px;
-    text-align: center;
-    background-image: url('textures/wood_planks.png'); /* Textura de bloques de madera */
-    background-size: cover;
-    color: #fff;
-}
-
-.addons h2 {
-    font-size: 2em;
-    color: #e6dbb1; /* Color crema madera */
-    margin-bottom: 20px;
-}
-
+/* Galería de Addons */
 .galeria {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-around;
+    padding: 20px;
 }
 
 .tarjeta {
-    background-image: url('textures/cobblestone_block.png'); /* Textura de bloque de piedra */
-    background-size: cover;
-    width: 250px;
-    border-radius: 5px;
-    border: 3px solid #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    text-align: center;
-    color: #fff;
-    transition: transform 0.2s; /* Efecto de hover */
-}
-
-.tarjeta:hover {
-    transform: scale(1.05); /* Agrandar tarjeta al pasar el mouse */
-}
-
-.tarjeta img {
+    background: #444;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
     width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-bottom: 3px solid #333;
+    max-width: 300px;
 }
 
 .tarjeta h3 {
-    margin: 15px 0;
-    font-size: 1.2em;
     color: #55cc44;
 }
 
-.tarjeta p {
-    font-size: 0.9em;
-    padding: 0 15px;
-}
-
-.valoracion {
-    margin: 10px 0;
-    font-size: 1.2em;
-}
-
-.tarjeta .boton {
-    display: inline-block;
-    margin: 15px;
-    padding: 10px 20px;
-    background-image: url('textures/wood_button.png'); /* Textura de botón de madera */
-    background-size: cover;
-    color: white;
-    text-decoration: none;
-    font-size: 1em;
-    border-radius: 8px;
-    border: 2px solid #333;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.tarjeta .boton:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-    transform: scale(1.05);
-}
-
-/* Sección Sobre Mí */
-.about {
-    padding: 50px 20px;
-    text-align: center;
-    background-color: #b3c99a; /* Color claro estilo Minecraft */
-}
-
-.about h2 {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.about p {
-    font-size: 1.2em;
-    color: #555;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Sección de Testimonios */
-.testimonios {
-    padding: 50px 20px;
-    text-align: center;
-    background-image: url('textures/grass_block.png');
-    background-size: cover;
-    color: #fff;
-}
-
-.testimonios h2 {
-    font-size: 2em;
-    color: #e6dbb1;
-    margin-bottom: 20px;
-}
-
-.testimonio {
-    margin: 20px 0;
-    font-style: italic;
-}
-
-.testimonio cite {
-    display: block;
-    margin-top: 10px;
-    color: #ccc;
-}
-
-/* Sección de Blog */
-.blog {
-    padding: 50px 20px;
-    text-align: center;
-    background-color: #7d8c42;
-    color: #fff;
-}
-
-.blog h2 {
-    font-size: 2em;
-    color: #e6dbb1;
-    margin-bottom: 20px;
-}
-
-.entrada-blog {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
+/* Registro */
+.registro {
+    position: relative;
     padding: 20px;
-    margin: 20px auto;
-    max-width: 600px;
-    transition: transform 0.2s;
 }
 
-.entrada-blog:hover {
-    transform: scale(1.05);
+.usuario {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
-.entrada-blog h3 {
-    margin: 10px 0;
-    font-size: 1.5em;
+#perfil-icono {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #555;
+    margin-right: 10px;
 }
 
-.entrada-blog p {
-    font-size: 1em;
-}
-
-/* Sección de Contacto */
-.contact {
-    padding: 50px 20px;
-    text-align: center;
-    background-color: #3b3b3b;
-    color: #fff;
-}
-
-.contact h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.contact a {
-    color: #55cc44;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Estilo para Comentarios */
+/* Comentarios */
 .comentarios {
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
 }
 
-.comentarios h2 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.comentarios form {
-    display: flex;
-    flex-direction: column;
-}
-
-.comentarios input,
-.comentarios textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.comentarios button {
-    padding: 10px;
-    background-color: #55cc44;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.comentarios button:hover {
-    background-color: #45b33f; /* Color al pasar el mouse */
-}
-
-/* Estilos para cada comentario */
 .comentario {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}
-
-.comentario:last-child {
-    border-bottom: none; /* Sin borde en el último comentario */
+    margin: 5px 0;
 }
 
 .comentario img {
-    width: 40px; /* Tamaño pequeño de la imagen */
-    height: 40px; /* Tamaño pequeño de la imagen */
-    border-radius: 50%; /* Redondear la imagen */
-    margin-right: 10px; /* Espaciado entre imagen y texto */
-}
-
-.comentario span {
-    font-weight: bold; /* Nombre en negrita */
-    margin-right: 5px;
-}
-
-.comentario p {
-    margin: 0; /* Sin margen en el párrafo */
-}
-
-/* Modo oscuro */
-body.dark-mode {
-    background-color: #1a1a1a; /* Fondo oscuro */
-    color: #eaeaea; /* Color de texto claro */
-}
-
-.navbar.dark-mode {
-    background-color: #222; /* Fondo oscuro para la barra de navegación */
-}
-
-.portada.dark-mode {
-    background-color: #333; /* Fondo oscuro para la portada */
-}
-
-.comentarios.dark-mode {
-    background-color: #444; /* Fondo oscuro para los comentarios */
-}
-
-.comentarios.dark-mode h2,
-.about.dark-mode h2,
-.testimonios.dark-mode h2,
-.blog.dark-mode h2,
-.contact.dark-mode h2 {
-    color: #eaeaea; /* Color de texto claro para los títulos */
-}
-
-.comentarios.dark-mode input,
-.comentarios.dark-mode textarea {
-    border: 1px solid #555; /* Borde más oscuro para inputs */
-    background-color: #333; /* Fondo oscuro para inputs */
-    color: #eaeaea; /* Texto claro en inputs */
-}
-
-/* Botón de alternancia de modo oscuro */
-.boton-modo.dark-mode {
-    background-color: #777; /* Fondo para botón en modo oscuro */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
