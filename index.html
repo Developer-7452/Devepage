@@ -3,274 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Addons de Minecraft Bedrock</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Developer7452 página</title>
     <style>
-        /* Estilos generales */
         body {
-            font-family: 'Press Start 2P', cursive;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
         }
-
-        .navbar {
-            background: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        .navbar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .navbar li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .portada {
-            background: url('portada.jpg') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .boton {
-            background: #555;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .galeria {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+        header {
+            background-color: #333;
+            color: #fff;
             padding: 20px;
-        }
-
-        .tarjeta {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 10px;
-            width: 30%;
-        }
-
-        .comentarios {
-            padding: 20px;
-        }
-
-        .comentario {
             display: flex;
             align-items: center;
-            margin: 5px 0;
+            justify-content: space-between;
         }
-
-        .comentario img {
-            border-radius: 50%;
-            width: 30px; /* Tamaño pequeño para el comentario */
-            height: 30px; /* Tamaño pequeño para el comentario */
-            margin-right: 10px;
+        h1 {
+            margin: 0;
         }
-
-        .registro {
+        .dropdown {
             position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .addon-section {
+            margin: 20px;
             padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            max-height: 300px;
         }
-
-        .usuario {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
+        .comment-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
-        #perfil-icono {
+        .comment {
+            margin-bottom: 10px;
+        }
+        .image {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            width: 40px; /* Tamaño pequeño para el icono */
-            height: 40px; /* Tamaño pequeño para el icono */
-            border: 2px solid #555;
             margin-right: 10px;
         }
-
-        /* Resto de estilos */
+        .addon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .addon img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-
-    <!-- Menú de Navegación -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="#addons">Addons</a></li>
-            <li><a href="#about">Sobre Mí</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <!-- Portada -->
-    <section class="portada">
-        <h1>Mis Addons de Minecraft Bedrock</h1>
-        <p>Creaciones personalizadas para una experiencia única en Minecraft</p>
-        <a href="#addons" class="boton">Explorar Addons</a>
-    </section>
-
-    <!-- Sección de Addons -->
-    <section id="addons" class="addons">
-        <h2>Galería de Addons</h2>
-        <div class="galeria">
-            <!-- Tarjeta de Addon -->
-            <div class="tarjeta">
-                <img src="addon1.jpg" alt="Addon 1">
-                <h3>Addon 1</h3>
-                <p>Descripción breve del addon 1.</p>
-                <div class="valoracion">
-                    <span>⭐️⭐️⭐️⭐️☆</span>
-                </div>
-                <a href="#" class="boton">Ver Más</a>
+    <header>
+        <div>
+            <img src="tu-imagen.jpg" alt="Developer7452" class="image">
+            <span>Developer7452</span>
+        </div>
+        <h1>Developer7452 página</h1>
+        <div class="dropdown">
+            <button>Menú</button>
+            <div class="dropdown-content">
+                <a href="#">Comprar</a>
+                <a href="#">Developer7452</a>
+                <a href="#">Hud_screen</a>
             </div>
-            <!-- Repite las tarjetas de addon aquí -->
         </div>
+    </header>
+
+    <section class="addon-section">
+        <h2>Addons de Developer7452</h2>
+        <div class="addon">
+            <img src="addon1.jpg" alt="Addon 1">
+            <div>
+                <strong>Addon 1</strong>
+                <p>Descripción del addon 1.</p>
+                <a href="#">Ver más</a>
+            </div>
+        </div>
+        <div class="addon">
+            <img src="addon2.jpg" alt="Addon 2">
+            <div>
+                <strong>Addon 2</strong>
+                <p>Descripción del addon 2.</p>
+                <a href="#">Ver más</a>
+            </div>
+        </div>
+        <div class="addon">
+            <img src="addon3.jpg" alt="Addon 3">
+            <div>
+                <strong>Addon 3</strong>
+                <p>Descripción del addon 3.</p>
+                <a href="#">Ver más</a>
+            </div>
+        </div>
+        <div class="addon">
+            <img src="addon4.jpg" alt="Addon 4">
+            <div>
+                <strong>Addon 4</strong>
+                <p>Descripción del addon 4.</p>
+                <a href="#">Ver más</a>
+            </div>
+        </div>
+        <div class="addon">
+            <img src="addon5.jpg" alt="Addon 5">
+            <div>
+                <strong>Addon 5</strong>
+                <p>Descripción del addon 5.</p>
+                <a href="#">Ver más</a>
+            </div>
+        </div>
+        <!-- Añade más addons aquí -->
     </section>
 
-    <!-- Sección de Registro -->
-    <section class="registro">
-        <div class="usuario" onclick="toggleRegistro()">
-            <img id="perfil-icono" src="icono_usuario.png" alt="Icono Usuario">
-            <span id="nombre-usuario" style="display:none;">Usuario</span>
-        </div>
-        <form id="formulario-registro" style="display:none;" onsubmit="return registrarUsuario(event);">
-            <h2>Registro</h2>
-            <input type="text" id="nombre" placeholder="Nombre de usuario" required>
-            <input type="password" id="contrasena" placeholder="Contraseña" required>
-            <input type="file" id="imagen-perfil" accept="image/*" required>
-            <button type="submit" class="boton">Registrarse</button>
-        </form>
-    </section>
-
-    <!-- Sección de Comentarios -->
-    <section class="comentarios">
+    <section class="comment-section">
         <h2>Comentarios</h2>
-        <div id="lista-comentarios">
-            <!-- Comentarios se agregarán aquí -->
+        <div class="comment">
+            <img src="usuario1.jpg" alt="Usuario 1" class="image">
+            <strong>Usuario 1</strong>: ¡Gran addon!
         </div>
-        <textarea id="nuevo-comentario" rows="4" placeholder="Escribe tu comentario aquí..."></textarea>
-        <button class="boton" onclick="agregarComentario()">Enviar Comentario</button>
-    </section>
-
-    <!-- Sección Sobre Mí -->
-    <section id="about" class="about">
-        <h2>Sobre Mí</h2>
-        <p>Soy un creador apasionado de addons para Minecraft, buscando mejorar la experiencia de juego para todos.</p>
-    </section>
-
-    <!-- Sección de Testimonios -->
-    <section id="testimonios" class="testimonios">
-        <h2>Testimonios</h2>
-        <div class="testimonio">
-            <p>"Los addons de este creador han transformado mi experiencia en Minecraft. ¡Son increíbles!"</p>
-            <cite>- Jugador A</cite>
+        <div class="comment">
+            <img src="usuario2.jpg" alt="Usuario 2" class="image">
+            <strong>Usuario 2</strong>: Muy útil, gracias.
         </div>
-        <div class="testimonio">
-            <p>"Siempre espero los nuevos addons. ¡Sigue creando!"</p>
-            <cite>- Jugador B</cite>
-        </div>
+        <!-- Añade más comentarios aquí -->
     </section>
-
-    <!-- Sección de Blog -->
-    <section id="blog" class="blog">
-        <h2>Blog</h2>
-        <article class="entrada-blog">
-            <h3>Últimas Actualizaciones</h3>
-            <p>Siempre estoy trabajando en nuevos addons y mejoras. Aquí puedes encontrar lo último en mis proyectos.</p>
-            <a href="#" class="boton">Leer Más</a>
-        </article>
-    </section>
-
-    <!-- Sección de Contacto -->
-    <section id="contact" class="contact">
-        <h2>Contacto</h2>
-        <p>Puedes seguirme en mis redes sociales:</p>
-        <p>
-            <a href="#">Twitter</a> | 
-            <a href="#">Instagram</a>
-        </p>
-    </section>
-
-    <!-- Pie de Página -->
-    <footer>
-        <p>&copy; 2024 - Mis Addons de Minecraft Bedrock</p>
-    </footer>
-
-    <script>
-        let usuarioRegistrado = null;
-
-        function toggleRegistro() {
-            const formulario = document.getElementById("formulario-registro");
-            formulario.style.display = formulario.style.display === "none" ? "block" : "none";
-        }
-
-        function registrarUsuario(event) {
-            event.preventDefault();
-
-            const nombre = document.getElementById("nombre").value;
-            const contrasena = document.getElementById("contrasena").value;
-            const imagenPerfil = document.getElementById("imagen-perfil").files[0];
-
-            if (imagenPerfil) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    usuarioRegistrado = {
-                        nombre: nombre,
-                        contrasena: contrasena,
-                        imagen: e.target.result
-                    };
-                    actualizarPerfil();
-                    document.getElementById("formulario-registro").reset();
-                    toggleRegistro();
-                };
-                reader.readAsDataURL(imagenPerfil);
-            }
-        }
-
-        function actualizarPerfil() {
-            document.getElementById("perfil-icono").src = usuarioRegistrado.imagen;
-            document.getElementById("perfil-icono").style.borderRadius = "50%";
-            document.getElementById("nombre-usuario").innerText = usuarioRegistrado.nombre;
-            document.getElementById("nombre-usuario").style.display = "inline";
-        }
-
-        function agregarComentario() {
-            const comentarioTexto = document.getElementById("nuevo-comentario").value;
-            if (comentarioTexto.trim() === "") return;
-
-            const nuevoComentario = document.createElement("div");
-            nuevoComentario.classList.add("comentario");
-
-            const imagenComentario = document.createElement("img");
-            imagenComentario.src = usuarioRegistrado ? usuarioRegistrado.imagen : "icono_usuario.png"; // Icono por defecto si no hay usuario registrado
-
-            const textoComentario = document.createElement("span");
-            textoComentario.textContent = `${usuarioRegistrado ? usuarioRegistrado.nombre : "Anónimo"}: ${comentarioTexto}`;
-
-            nuevoComentario.appendChild(imagenComentario);
-            nuevoComentario.appendChild(textoComentario);
-
-            document.getElementById("lista-comentarios").appendChild(nuevoComentario);
-            document.getElementById("nuevo-comentario").value = ""; // Limpiar el textarea
-        }
-    </script>
 </body>
 </html>
