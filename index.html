@@ -3,118 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página de Addons</title>
+    <title>Mis Addons de Minecraft Bedrock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
+        /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Press Start 2P', cursive;
             margin: 0;
             padding: 0;
-            background-color: #2e2e2e; /* Fondo gris oscuro */
-            color: #ffffff; /* Texto blanco */
+            background-color: #f4f4f4;
         }
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #1c1c1c; /* Header gris más oscuro */
-            padding: 10px 20px;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        .logo img {
-            border-radius: 50%; /* Imagen circular */
-            width: 50px; /* Tamaño de la imagen */
-            height: 50px; /* Tamaño de la imagen */
-            margin-right: 10px;
-        }
-        .menu {
-            position: relative;
-        }
-        .menu button {
-            background: none;
-            border: none;
+
+        .navbar {
+            background: #333;
             color: white;
-            cursor: pointer;
-            font-size: 20px;
+            padding: 10px 0;
+            text-align: center;
         }
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: #1c1c1c; /* Fondo gris más oscuro para dropdown */
-            min-width: 150px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
         }
-        .dropdown a {
+
+        .navbar li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        .navbar a {
             color: white;
-            padding: 12px 16px;
             text-decoration: none;
-            display: block;
         }
-        .dropdown a:hover {
-            background-color: #575757; /* Hover en gris claro */
+
+        .portada {
+            background: url('portada.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
         }
-        .menu:hover .dropdown {
-            display: block;
+
+        .boton {
+            background: #555;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
         }
-        .comments-section {
-            background-color: #3c3c3c; /* Fondo gris intermedio */
-            padding: 15px;
-            overflow-y: scroll; /* Permitir desplazamiento vertical */
-            height: 200px; /* Altura fija para comentarios */
-            margin: 20px;
-            border-radius: 5px;
+
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
         }
-        .comment {
-            margin-bottom: 10px;
+
+        .tarjeta {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            width: 30%;
         }
-        .comment p {
+
+        .comentarios {
+            padding: 20px;
+        }
+
+        .comentario {
+            display: flex;
+            align-items: center;
             margin: 5px 0;
         }
-        footer {
-            background-color: #1c1c1c;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+
+        .comentario img {
+            border-radius: 50%;
+            width: 30px; /* Tamaño pequeño para el comentario */
+            height: 30px; /* Tamaño pequeño para el comentario */
+            margin-right: 10px;
         }
+
+        .registro {
+            position: relative;
+            padding: 20px;
+        }
+
+        .usuario {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #perfil-icono {
+            border-radius: 50%;
+            width: 40px; /* Tamaño pequeño para el icono */
+            height: 40px; /* Tamaño pequeño para el icono */
+            border: 2px solid #555;
+            margin-right: 10px;
+        }
+
+        /* Resto de estilos */
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">
-        <img src="ruta/a/tu-imagen.jpg" alt="Logo">
-        <span>Registro</span>
-    </div>
-    <div class="menu">
-        <button>☰</button>
-        <div class="dropdown">
-            <a href="link-a-otro-html.html">Otro HTML</a>
-            <a href="link-a-otro-html-2.html">Otro HTML 2</a>
-            <a href="https://developer-7452.github.io/hud_screen/">HUD Screen</a>
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#addons">Addons</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Portada -->
+    <section class="portada">
+        <h1>Mis Addons de Minecraft Bedrock</h1>
+        <p>Creaciones personalizadas para una experiencia única en Minecraft</p>
+        <a href="#addons" class="boton">Explorar Addons</a>
+    </section>
+
+    <!-- Sección de Addons -->
+    <section id="addons" class="addons">
+        <h2>Galería de Addons</h2>
+        <div class="galeria">
+            <!-- Tarjeta de Addon -->
+            <div class="tarjeta">
+                <img src="addon1.jpg" alt="Addon 1">
+                <h3>Addon 1</h3>
+                <p>Descripción breve del addon 1.</p>
+                <div class="valoracion">
+                    <span>⭐️⭐️⭐️⭐️☆</span>
+                </div>
+                <a href="#" class="boton">Ver Más</a>
+            </div>
+            <!-- Repite las tarjetas de addon aquí -->
         </div>
-    </div>
-</header>
+    </section>
 
-<div class="comments-section">
-    <div class="comment">
-        <strong>Usuario 1:</strong>
-        <p>¡Gran addon! Me encantó usarlo.</p>
-    </div>
-    <div class="comment">
-        <strong>Usuario 2:</strong>
-        <p>¡Funciona muy bien! Gracias por compartir.</p>
-    </div>
-    <!-- Puedes agregar más comentarios aquí -->
-</div>
+    <!-- Sección de Registro -->
+    <section class="registro">
+        <div class="usuario" onclick="toggleRegistro()">
+            <img id="perfil-icono" src="icono_usuario.png" alt="Icono Usuario">
+            <span id="nombre-usuario" style="display:none;">Usuario</span>
+        </div>
+        <form id="formulario-registro" style="display:none;" onsubmit="return registrarUsuario(event);">
+            <h2>Registro</h2>
+            <input type="text" id="nombre" placeholder="Nombre de usuario" required>
+            <input type="password" id="contrasena" placeholder="Contraseña" required>
+            <input type="file" id="imagen-perfil" accept="image/*" required>
+            <button type="submit" class="boton">Registrarse</button>
+        </form>
+    </section>
 
-<footer>
-    <p>&copy; 2024 Mi Página de Addons. Todos los derechos reservados.</p>
-</footer>
+    <!-- Sección de Comentarios -->
+    <section class="comentarios">
+        <h2>Comentarios</h2>
+        <div id="lista-comentarios">
+            <!-- Comentarios se agregarán aquí -->
+        </div>
+        <textarea id="nuevo-comentario" rows="4" placeholder="Escribe tu comentario aquí..."></textarea>
+        <button class="boton" onclick="agregarComentario()">Enviar Comentario</button>
+    </section>
 
+    <!-- Sección Sobre Mí -->
+    <section id="about" class="about">
+        <h2>Sobre Mí</h2>
+        <p>Soy un creador apasionado de addons para Minecraft, buscando mejorar la experiencia de juego para todos.</p>
+    </section>
+
+    <!-- Sección de Testimonios -->
+    <section id="testimonios" class="testimonios">
+        <h2>Testimonios</h2>
+        <div class="testimonio">
+            <p>"Los addons de este creador han transformado mi experiencia en Minecraft. ¡Son increíbles!"</p>
+            <cite>- Jugador A</cite>
+        </div>
+        <div class="testimonio">
+            <p>"Siempre espero los nuevos addons. ¡Sigue creando!"</p>
+            <cite>- Jugador B</cite>
+        </div>
+    </section>
+
+    <!-- Sección de Blog -->
+    <section id="blog" class="blog">
+        <h2>Blog</h2>
+        <article class="entrada-blog">
+            <h3>Últimas Actualizaciones</h3>
+            <p>Siempre estoy trabajando en nuevos addons y mejoras. Aquí puedes encontrar lo último en mis proyectos.</p>
+            <a href="#" class="boton">Leer Más</a>
+        </article>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contact" class="contact">
+        <h2>Contacto</h2>
+        <p>Puedes seguirme en mis redes sociales:</p>
+        <p>
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </p>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer>
+        <p>&copy; 2024 - Mis Addons de Minecraft Bedrock</p>
+    </footer>
+
+    <script>
+        let usuarioRegistrado = null;
+
+        function toggleRegistro() {
+            const formulario = document.getElementById("formulario-registro");
+            formulario.style.display = formulario.style.display === "none" ? "block" : "none";
+        }
+
+        function registrarUsuario(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById("nombre").value;
+            const contrasena = document.getElementById("contrasena").value;
+            const imagenPerfil = document.getElementById("imagen-perfil").files[0];
+
+            if (imagenPerfil) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    usuarioRegistrado = {
+                        nombre: nombre,
+                        contrasena: contrasena,
+                        imagen: e.target.result
+                    };
+                    actualizarPerfil();
+                    document.getElementById("formulario-registro").reset();
+                    toggleRegistro();
+                };
+                reader.readAsDataURL(imagenPerfil);
+            }
+        }
+
+        function actualizarPerfil() {
+            document.getElementById("perfil-icono").src = usuarioRegistrado.imagen;
+            document.getElementById("perfil-icono").style.borderRadius = "50%";
+            document.getElementById("nombre-usuario").innerText = usuarioRegistrado.nombre;
+            document.getElementById("nombre-usuario").style.display = "inline";
+        }
+
+        function agregarComentario() {
+            const comentarioTexto = document.getElementById("nuevo-comentario").value;
+            if (comentarioTexto.trim() === "") return;
+
+            const nuevoComentario = document.createElement("div");
+            nuevoComentario.classList.add("comentario");
+
+            const imagenComentario = document.createElement("img");
+            imagenComentario.src = usuarioRegistrado ? usuarioRegistrado.imagen : "icono_usuario.png"; // Icono por defecto si no hay usuario registrado
+
+            const textoComentario = document.createElement("span");
+            textoComentario.textContent = `${usuarioRegistrado ? usuarioRegistrado.nombre : "Anónimo"}: ${comentarioTexto}`;
+
+            nuevoComentario.appendChild(imagenComentario);
+            nuevoComentario.appendChild(textoComentario);
+
+            document.getElementById("lista-comentarios").appendChild(nuevoComentario);
+            document.getElementById("nuevo-comentario").value = ""; // Limpiar el textarea
+        }
+    </script>
 </body>
 </html>
