@@ -3,110 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Addons de Minecraft Bedrock</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Mis Addons de Minecraft</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Encabezado con el menú desplegable -->
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <h1>Mis Addons de Minecraft</h1>
+    </header>
 
-    <!-- Botón para cambiar a modo oscuro -->
-    <button id="boton-modo" onclick="toggleModoOscuro()">🌙 Modo Oscuro</button>
-
-    <!-- Menú de Navegación -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="#addons">Addons</a></li>
-            <li><a href="#about">Developer7452</a></li>
-            <li><a href="#comprar">Comprar</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
+    <!-- Menú desplegable -->
+    <nav id="menu" class="dropdown-menu">
+        <a href="index.html">Inicio</a>
+        <a href="hud_screen.html">Hud Screen</a>
+        <a href="otros_addons.html">Otros Addons</a>
     </nav>
 
-    <!-- Botón de registro en la esquina superior izquierda -->
-    <section class="registro">
-        <div class="usuario" onclick="toggleRegistro()">
-            <img id="perfil-icono" src="icono_usuario.png" alt="Icono Usuario">
-            <span id="nombre-usuario" style="display:none;">Usuario</span>
-        </div>
-        <form id="formulario-registro" style="display:none;" onsubmit="return registrarUsuario(event);">
+    <!-- Contenido principal -->
+    <main>
+        <!-- Sección de visualización de addon -->
+        <section class="addon-display">
+            <img src="images/addon-thumbnail.png" alt="Imagen de Addon" class="addon-image">
+            <p>Descripción breve del addon y sus características.</p>
+        </section>
+
+        <!-- Sección de comentarios -->
+        <section class="comment-section">
+            <h2>Comentarios</h2>
+            <div id="comments"></div>
+            <form id="comment-form">
+                <textarea id="comment-input" placeholder="Escribe tu comentario aquí..." required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <!-- Sección de registro -->
+        <section class="register-section">
             <h2>Registro</h2>
-            <input type="text" id="nombre" placeholder="Nombre de usuario" required>
-            <input type="password" id="contrasena" placeholder="Contraseña" required>
-            <input type="file" id="imagen-perfil" accept="image/*" required>
-            <button type="submit" class="boton">Registrarse</button>
-        </form>
-    </section>
+            <form id="register-form">
+                <input type="text" id="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </section>
+    </main>
 
-    <!-- Portada -->
-    <section class="portada">
-        <h1>Mis Addons de Minecraft Bedrock</h1>
-        <p>Creaciones personalizadas para una experiencia única en Minecraft</p>
-        <a href="#addons" class="boton">Explorar Addons</a>
-    </section>
-
-    <!-- Sección de Addons -->
-    <section id="addons" class="addons">
-        <h2>Galería de Addons</h2>
-        <div class="galeria">
-            <!-- Tarjeta de Addon -->
-            <div class="tarjeta">
-                <img src="addon1.jpg" alt="Addon 1">
-                <h3>Addon 1</h3>
-                <p>Descripción breve del addon 1.</p>
-                <div class="valoracion">
-                    <span>⭐️⭐️⭐️⭐️☆</span>
-                </div>
-                <a href="#" class="boton">Ver Más</a>
-            </div>
-            <!-- Repite las tarjetas de addon aquí -->
-        </div>
-    </section>
-
-    <!-- Sección de Comentarios -->
-    <section class="comentarios">
-        <h2>Comentarios</h2>
-        <div id="lista-comentarios">
-            <!-- Comentarios se agregarán aquí -->
-        </div>
-        <textarea id="nuevo-comentario" rows="4" placeholder="Escribe tu comentario aquí..."></textarea>
-        <button class="boton" onclick="agregarComentario()">Enviar Comentario</button>
-    </section>
-
-    <!-- Sección Developer7452 -->
-    <section id="about" class="about">
-        <h2>Developer7452</h2>
-        <p>Soy un creador apasionado de addons para Minecraft, buscando mejorar la experiencia de juego para todos.</p>
-    </section>
-
-    <!-- Sección de Testimonios -->
-    <section id="testimonios" class="testimonios">
-        <h2>Testimonios</h2>
-        <div class="testimonio">
-            <p>"Los addons de este creador han transformado mi experiencia en Minecraft. ¡Son increíbles!"</p>
-            <cite>- Jugador A</cite>
-        </div>
-        <div class="testimonio">
-            <p>"Siempre espero los nuevos addons. ¡Sigue creando!"</p>
-            <cite>- Jugador B</cite>
-        </div>
-    </section>
-
-    <!-- Sección de Contacto -->
-    <section id="contact" class="contact">
-        <h2>Contacto</h2>
-        <p>Puedes seguirme en mis redes sociales:</p>
-        <p>
-            <a href="#">Twitter</a> | 
-            <a href="#">Instagram</a>
-        </p>
-    </section>
-
-    <!-- Pie de Página -->
+    <!-- Pie de página -->
     <footer>
-        <p>&copy; 2024 - Mis Addons de Minecraft Bedrock</p>
+        <p>Developer7452 - Todos los derechos reservados</p>
     </footer>
 
-    <script src="scripts.js"></script>
+    <!-- Scripts de la página -->
+    <script>
+        // Alternar visibilidad del menú desplegable
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Manejar comentarios
+        const commentForm = document.getElementById('comment-form');
+        const commentsDiv = document.getElementById('comments');
+
+        commentForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const commentInput = document.getElementById('comment-input');
+            const comment = document.createElement('p');
+            comment.textContent = commentInput.value;
+            commentsDiv.appendChild(comment);
+            commentInput.value = ''; // Limpiar el campo de texto
+        });
+
+        // Manejar registro
+        const registerForm = document.getElementById('register-form');
+
+        registerForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Guardar datos (esto es solo una simulación, no es seguro)
+            alert(`Usuario ${username} registrado correctamente.`);
+
+            // Limpiar los campos del formulario
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
+    </script>
 </body>
 </html>
