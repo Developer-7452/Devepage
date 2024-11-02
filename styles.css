@@ -1,143 +1,102 @@
-/* Resetear márgenes y paddings */
-* {
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #1e1e1e;
+    color: #ffffff;
 }
 
-body {
-    font-family: 'Press Start 2P', sans-serif;
-    background-color: #333; /* Color de fondo oscuro */
-    color: #ddd;
-    transition: background-color 0.3s, color 0.3s; /* Transición para el cambio de modo */
+/* Encabezado */
+header {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    background-color: #333333;
 }
 
-/* Botón para cambiar a modo oscuro */
-#boton-modo {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 10px 15px;
-    background-color: #555;
-    color: #fff;
+h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+/* Menú desplegable */
+.menu-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    background-color: #444444;
+    padding: 1em;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #ffffff;
+    padding: 0.5em 0;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #555555;
+}
+
+/* Imagen del addon */
+.addon-image {
+    display: block;
+    margin: 1em auto;
+    max-width: 200px;
+    height: auto;
+}
+
+/* Sección de comentarios y registro */
+.comment-section, .register-section {
+    margin: 2em;
+    padding: 1em;
+    background-color: #2e2e2e;
+    border-radius: 5px;
+}
+
+.comment-section h2, .register-section h2 {
+    text-align: center;
+}
+
+#comments {
+    margin-bottom: 1em;
+}
+
+#comment-form, #register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea, input {
+    width: 90%;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #555555;
+    background-color: #3e3e3e;
+    color: #ffffff;
+}
+
+button {
+    padding: 0.5em 1em;
+    background-color: #555555;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-#boton-modo:hover {
-    background-color: #333;
-}
-
-/* Menú de Navegación */
-.navbar {
-    background-color: #3b3b3b; /* Color oscuro */
-    padding: 15px;
-    text-align: center;
-    border-bottom: 5px solid #60492c;
-}
-
-.navbar ul {
-    list-style: none;
-}
-
-.navbar ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-.navbar a {
-    color: #55cc44;
-    text-decoration: none;
-    font-size: 1.2em;
-    border: 2px solid transparent;
-    padding: 5px;
-    transition: border 0.3s, color 0.3s;
-}
-
-.navbar a:hover {
-    border: 2px solid #55cc44;
-    color: #fff;
-}
-
-/* Portada */
-.portada {
-    background-image: url('textures/grass_block.png'); /* Textura de bloque de pasto */
-    background-size: cover;
-    color: #fff;
-    text-align: center;
-    padding: 100px 20px;
-    border-bottom: 5px solid #60492c;
-}
-
-.portada h1 {
-    font-size: 2.5em;
-    color: #55cc44;
-    text-shadow: 3px 3px 0 #000;
-}
-
-.portada p {
-    font-size: 1.2em;
-    color: #d3d3d3;
-}
-
-/* Galería de Addons */
-.galeria {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-}
-
-.tarjeta {
-    background: #444;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
-    width: 100%;
-    max-width: 300px;
-}
-
-.tarjeta h3 {
-    color: #55cc44;
-}
-
-/* Registro */
-.registro {
-    position: relative;
-    padding: 20px;
-}
-
-.usuario {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-#perfil-icono {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    border: 2px solid #555;
-    margin-right: 10px;
-}
-
-/* Comentarios */
-.comentarios {
-    padding: 20px;
-}
-
-.comentario {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-}
-
-.comentario img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+button:hover {
+    background-color: #666666;
 }
