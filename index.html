@@ -128,12 +128,17 @@
             border-radius: 50%; /* Imagen circular */
             margin-right: 10px;
         }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
     <header>
         <div>
-            <div class="register-button" onclick="toggleRegister()">Registro</div>
+            <div class="register-button" id="registerBtn" onclick="toggleRegister()">Registro</div>
         </div>
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <div class="menu" id="menu">
@@ -193,8 +198,10 @@
     </div>
 
     <div class="profile-info" id="profileInfo">
-        <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
-        <span id="displayName"></span>
+        <div class="profile-container">
+            <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
+            <span id="displayName"></span>
+        </div>
     </div>
 
     <script>
@@ -227,6 +234,7 @@
 
             document.getElementById("displayName").innerText = userName;
             document.getElementById("profileInfo").style.display = "flex";
+            document.getElementById("registerBtn").style.display = "none"; // Oculta el botón de registro
             toggleRegister(); // Oculta el formulario de registro
         }
 
