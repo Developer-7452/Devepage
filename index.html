@@ -15,7 +15,7 @@
 
         header {
             display: flex;
-            justify-content: space-between; /* Para colocar el botón de registro y el menú en extremos opuestos */
+            justify-content: space-between; /* Espacio entre los elementos */
             align-items: center;
             padding: 10px 20px;
             background-color: #444;
@@ -56,6 +56,14 @@
             border-radius: 5px;
         }
 
+        .register-button {
+            cursor: pointer;
+            background-color: #444; /* Color gris para el botón de registro */
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
         .addons-container {
             background-color: #444;
             padding: 20px;
@@ -87,74 +95,47 @@
             height: auto;
         }
 
-        /* Estilos para el formulario de registro */
+        /* Estilo del formulario de registro */
         .register-form {
-            display: none;
-            background-color: #555;
+            display: none; /* Ocultado por defecto */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #444;
             padding: 20px;
-            border-radius: 8px;
-            position: absolute;
-            top: 60px;
-            left: 20px;
-            z-index: 1000;
+            border-radius: 10px;
+            z-index: 1001;
         }
 
-        .register-form input[type="file"] {
-            display: block;
-            margin: 10px 0;
-        }
-
-        .register-form input[type="text"],
-        .register-form input[type="password"] {
+        .register-form input {
             width: 100%;
-            padding: 10px;
             margin: 10px 0;
-            border-radius: 5px;
+            padding: 10px;
             border: none;
-        }
-
-        .register-btn {
-            padding: 10px 20px;
-            background-color: #777;
-            border: none;
-            color: #fff;
-            cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s;
         }
 
-        .register-btn:hover {
-            background-color: #888;
-        }
-
-        /* Estilos para mostrar imagen y nombre */
-        .user-info {
-            display: flex;
+        .profile-info {
+            display: none; /* Ocultado por defecto */
             align-items: center;
-            margin-left: 20px;
+            margin-top: 20px;
         }
 
-        .user-info img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%; /* Para que la imagen sea circular */
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Imagen circular */
             margin-right: 10px;
-        }
-
-        .user-info span {
-            font-size: 18px;
-            color: #fff;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <div id="userContainer" class="user-info" style="display: none;">
-            <img id="profileImage" src="" alt="Perfil">
-            <span id="userName"></span>
+        <div>
+            <div class="register-button" onclick="toggleRegister()">Registro</div>
         </div>
-        <button class="register-btn" onclick="toggleRegister()">Registrar</button>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <div class="menu" id="menu">
             <a href="comprar.html" class="menu-item">Comprar</a>
             <a href="developer7452.html" class="menu-item">Developer7452</a>
@@ -163,15 +144,6 @@
     </header>
 
     <h1>Developer7452 Página</h1>
-
-    <!-- Formulario de registro -->
-    <div class="register-form" id="registerForm">
-        <h2>Registro</h2>
-        <input type="file" id="profileInput" accept="image/*" onchange="loadFile(event)" required>
-        <input type="text" id="nameInput" placeholder="Nombre" required>
-        <input type="password" id="passwordInput" placeholder="Contraseña" required>
-        <button class="register-btn" onclick="register()">Registrarse</button>
-    </div>
 
     <div class="addons-container" id="addonsContainer">
         <h2>Addons de Developer7452</h2>
@@ -210,6 +182,21 @@
         </div>
     </div>
 
+    <!-- Formulario de registro -->
+    <div class="register-form" id="registerForm">
+        <h2>Registro</h2>
+        <input type="file" id="profilePic" accept="image/*" placeholder="Agregar foto de perfil">
+        <input type="text" id="userName" placeholder="Nombre" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="registerUser()">Registrar</button>
+        <button onclick="toggleRegister()">Cancelar</button>
+    </div>
+
+    <div class="profile-info" id="profileInfo">
+        <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
+        <span id="displayName"></span>
+    </div>
+
     <script>
         function toggleMenu() {
             const menu = document.getElementById("menu");
@@ -218,28 +205,29 @@
 
         function toggleRegister() {
             const registerForm = document.getElementById("registerForm");
-            registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
+            registerForm.style.display = registerForm.style.display === "block" ? "none" : "block";
         }
 
-        function loadFile(event) {
-            const profileImage = document.getElementById("profileImage");
-            profileImage.src = URL.createObjectURL(event.target.files[0]);
-        }
+        function registerUser() {
+            const profilePic = document.getElementById("profilePic").files[0];
+            const userName = document.getElementById("userName").value;
+            const password = document.getElementById("password").value;
 
-        function register() {
-            const nameInput = document.getElementById("nameInput").value;
-            const profileImage = document.getElementById("profileImage").src;
-
-            if (nameInput && profileImage) {
-                // Ocultar el formulario de registro
-                document.getElementById("registerForm").style.display = "none";
-                // Mostrar el nombre y la imagen de perfil
-                document.getElementById("userName").innerText = nameInput;
-                document.getElementById("profileImage").src = profileImage;
-                document.getElementById("userContainer").style.display = "flex"; // Mostrar info del usuario
-            } else {
+            if (!profilePic || !userName || !password) {
                 alert("Por favor completa todos los campos.");
+                return;
             }
+
+            // Muestra la imagen de perfil y el nombre
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("profileImage").src = e.target.result;
+            }
+            reader.readAsDataURL(profilePic);
+
+            document.getElementById("displayName").innerText = userName;
+            document.getElementById("profileInfo").style.display = "flex";
+            toggleRegister(); // Oculta el formulario de registro
         }
 
         // Ajusta la altura de la sección de addons
@@ -253,9 +241,10 @@
             } else {
                 addonsScroll.style.maxHeight = addonsScroll.scrollHeight + "px"; // Ajustar altura al contenido
                 addonsScroll.style.overflowY = "hidden"; // Desactivar desplazamiento
+            }
         }
-        
-        // Llama a la función para ajustar la altura de los addons al cargar la página
+
+        // Llama a la función para ajustar la altura de addons al cargar la página
         window.onload = adjustAddonsHeight;
     </script>
 </body>
