@@ -6,102 +6,271 @@
     <title>Developer7452 Página</title>
     <style>
         body {
+            background-color: #333;
+            color: #fff;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between; /* Espacio entre los elementos */
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #444;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            background-color: #444;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #555;
+        }
+
+        .menu-item:hover {
+            background-color: #555;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            background-color: #444; /* Color gris de fondo para el menú */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .register-button {
+            cursor: pointer;
+            background-color: #444; /* Color gris para el botón de registro */
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .addons-container {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .addons-scroll {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            max-height: 300px; /* Altura máxima */
+            overflow-y: hidden; /* Ocultar desplazamiento por defecto */
+            transition: max-height 0.3s ease;
+        }
+
+        .addon {
+            padding: 10px;
+            background-color: #555;
+            border-radius: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
-        #header {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            background-color: #ccc; /* Color gris de fondo */
-            padding: 10px;
+
+        .addon img {
+            width: 100px;
+            height: auto;
+        }
+
+        /* Estilo del formulario de registro */
+        .register-form {
+            display: none; /* Ocultado por defecto */
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1001;
         }
-        #profileInfo {
-            display: none;
+
+        .register-form input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .profile-info {
+            display: none; /* Ocultado por defecto */
             align-items: center;
+            margin-left: 20px; /* Añadir margen izquierdo */
         }
-        #profileImage {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Imagen circular */
             margin-right: 10px;
         }
-        #main {
-            margin-top: 60px; /* Espacio para el header */
-            width: 90%; /* Ajustar ancho para no exceder */
-        }
-        #addons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px; /* Espacio entre los addons */
-            justify-content: flex-start;
-        }
-        .addon {
-            width: 100px; /* Ajusta el tamaño del addon */
-            height: 100px;
-            background-color: white;
-            border: 1px solid #ccc;
+
+        .profile-container {
             display: flex;
             align-items: center;
-            justify-content: center;
         }
-        #footer {
-            margin-top: auto;
-            padding: 20px;
+
+        .footer {
+            background-color: #444;
             text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .social-links img {
+            width: 40px; /* Tamaño de los iconos */
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div id="header">
-        <div id="profileInfo">
-            <img id="profileImage" src="" alt="Perfil">
-            <span id="displayName"></span>
-        </div>
-        <div>
-            <button id="registerBtn" onclick="toggleRegister()">Registrar</button>
-            <div id="registerForm" style="display:none;">
-                <input type="file" id="profilePic" accept="image/*" onchange="previewImage(event)">
-                <input type="text" id="userName" placeholder="Nombre" required>
-                <input type="password" id="password" placeholder="Contraseña" required>
-                <button onclick="register()">Registrar</button>
+    <header>
+        <div id="profileInfo" class="profile-info">
+            <div class="profile-container">
+                <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
+                <span id="displayName"></span>
             </div>
         </div>
-        <nav>
-            <a href="comprar.html">Comprar</a>
-            <a href="developer7452.html">Developer7452</a>
-            <a href="hud_screen.html">Hud_screen</a>
-        </nav>
-    </div>
+        <div>
+            <div class="register-button" id="registerBtn" onclick="toggleRegister()">Registro</div>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="menu" id="menu">
+            <a href="comprar.html" class="menu-item">Comprar</a>
+            <a href="developer7452.html" class="menu-item">Developer7452</a>
+            <a href="hud_screen.html" class="menu-item">Hud_screen</a>
+        </div>
+    </header>
 
-    <div id="main">
-        <h1 style="text-align: center;">Developer7452 página</h1>
-        <div id="addons">
-            <div class="addon">Addon 1</div>
-            <div class="addon">Addon 2</div>
-            <div class="addon">Addon 3</div>
-            <div class="addon">Addon 4</div>
-            <div class="addon">Addon 5</div>
+    <h1>Developer7452 Página</h1>
+
+    <div class="addons-container" id="addonsContainer">
+        <h2>Addons de Developer7452</h2>
+        <div class="addons-scroll" id="addonsScroll">
+            <div class="addon">
+                <img src="addon1.png" alt="Addon 1">
+                <h3>Addon 1</h3>
+                <p>Descripción del Addon 1.</p>
+                <a href="link-addon1">Link de descarga</a>
+            </div>
+            <div class="addon">
+                <img src="addon2.png" alt="Addon 2">
+                <h3>Addon 2</h3>
+                <p>Descripción del Addon 2.</p>
+                <a href="link-addon2">Link de descarga</a>
+            </div>
+            <div class="addon">
+                <img src="addon3.png" alt="Addon 3">
+                <h3>Addon 3</h3>
+                <p>Descripción del Addon 3.</p>
+                <a href="link-addon3">Link de descarga</a>
+            </div>
+            <div class="addon">
+                <img src="addon4.png" alt="Addon 4">
+                <h3>Addon 4</h3>
+                <p>Descripción del Addon 4.</p>
+                <a href="link-addon4">Link de descarga</a>
+            </div>
+            <div class="addon">
+                <img src="addon5.png" alt="Addon 5">
+                <h3>Addon 5</h3>
+                <p>Descripción del Addon 5.</p>
+                <a href="link-addon5">Link de descarga</a>
+            </div>
+            <!-- Agrega más addons aquí -->
         </div>
     </div>
 
-    <div id="footer">
-        <div style="display: inline-block;">
-            <a href="https://discord.gg/qXmRGqNV5T"><img src="discord.png" alt="Discord"></a>
-            <a href="https://youtube.com/@developer-7452?si=B7OZrjGBbgobFJV5"><img src="youtube.png" alt="YouTube"></a>
-            <a href="https://x.com/Developer7452?t=KLm1dIgczPQzuSKrrwa4Mw&s=09"><img src="twitter.png" alt="Twitter"></a>
+    <!-- Formulario de registro -->
+    <div class="register-form" id="registerForm">
+        <h2>Registro</h2>
+        <input type="file" id="profilePic" accept="image/*" placeholder="Agregar foto de perfil">
+        <input type="text" id="userName" placeholder="Nombre" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="registerUser()">Registrar</button>
+        <button onclick="toggleRegister()">Cancelar</button>
+    </div>
+
+    <div class="footer">
+        <div class="social-links">
+            <a href="https://discord.gg/qXmRGqNV5T" target="_blank">
+                <img src="discord.png" alt="Discord">
+            </a>
+            <a href="https://youtube.com/@developer-7452?si=B7OZrjGBbgobFJV5" target="_blank">
+                <img src="youtube.png" alt="YouTube">
+            </a>
+            <a href="https://x.com/Developer7452?t=KLm1dIgczPQzuSKrrwa4Mw&s=09" target="_blank">
+                <img src="twitter.png" alt="Twitter">
+            </a>
         </div>
-        <p>© Copyright Developer7452</p>
+        <p>© Copyright Developer7452 Addon Maker</p>
     </div>
 
     <script>
-        function toggle
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+
+        function toggleRegister() {
+            const registerForm = document.getElementById("registerForm");
+            registerForm.style.display = registerForm.style.display === "block" ? "none" : "block";
+        }
+
+        function registerUser() {
+            const profilePic = document.getElementById("profilePic").files[0];
+            const userName = document.getElementById("userName").value;
+            const password = document.getElementById("password").value;
+
+            if (!profilePic || !userName || !password) {
+                alert("Por favor completa todos los campos.");
+                return;
+            }
+
+            // Muestra la imagen de perfil y el nombre
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("profileImage").src = e.target.result;
+                document.getElementById("displayName").textContent = userName;
+                document.getElementById("profileInfo").style.display = "flex"; // Muestra la información del perfil
+                document.getElementById("registerBtn").style.display = "none"; // Oculta el botón de registro
+                document.getElementById("registerForm").style.display = "none"; // Oculta el formulario de registro
+            };
+            reader.readAsDataURL(profilePic);
+        }
+    </script>
+</body>
+</html>
