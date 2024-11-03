@@ -79,16 +79,25 @@
             overflow-y: hidden; /* Ocultar desplazamiento por defecto */
             transition: max-height 0.3s ease;
         }
+        
+    .addon {
+        width: 150px; /* Ancho del cuadrado del addon */
+        height: 150px; /* Alto del cuadrado del addon */
+        padding: 10px;
+        background-color: #555;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
-        .addon {
-            padding: 10px;
-            background-color: #555;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+    .addon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Mantiene la proporción de la imagen dentro del contenedor */
+        border-radius: 5px; /* Opcional: para bordes redondeados */
+    }
 
         
 
@@ -112,12 +121,7 @@
             border: none;
             border-radius: 5px;
    
-    .addon img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px; /* Opcional: da bordes redondeados a las imágenes */
-    }
+    
 
         .profile-info {
             display: none; /* Ocultado por defecto */
@@ -141,7 +145,7 @@
             background-color: #444;
             text-align: center;
             padding: 5px;
-            position: relative;
+           position: relative;
             bottom: 10;
             width: 1001;
         }
