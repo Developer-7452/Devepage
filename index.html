@@ -91,7 +91,7 @@
         }
 
         .addon img {
-            width: 100px;
+            width: 250px;
             height: auto;
         }
 
@@ -137,21 +137,21 @@
         .footer {
             background-color: #444;
             text-align: center;
-            padding: 20px;
+            padding: 5px;
             position: relative;
-            bottom: 0;
-            width: 100%;
+            bottom: 10;
+            width: 1001;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 10px;
+            gap: 30px;
+            margin-bottom: 1px;
         }
 
         .social-links img {
-            width: 40px; /* Tamaño de los iconos */
+            width: 60px; /* Tamaño de los iconos */
             height: auto;
         }
     </style>
@@ -236,7 +236,7 @@
                 <img src="twitter.png" alt="Twitter">
             </a>
         </div>
-        <p>© Copyright Developer7452 Addon Maker</p>
+        <p>© Copyright Developer7452</p>
     </div>
 
     <script>
@@ -264,6 +264,7 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 document.getElementById("profileImage").src = e.target.result;
+                document.getElementById("profileImage").src = e.target.result;
                 document.getElementById("displayName").textContent = userName;
                 document.getElementById("profileInfo").style.display = "flex"; // Muestra la información del perfil
                 document.getElementById("registerBtn").style.display = "none"; // Oculta el botón de registro
@@ -271,6 +272,22 @@
             };
             reader.readAsDataURL(profilePic);
         }
+           // Ajusta la altura de la sección de addons
+        function adjustAddonsHeight() {
+            const addonsScroll = document.getElementById("addonsScroll");
+
+            // Verifica si el contenido de addons sobrepasa el límite de altura
+            if (addonsScroll.scrollHeight > 300) {
+                addonsScroll.style.maxHeight = "300px"; // Limitar altura
+                addonsScroll.style.overflowY = "auto"; // Habilitar desplazamiento
+            } else {
+                addonsScroll.style.maxHeight = addonsScroll.scrollHeight + "px"; // Ajustar altura al contenido
+                addonsScroll.style.overflowY = "hidden"; // Desactivar desplazamiento
+            }
+        }
+
+        // Llama a la función para ajustar la altura de addons al cargar la página
+        window.onload = adjustAddonsHeight;
     </script>
 </body>
 </html>
