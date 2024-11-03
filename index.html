@@ -6,8 +6,8 @@
     <title>Developer7452 Página</title>
     <style>
         body {
-            background-color: #333; /* Fondo oscuro */
-            color: #fff; /* Texto blanco */
+            background-color: #333;
+            color: #fff;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -28,7 +28,7 @@
         .menu {
             display: none;
             flex-direction: column;
-            background-color: #444; /* Fondo del menú */
+            background-color: #444;
             position: absolute;
             top: 60px;
             right: 20px;
@@ -57,54 +57,56 @@
         }
 
         #user-profile {
-            width: 40px; /* Tamaño de imagen de perfil */
+            width: 40px;
             height: 40px;
-            border-radius: 50%; /* Hacer circular */
+            border-radius: 50%;
             margin-right: 10px;
         }
 
         .addons-container {
-            background-color: #444; /* Fondo más oscuro */
+            background-color: #444;
             padding: 20px;
             border-radius: 8px;
             margin: 20px;
         }
 
         .addons-scroll {
-            max-height: 200px; /* Altura máxima para el scroll */
-            overflow-y: auto; /* Permitir desplazamiento vertical */
-            border-left: 2px solid #ccc; /* Línea de desplazamiento */
-            border-right: 2px solid #ccc; /* Línea de desplazamiento */
-            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adaptable según el tamaño de pantalla */
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-left: 2px solid #ccc;
+            border-right: 2px solid #ccc;
         }
 
         .addon {
-            margin: 10px 0;
             padding: 10px;
-            background-color: #555; /* Fondo gris para cada addon */
+            background-color: #555;
             border-radius: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
         .addon img {
-            width: 120px; /* Tamaño de la imagen de addon */
-            height: auto; /* Mantener la relación de aspecto */
+            width: 100px;
+            height: auto;
         }
 
-        /* Estilo para scrollbar */
+        /* Estilos para el scrollbar */
         .addons-scroll::-webkit-scrollbar {
-            width: 8px; /* Ancho del scrollbar */
+            width: 8px;
         }
 
         .addons-scroll::-webkit-scrollbar-thumb {
-            background-color: #777; /* Color del thumb */
-            border-radius: 10px; /* Bordes redondeados */
+            background-color: #777;
+            border-radius: 10px;
         }
 
         .addons-scroll::-webkit-scrollbar-track {
-            background: #333; /* Color de fondo del track */
+            background: #333;
         }
 
         .comment-section {
@@ -121,28 +123,27 @@
         }
 
         .comment img {
-            width: 30px; /* Tamaño de imagen de perfil en comentarios */
+            width: 30px;
             height: 30px;
             border-radius: 50%;
             margin-right: 10px;
         }
 
         .comments-scroll {
-            max-height: 150px; /* Altura máxima para el scroll de comentarios */
-            overflow-y: auto; /* Permitir desplazamiento vertical */
-            border-left: 2px solid #ccc; /* Línea de desplazamiento */
-            border-right: 2px solid #ccc; /* Línea de desplazamiento */
+            max-height: 150px;
+            overflow-y: auto;
+            border-left: 2px solid #ccc;
+            border-right: 2px solid #ccc;
             position: relative;
-            margin-bottom: 10px; /* Espacio debajo de la sección */
+            margin-bottom: 10px;
         }
 
         .social-links img {
-            width: 30px; /* Tamaño de los iconos de redes sociales */
+            width: 30px;
             height: auto;
             margin: 0 5px;
         }
 
-        /* Estilo del formulario de registro */
         .register-form {
             display: none;
             background-color: #444;
@@ -233,93 +234,5 @@
             </div>
         </div>
     </div>
-
-    <div class="comment-section">
-        <h2>Comentarios</h2>
-        <div class="comments-scroll" id="comment-list"></div>
-        <input type="text" id="comment-input" placeholder="Escribe tu comentario...">
-        <button onclick="addComment()">Comentar</button>
-    </div>
-
-    <div class="social-links">
-        <h3>Redes Sociales</h3>
-        <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><img src="youtube-icon.png" alt="YouTube"></a>
-        <a href="https://discord.gg/yourdiscord" target="_blank"><img src="discord-icon.png" alt="Discord"></a>
-        <a href="https://twitter.com/yourtwitter" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
-    </div>
-
-    <div class="register-form" id="register-form">
-        <h2>Registro</h2>
-        <input type="text" id="username" placeholder="Nombre de usuario" required>
-        <input type="file" id="profile-pic" accept="image/*" onchange="previewProfilePic()">
-        <img id="preview" src="default-profile.png" alt="Vista previa" style="width: 50px; height: auto; border-radius: 50%;">
-        <button onclick="register()">Registrar</button>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-        }
-
-        function toggleRegister() {
-            const registerForm = document.getElementById("register-form");
-            registerForm.style.display = registerForm.style.display === "block" ? "none" : "block";
-        }
-
-        function register() {
-            const username = document.getElementById("username").value;
-            const profilePic = document.getElementById("profile-pic").files[0];
-
-            if (username) {
-                document.getElementById("user-name").innerText = username;
-            }
-
-            if (profilePic) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById("user-profile").src = e.target.result;
-                };
-                reader.readAsDataURL(profilePic);
-            }
-
-            document.getElementById("register-form").style.display = "none";
-        }
-
-        function previewProfilePic() {
-            const file = document.getElementById("profile-pic").files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById("preview").src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function addComment() {
-            const commentInput = document.getElementById("comment-input");
-            const commentText = commentInput.value.trim();
-            if (commentText) {
-                const commentList = document.getElementById("comment-list");
-
-                const commentDiv = document.createElement("div");
-                commentDiv.className = "comment";
-
-                const userImg = document.createElement("img");
-                userImg.src = document.getElementById("user-profile").src;
-                userImg.alt = "Usuario";
-
-                const commentContent = document.createElement("span");
-                commentContent.textContent = document.getElementById("user-name").innerText + ": " + commentText;
-
-                commentDiv.appendChild(userImg);
-                commentDiv.appendChild(commentContent);
-                commentList.appendChild(commentDiv);
-
-                commentInput.value = "";
-            }
-        }
-    </script>
 </body>
 </html>
