@@ -70,14 +70,13 @@
             padding: 20px;
             border-radius: 8px;
             margin: 20px;
-            overflow: hidden;
         }
 
-        /* Grid para addons, adaptativo al ancho de la pantalla */
         .addons-scroll {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
+            max-height: 300px; /* Altura máxima */
             overflow-y: hidden; /* Ocultar desplazamiento por defecto */
             transition: max-height 0.3s ease;
         }
@@ -95,20 +94,6 @@
         .addon img {
             width: 100px;
             height: auto;
-        }
-
-        /* Estilos para el scrollbar */
-        .addons-scroll::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .addons-scroll::-webkit-scrollbar-thumb {
-            background-color: #777;
-            border-radius: 10px;
-        }
-
-        .addons-scroll::-webkit-scrollbar-track {
-            background: #333;
         }
 
         .comment-section {
@@ -175,7 +160,31 @@
                 <p>Descripción del Addon 1.</p>
                 <a href="link-addon1">Link de descarga</a>
             </div>
-            <!-- Repite más addons aquí según sea necesario -->
+            <div class="addon">
+                <img src="addon2.png" alt="Addon 2">
+                <h3>Addon 2</h3>
+                <p>Descripción del Addon 2.</p>
+                <a href="link-addon2">Link de descarga</a>
+            </div>
+            <div class="addon">
+                <img src="addon3.png" alt="Addon 3">
+                <h3>Addon 3</h3>
+                <p>Descripción del Addon 3.</p>
+                <a href="link-addon3">Link de descarga</a>
+            </div>
+            <div class="addon">
+                <img src="addon4.png" alt="Addon 4">
+                <h3>Addon 4</h3>
+                <p>Descripción del Addon 4.</p>
+                <a href="link-addon4">Link de descarga</a>
+            </div>
+            <div class="addon">
+                <img src="addon5.png" alt="Addon 5">
+                <h3>Addon 5</h3>
+                <p>Descripción del Addon 5.</p>
+                <a href="link-addon5">Link de descarga</a>
+            </div>
+            <!-- Agrega más addons aquí -->
         </div>
     </div>
 
@@ -185,6 +194,10 @@
             <div class="comment">
                 <img src="user1.png" alt="User 1">
                 <p><strong>User 1:</strong> Comentario de ejemplo.</p>
+            </div>
+            <div class="comment">
+                <img src="user2.png" alt="User 2">
+                <p><strong>User 2:</strong> Otro comentario de ejemplo.</p>
             </div>
             <!-- Repite más comentarios aquí según sea necesario -->
         </div>
@@ -198,20 +211,15 @@
 
         // Ajusta la altura de la sección de addons
         function adjustAddonsHeight() {
-            const addonsContainer = document.getElementById("addonsContainer");
             const addonsScroll = document.getElementById("addonsScroll");
 
-            // Altura máxima de la sección de addons
-            const maxAddonsHeight = 300;
-
             // Verifica si el contenido de addons sobrepasa el límite de altura
-            if (addonsScroll.scrollHeight > maxAddonsHeight) {
-                addonsScroll.style.maxHeight = maxAddonsHeight + "px";
-                addonsScroll.style.overflowY = "auto";
+            if (addonsScroll.scrollHeight > 300) {
+                addonsScroll.style.maxHeight = "300px"; // Limitar altura
+                addonsScroll.style.overflowY = "auto"; // Habilitar desplazamiento
             } else {
-                // Expande para ocupar espacio disponible si no sobrepasa el límite
-                addonsScroll.style.maxHeight = addonsScroll.scrollHeight + "px";
-                addonsScroll.style.overflowY = "hidden";
+                addonsScroll.style.maxHeight = addonsScroll.scrollHeight + "px"; // Ajustar altura al contenido
+                addonsScroll.style.overflowY = "hidden"; // Desactivar desplazamiento
             }
         }
 
