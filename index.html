@@ -11,7 +11,6 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Evita desplazamiento global */
         }
 
         header {
@@ -19,11 +18,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
+            background-color: #444;
         }
 
         h1 {
             font-size: 24px;
             text-align: center;
+            margin: 20px 0;
         }
 
         .menu {
@@ -69,7 +70,6 @@
             padding: 20px;
             border-radius: 8px;
             margin: 20px;
-            max-height: 60vh; /* Limita el tamaño de la sección en vista */
             overflow: hidden;
         }
 
@@ -78,11 +78,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
-            max-height: 50vh; /* Limita la altura de los addons */
-            overflow-y: auto;
-            overflow-x: hidden;
-            border-left: 2px solid #ccc;
-            border-right: 2px solid #ccc;
+            overflow-y: hidden; /* Ocultar desplazamiento por defecto */
+            transition: max-height 0.3s ease;
         }
 
         .addon {
@@ -116,6 +113,9 @@
 
         .comment-section {
             margin: 20px;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 8px;
         }
 
         .comment {
@@ -148,38 +148,6 @@
             height: auto;
             margin: 0 5px;
         }
-
-        .register-form {
-            display: none;
-            background-color: #444;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px;
-        }
-
-        .register-form input {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            border-radius: 4px;
-            border: none;
-            background-color: #555;
-            color: #fff;
-        }
-
-        .register-form button {
-            padding: 10px;
-            width: 100%;
-            background-color: #666;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .register-form button:hover {
-            background-color: #777;
-        }
     </style>
 </head>
 <body>
@@ -198,46 +166,57 @@
 
     <h1>Developer7452 Página</h1>
 
-    <div class="addons-container">
+    <div class="addons-container" id="addonsContainer">
         <h2>Addons de Developer7452</h2>
-        <div class="addons-scroll">
+        <div class="addons-scroll" id="addonsScroll">
             <div class="addon">
                 <img src="addon1.png" alt="Addon 1">
                 <h3>Addon 1</h3>
                 <p>Descripción del Addon 1.</p>
                 <a href="link-addon1">Link de descarga</a>
             </div>
-            <div class="addon">
-                <img src="addon2.png" alt="Addon 2">
-                <h3>Addon 2</h3>
-                <p>Descripción del Addon 2.</p>
-                <a href="link-addon2">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="addon3.png" alt="Addon 3">
-                <h3>Addon 3</h3>
-                <p>Descripción del Addon 3.</p>
-                <a href="link-addon3">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="addon4.png" alt="Addon 4">
-                <h3>Addon 4</h3>
-                <p>Descripción del Addon 4.</p>
-                <a href="link-addon4">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="addon5.png" alt="Addon 5">
-                <h3>Addon 5</h3>
-                <p>Descripción del Addon 5.</p>
-                <a href="link-addon5">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="addon6.png" alt="Addon 6">
-                <h3>Addon 6</h3>
-                <p>Descripción del Addon 6.</p>
-                <a href="link-addon6">Link de descarga</a>
-            </div>
+            <!-- Repite más addons aquí según sea necesario -->
         </div>
     </div>
+
+    <div class="comment-section">
+        <h2>Comentarios</h2>
+        <div class="comments-scroll">
+            <div class="comment">
+                <img src="user1.png" alt="User 1">
+                <p><strong>User 1:</strong> Comentario de ejemplo.</p>
+            </div>
+            <!-- Repite más comentarios aquí según sea necesario -->
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+
+        // Ajusta la altura de la sección de addons
+        function adjustAddonsHeight() {
+            const addonsContainer = document.getElementById("addonsContainer");
+            const addonsScroll = document.getElementById("addonsScroll");
+
+            // Altura máxima de la sección de addons
+            const maxAddonsHeight = 300;
+
+            // Verifica si el contenido de addons sobrepasa el límite de altura
+            if (addonsScroll.scrollHeight > maxAddonsHeight) {
+                addonsScroll.style.maxHeight = maxAddonsHeight + "px";
+                addonsScroll.style.overflowY = "auto";
+            } else {
+                // Expande para ocupar espacio disponible si no sobrepasa el límite
+                addonsScroll.style.maxHeight = addonsScroll.scrollHeight + "px";
+                addonsScroll.style.overflowY = "hidden";
+            }
+        }
+
+        // Llama a la función para ajustar la altura de addons al cargar la página
+        window.onload = adjustAddonsHeight;
+    </script>
 </body>
 </html>
