@@ -73,12 +73,14 @@
             overflow: hidden;
         }
 
+        /* Grid para addons, adaptativo al ancho de la pantalla */
         .addons-scroll {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
-            max-height: 50vh;
+            max-height: 50vh; /* Limita la altura de los addons */
             overflow-y: auto;
+            overflow-x: hidden;
             border-left: 2px solid #ccc;
             border-right: 2px solid #ccc;
         }
