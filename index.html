@@ -15,11 +15,10 @@
 
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* Cambiado para alinear a la derecha */
             align-items: center;
             padding: 10px 20px;
             background-color: #444;
-            position: relative;
         }
 
         h1 {
@@ -57,21 +56,6 @@
             border-radius: 5px;
         }
 
-        .profile-container {
-            display: flex;
-            align-items: center;
-            position: absolute; /* Posicionar en la esquina superior izquierda */
-            top: 10px;
-            left: 20px;
-        }
-
-        #user-profile {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
         .addons-container {
             background-color: #444;
             padding: 20px;
@@ -106,10 +90,6 @@
 </head>
 <body>
     <header>
-        <div class="profile-container">
-            <img id="user-profile" src="default-profile.png" alt="Perfil">
-            <span id="user-name">Anónimo</span>
-        </div>
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <div class="menu" id="menu">
             <a href="comprar.html" class="menu-item">Comprar</a>
