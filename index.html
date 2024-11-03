@@ -119,7 +119,7 @@
         .profile-info {
             display: none; /* Ocultado por defecto */
             align-items: center;
-            margin-top: 20px;
+            margin-left: 20px; /* Añadir margen izquierdo */
         }
 
         .profile-pic {
@@ -137,6 +137,12 @@
 </head>
 <body>
     <header>
+        <div id="profileInfo" class="profile-info">
+            <div class="profile-container">
+                <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
+                <span id="displayName"></span>
+            </div>
+        </div>
         <div>
             <div class="register-button" id="registerBtn" onclick="toggleRegister()">Registro</div>
         </div>
@@ -197,13 +203,6 @@
         <button onclick="toggleRegister()">Cancelar</button>
     </div>
 
-    <div class="profile-info" id="profileInfo">
-        <div class="profile-container">
-            <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
-            <span id="displayName"></span>
-        </div>
-    </div>
-
     <script>
         function toggleMenu() {
             const menu = document.getElementById("menu");
@@ -229,11 +228,11 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 document.getElementById("profileImage").src = e.target.result;
+                document.getElementById("profileInfo").style.display = "flex"; // Muestra la información del perfil
+                document.getElementById("displayName").innerText = userName;
             }
             reader.readAsDataURL(profilePic);
 
-            document.getElementById("displayName").innerText = userName;
-            document.getElementById("profileInfo").style.display = "flex";
             document.getElementById("registerBtn").style.display = "none"; // Oculta el botón de registro
             toggleRegister(); // Oculta el formulario de registro
         }
