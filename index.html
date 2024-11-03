@@ -51,11 +51,17 @@
 
         .menu-toggle {
             cursor: pointer;
+            background-color: #444; /* Color gris de fondo para el menú */
+            padding: 10px;
+            border-radius: 5px;
         }
 
         .profile-container {
             display: flex;
             align-items: center;
+            position: absolute; /* Posicionar en la esquina superior izquierda */
+            top: 10px;
+            left: 20px;
         }
 
         #user-profile {
@@ -143,9 +149,9 @@
         </div>
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <div class="menu" id="menu">
-            <a href="#" class="menu-item" onclick="toggleRegister()">Registrar</a>
-            <a href="#" class="menu-item">Developer7452</a>
-            <a href="#" class="menu-item">Hud_screen</a>
+            <a href="comprar.html" class="menu-item">Comprar</a>
+            <a href="developer7452.html" class="menu-item">Developer7452</a>
+            <a href="hud_screen.html" class="menu-item">Hud_screen</a>
         </div>
     </header>
 
