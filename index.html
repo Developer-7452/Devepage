@@ -17,7 +17,6 @@
         #header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             width: 100%;
             background-color: #ccc; /* Color gris de fondo */
             padding: 10px;
@@ -27,7 +26,7 @@
             right: 0;
         }
         #profileInfo {
-            display: flex;
+            display: none;
             align-items: center;
         }
         #profileImage {
@@ -40,15 +39,11 @@
             margin-top: 60px; /* Espacio para el header */
             width: 90%; /* Ajustar ancho para no exceder */
         }
-        h1 {
-            text-align: center;
-        }
         #addons {
             display: flex;
             flex-wrap: wrap;
             gap: 10px; /* Espacio entre los addons */
             justify-content: flex-start;
-            margin-top: 20px; /* Espacio entre el título y los addons */
         }
         .addon {
             width: 100px; /* Ajusta el tamaño del addon */
@@ -64,18 +59,13 @@
             padding: 20px;
             text-align: center;
         }
-        nav a {
-            margin-left: 15px; /* Espacio entre enlaces */
-            text-decoration: none;
-            color: black; /* Color del texto de los enlaces */
-        }
     </style>
 </head>
 <body>
     <div id="header">
         <div id="profileInfo">
-            <img id="profileImage" src="" alt="Perfil" style="display: none;">
-            <span id="displayName" style="display: none;"></span>
+            <img id="profileImage" src="" alt="Perfil">
+            <span id="displayName"></span>
         </div>
         <div>
             <button id="registerBtn" onclick="toggleRegister()">Registrar</button>
@@ -94,7 +84,7 @@
     </div>
 
     <div id="main">
-        <h1>Developer7452 página</h1>
+        <h1 style="text-align: center;">Developer7452 página</h1>
         <div id="addons">
             <div class="addon">Addon 1</div>
             <div class="addon">Addon 2</div>
@@ -114,27 +104,4 @@
     </div>
 
     <script>
-        function toggleRegister() {
-            const form = document.getElementById("registerForm");
-            form.style.display = form.style.display === "none" ? "block" : "none";
-        }
-
-        function previewImage(event) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById("profileImage").src = e.target.result;
-                document.getElementById("profileImage").style.display = "block";
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-
-        function register() {
-            const name = document.getElementById("userName").value;
-            document.getElementById("displayName").textContent = name;
-            document.getElementById("displayName").style.display = "block";
-            document.getElementById("registerForm").style.display = "none";
-            document.getElementById("registerBtn").style.display = "none"; // Esconde el botón de registro
-        }
-    </script>
-</body>
-</html>
+        function toggle
