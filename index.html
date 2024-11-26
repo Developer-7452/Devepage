@@ -74,32 +74,26 @@
         .addons-scroll {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            gap: 10px;
             max-height: 300px; /* Altura máxima */
             overflow-y: hidden; /* Ocultar desplazamiento por defecto */
             transition: max-height 0.3s ease;
         }
-        
-    .addon {
-        width: 150px; /* Ancho del cuadrado del addon */
-        height: 220px; /* Alto del cuadrado del addon */
-        padding: 10px;
-        background-color: #555;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
 
-    .addon img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain; /* Mantiene la proporción de la imagen dentro del contenedor */
-        border-radius: 5px; /* Opcional: para bordes redondeados */
-    }
+        .addon {
+            padding: 10px;
+            background-color: #555;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-        
+        .addon img {
+            width: 250px;
+            height: auto;
+        }
 
         /* Estilo del formulario de registro */
         .register-form {
@@ -120,8 +114,7 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-   
-    
+        }
 
         .profile-info {
             display: none; /* Ocultado por defecto */
@@ -145,7 +138,7 @@
             background-color: #444;
             text-align: center;
             padding: 5px;
-           position: relative;
+            position: relative;
             bottom: 10;
             width: 1001;
         }
@@ -158,8 +151,8 @@
         }
 
         .social-links img {
-            width: 3px; /* Tamaño de los iconos */
-            height: 5px;
+            width: 60px; /* Tamaño de los iconos */
+            height: auto;
         }
     </style>
 </head>
@@ -217,11 +210,6 @@
                 <p>Descripción del Addon 5.</p>
                 <a href="link-addon5">Link de descarga</a>
             </div>
-            <div class="addon">
-                <img src="addon6.png" alt="Addon 5">
-                <h3>Addon 6</h3>
-                <p>Descripción del Addon 6.</p>
-                <a href="link-addon5">Link de descarga</a>
             <!-- Agrega más addons aquí -->
         </div>
     </div>
@@ -234,6 +222,21 @@
         <input type="password" id="password" placeholder="Contraseña" required>
         <button onclick="registerUser()">Registrar</button>
         <button onclick="toggleRegister()">Cancelar</button>
+    </div>
+
+    <div class="footer">
+        <div class="social-links">
+            <a href="https://discord.gg/qXmRGqNV5T" target="_blank">
+                <img src="discord.png" alt="Discord">
+            </a>
+            <a href="https://youtube.com/@developer-7452?si=B7OZrjGBbgobFJV5" target="_blank">
+                <img src="youtube.png" alt="YouTube">
+            </a>
+            <a href="https://x.com/Developer7452?t=KLm1dIgczPQzuSKrrwa4Mw&s=09" target="_blank">
+                <img src="twitter.png" alt="Twitter">
+            </a>
+        </div>
+        <p>© Copyright Developer7452</p>
     </div>
 
     <script>
