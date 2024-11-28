@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Addons - Developer7452</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #444;
+        }
+
+        .addons-container {
+            margin: 20px;
+        }
+
+        .addon {
+            background-color: #444;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .addon img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .addon-info {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .addon-info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .addon-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .addon-button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .addon-button:hover {
+            background-color: #007B9E;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" style="color: white; text-decoration: none;">Volver al Inicio</a>
+        <h1>Comprar Addons</h1>
+    </header>
+
+    <div class="addons-container">
+        <div class="addon">
+            <img src="addon1.png" alt="Addon 1">
+            <div class="addon-info">
+                <h3>UI de Dedsafio 3</h3>
+                <p>Recrea el cliente de Dedsafio con esta UI especial.</p>
+                <a href="https://tu-tienda.com/addon1" class="addon-button">Comprar</a>
+            </div>
+        </div>
+
+        <div class="addon">
+            <img src="totem.png" alt="Fast Totem">
+            <div class="addon-info">
+                <h3>Fast Totem</h3>
+                <p>Equípate el tótem rápidamente con este addon.</p>
+                <a href="https://tu-tienda.com/fasttotem" class="addon-button">Comprar</a>
+            </div>
+        </div>
+
+        <!-- Agrega más addons aquí -->
+    </div>
+    <!-- Botón para Contratar -->
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="toggleHireForm()" style="
+        background-color: #444;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    ">Contratar</button>
+</div>
+
+<!-- Formulario de Contratar -->
+<div class="hire-form" id="hireForm" style="
+    display: none; 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: #444; 
+    padding: 20px; 
+    border-radius: 10px; 
+    z-index: 1001; 
+    width: 80%; 
+    max-width: 400px;
+    color: white;
+">
+    <h2>Formulario de Contratación</h2>
+    <label for="addonDescription">Descripción del Addon:</label>
+    <textarea id="addonDescription" placeholder="Describe el addon que necesitas" style="
+        width: 100%; 
+        margin: 10px 0; 
+        padding: 10px; 
+        border: none; 
+        border-radius: 5px; 
+        height: 100px;
+    "></textarea>
+    <label for="budget">Presupuesto:</label>
+    <input type="text" id="budget" placeholder="Indica tu presupuesto" style="
+        width: 100%; 
+        margin: 10px 0; 
+        padding: 10px; 
+        border: none; 
+        border-radius: 5px;
+    ">
+    <label for="nick">Nick de Discord:</label>
+    <input type="text" id="nick" placeholder="Nombre de Discord" style="
+        width: 100%; 
+        margin: 10px 0; 
+        padding: 10px; 
+        border: none; 
+        border-radius: 5px;
+    ">
+    <button onclick="sendToDiscord()" style="
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        font-size: 16px;
+    ">Enviar</button>
+    <button onclick="toggleHireForm()" style="
+        background-color: #f44336; 
+        color: white; 
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        font-size: 16px;
+        margin-top: 10px;
+    ">Cancelar</button>
+</div>
+
+<script>
+    function toggleHireForm() {
+        const hireForm = document.getElementById("hireForm");
+        hireForm.style.display = hireForm.style.display === "block" ? "none" : "block";
+    }
+
+    function generateOrderCode() {
+        // Generar un código único de 6 dígitos aleatorios
+        return Math.floor(100000 + Math.random() * 900000);
+    }
+
+    function sendToDiscord() {
+    const description = document.getElementById("addonDescription").value;
+    const budget = document.getElementById("budget").value;
+    const nick = document.getElementById("nick").value;
+
+    if (!description || !budget || !nick) {
+        alert("Por favor completa todos los campos.");
+        return;
+    }
+
+    // Hacer una solicitud POST a la API
+    fetch("http://localhost:3000/api/pedido", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ description, budget, nick })
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("¡Formulario enviado con éxito!");
+            toggleHireForm(); // Cerrar el formulario
+        } else {
+            alert("Hubo un problema al enviar el formulario.");
+        }
+    })
+    .catch(error => {
+        console.error("Error al enviar a la API:", error);
+        alert("Error al enviar el formulario.");
+    });
+}
+</script>
+</body>
+  </html>
