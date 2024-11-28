@@ -21,6 +21,10 @@
             background-color: #444;
         }
 
+        header h1 {
+            font-size: 24px;
+        }
+
         .addons-container {
             margin: 20px;
         }
@@ -70,6 +74,76 @@
         .addon-button:hover {
             background-color: #007B9E;
         }
+
+        /* Contratar button styles */
+        .hire-button {
+            background-color: #444;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .hire-button:hover {
+            background-color: #555;
+        }
+
+        /* Formulario de Contratación */
+        .hire-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1001;
+            width: 80%;
+            max-width: 400px;
+            color: white;
+        }
+
+        .hire-form h2 {
+            margin-bottom: 15px;
+        }
+
+        .hire-form label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .hire-form textarea, .hire-form input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .hire-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .hire-form button.cancel {
+            background-color: #f44336;
+            margin-top: 10px;
+        }
+
+        .hire-form button.send {
+            background-color: #4CAF50;
+        }
+
+        .hire-form button:hover {
+            background-color: #666;
+        }
     </style>
 </head>
 <body>
@@ -99,123 +173,64 @@
 
         <!-- Agrega más addons aquí -->
     </div>
+
     <!-- Botón para Contratar -->
-<div style="text-align: center; margin-top: 20px;">
-    <button onclick="toggleHireForm()" style="
-        background-color: #444;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    ">Contratar</button>
-</div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="hire-button" onclick="toggleHireForm()">Contratar</button>
+    </div>
 
-<!-- Formulario de Contratar -->
-<div class="hire-form" id="hireForm" style="
-    display: none; 
-    position: fixed; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background-color: #444; 
-    padding: 20px; 
-    border-radius: 10px; 
-    z-index: 1001; 
-    width: 80%; 
-    max-width: 400px;
-    color: white;
-">
-    <h2>Formulario de Contratación</h2>
-    <label for="addonDescription">Descripción del Addon:</label>
-    <textarea id="addonDescription" placeholder="Describe el addon que necesitas" style="
-        width: 100%; 
-        margin: 10px 0; 
-        padding: 10px; 
-        border: none; 
-        border-radius: 5px; 
-        height: 100px;
-    "></textarea>
-    <label for="budget">Presupuesto:</label>
-    <input type="text" id="budget" placeholder="Indica tu presupuesto" style="
-        width: 100%; 
-        margin: 10px 0; 
-        padding: 10px; 
-        border: none; 
-        border-radius: 5px;
-    ">
-    <label for="nick">Nick de Discord:</label>
-    <input type="text" id="nick" placeholder="Nombre de Discord" style="
-        width: 100%; 
-        margin: 10px 0; 
-        padding: 10px; 
-        border: none; 
-        border-radius: 5px;
-    ">
-    <button onclick="sendToDiscord()" style="
-        background-color: #4CAF50; 
-        color: white; 
-        padding: 10px 20px; 
-        border: none; 
-        border-radius: 5px; 
-        cursor: pointer; 
-        font-size: 16px;
-    ">Enviar</button>
-    <button onclick="toggleHireForm()" style="
-        background-color: #f44336; 
-        color: white; 
-        padding: 10px 20px; 
-        border: none; 
-        border-radius: 5px; 
-        cursor: pointer; 
-        font-size: 16px;
-        margin-top: 10px;
-    ">Cancelar</button>
-</div>
+    <!-- Formulario de Contratar -->
+    <div class="hire-form" id="hireForm">
+        <h2>Formulario de Contratación</h2>
+        <label for="addonDescription">Descripción del Addon:</label>
+        <textarea id="addonDescription" placeholder="Describe el addon que necesitas"></textarea>
 
-<script>
-    function toggleHireForm() {
-        const hireForm = document.getElementById("hireForm");
-        hireForm.style.display = hireForm.style.display === "block" ? "none" : "block";
-    }
+        <label for="budget">Presupuesto:</label>
+        <input type="text" id="budget" placeholder="Indica tu presupuesto">
 
-    function generateOrderCode() {
-        // Generar un código único de 6 dígitos aleatorios
-        return Math.floor(100000 + Math.random() * 900000);
-    }
+        <label for="nick">Nick de Discord:</label>
+        <input type="text" id="nick" placeholder="Nombre de Discord">
 
-    function sendToDiscord() {
-    const description = document.getElementById("addonDescription").value;
-    const budget = document.getElementById("budget").value;
-    const nick = document.getElementById("nick").value;
+        <button class="send" onclick="sendToDiscord()">Enviar</button>
+        <button class="cancel" onclick="toggleHireForm()">Cancelar</button>
+    </div>
 
-    if (!description || !budget || !nick) {
-        alert("Por favor completa todos los campos.");
-        return;
-    }
-
-    // Hacer una solicitud POST a la API
-    fetch("https://d6b818a8-b2e3-4410-b7fa-790c1b8b0e54-00-26x8pb81e1whg.spock.replit.dev/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ description, budget, nick })
-    })
-    .then(response => {
-        if (response.ok) {
-            alert("¡Formulario enviado con éxito!");
-            toggleHireForm(); // Cerrar el formulario
-        } else {
-            alert("Hubo un problema al enviar el formulario.");
+    <script>
+        function toggleHireForm() {
+            const hireForm = document.getElementById("hireForm");
+            hireForm.style.display = hireForm.style.display === "block" ? "none" : "block";
         }
-    })
-    .catch(error => {
-        console.error("Error al enviar a la API:", error);
-        alert("Error al enviar el formulario.");
-    });
-}
-</script>
+
+        function sendToDiscord() {
+            const description = document.getElementById("addonDescription").value;
+            const budget = document.getElementById("budget").value;
+            const nick = document.getElementById("nick").value;
+
+            if (!description || !budget || !nick) {
+                alert("Por favor completa todos los campos.");
+                return;
+            }
+
+            fetch("http://localhost:3000/api/pedido", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ description, budget, nick })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("¡Formulario enviado con éxito!");
+                    toggleHireForm();
+                } else {
+                    alert("Hubo un problema al enviar el formulario.");
+                }
+            })
+            .catch(error => {
+                console.error("Error al enviar a la API:", error);
+                alert("Error al enviar el formulario.");
+            });
+        }
+    </script>
 </body>
-  </html>
+</html>
