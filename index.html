@@ -284,10 +284,10 @@
         <p>© Copyright Developer7452</p>
     </div>
 <script>
-// Función para registrar o iniciar sesión al usuario
+// Función para registrar o iniciar sesión del usuario
 function registerOrLoginUser() {
-    const regName = document.getElementById("regName").value;
-    const regEmail = document.getElementById("regEmail").value;
+    const regName = document.getElementById("regName").value.trim();
+    const regEmail = document.getElementById("regEmail").value.trim();
 
     if (!regName || !regEmail) {
         alert("Por favor, completa todos los campos.");
@@ -301,57 +301,39 @@ function registerOrLoginUser() {
     const existingUser = users.find(user => user.email === regEmail);
 
     if (existingUser) {
-        // Si el usuario ya existe, iniciar sesión
+        // Inicio de sesión exitoso
         document.getElementById("loginMessage").textContent = "¡Inicio de sesión exitoso!";
         document.getElementById("loginMessage").style.color = "green";
 
-        // Guardar el nombre del usuario en el localStorage
+        // Guardar el usuario actual en el localStorage
         localStorage.setItem("currentUser", JSON.stringify(existingUser));
-
-        // Mostrar el chat
-        document.getElementById("chatContainer").style.display = "block";
     } else {
-        // Si el correo no está registrado, registrarlo
-        const newUser = {
-            name: regName,
-            email: regEmail
-        };
-
-        // Agregar el nuevo usuario a la lista de usuarios
+        // Registrar nuevo usuario
+        const newUser = { name: regName, email: regEmail };
         users.push(newUser);
-
-        // Guardar los usuarios en localStorage
         localStorage.setItem("users", JSON.stringify(users));
-
-        // Guardar el nombre del nuevo usuario en localStorage
         localStorage.setItem("currentUser", JSON.stringify(newUser));
 
-        // Mostrar mensaje de éxito
-        document.getElementById("loginMessage").textContent = "¡Registro exitoso! Ahora puedes usar el chat.";
+        document.getElementById("loginMessage").textContent = "¡Registro exitoso!";
         document.getElementById("loginMessage").style.color = "green";
-
-        // Limpiar los campos del formulario
-        document.getElementById("regName").value = "";
-        document.getElementById("regEmail").value = "";
-
-        // Mostrar el chat
-        document.getElementById("chatContainer").style.display = "block";
     }
+
+    // Limpiar campos del formulario
+    document.getElementById("regName").value = "";
+    document.getElementById("regEmail").value = "";
+
+    // Mostrar el chat
+    document.getElementById("chatContainer").style.display = "block";
+    displayMessages();
 }
 
-// Función para obtener el nombre del usuario (si no hay, asignar "Invitado")
+// Obtener el nombre del usuario actual o "Invitado" si no hay ninguno
 function getUsername() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    return currentUser ? currentUser.name : "Invitado"; // Si no hay usuario registrado, poner "Invitado"
+    return currentUser ? currentUser.name : "Invitado";
 }
 
-// Mostrar el chat de inmediato
-document.getElementById("chatContainer").style.display = "block";
-
-// Cargar mensajes desde el localStorage (si los hay)
-displayMessages();
-
-// Función para enviar un mensaje
+// Enviar un mensaje al chat
 function sendMessage() {
     const messageInput = document.getElementById("chatInput");
     const messageText = messageInput.value.trim();
@@ -359,88 +341,57 @@ function sendMessage() {
     if (messageText) {
         const username = getUsername();
 
-        // Crear el mensaje
-        const message = {
-            user: username,
-            text: messageText
-        };
+        const message = { user: username, text: messageText };
 
-        // Obtener los mensajes almacenados y agregar el nuevo mensaje
+        // Guardar mensajes en localStorage
         let messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
         messages.push(message);
-
-        // Guardar los mensajes en localStorage
         localStorage.setItem("chatMessages", JSON.stringify(messages));
 
-        // Mostrar el mensaje en el chat
+        // Mostrar mensajes y limpiar el campo de entrada
         displayMessages();
-
-        // Limpiar el campo de entrada
         messageInput.value = "";
-
-        // Hacer scroll hacia el mensaje más reciente
-        document.getElementById("chatMessages").scrollTop = document.getElementById("chatMessages").scrollHeight;
     }
 }
 
-// Función para mostrar los mensajes en el chat
+// Mostrar los mensajes en el chat
 function displayMessages() {
-    const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
     const chatMessagesContainer = document.getElementById("chatMessages");
+    chatMessagesContainer.innerHTML = "";
 
-    chatMessagesContainer.innerHTML = ""; // Limpiar mensajes previos
-
-    // Mostrar los mensajes almacenados
-    messages.forEach(message => {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("chat-message");
-        messageElement.classList.add(message.user === "Invitado" ? "other-message" : "user-message");
-        messageElement.innerHTML = `<strong>${message.user}:</strong> ${message.text}`;
-        chatMessagesContainer.appendChild(messageElement);
-    });
-
-    // Hacer scroll hacia abajo para mostrar el último mensaje
-    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-}
-
-// Función para mostrar los mensajes del chat
-function displayMessages() {
-    const chatMessages = document.getElementById("chatMessages");
-    chatMessages.innerHTML = ''; // Limpiar los mensajes actuales
-
-    // Recuperar los mensajes de localStorage
     let messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
 
-    // Mostrar cada mensaje
     messages.forEach(message => {
         const messageElement = document.createElement("div");
         messageElement.classList.add("chat-message");
         messageElement.classList.add(message.user === getUsername() ? "user-message" : "other-message");
-        messageElement.innerHTML = `<strong>${message.user}</strong>: ${message.text}`;
-        chatMessages.appendChild(messageElement);
+        messageElement.innerHTML = `<strong>${message.user}:</strong> ${message.text}`;
+        chatMessagesContainer.appendChild(messageElement);
     });
+
+    // Hacer scroll al final del chat
+    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
 }
 
-// Función para detectar si se presiona Enter
+// Detectar la tecla Enter para enviar un mensaje
 function checkEnter(event) {
     if (event.key === "Enter") {
         sendMessage();
     }
 }
 
-// Inicializar el chat
+// Inicializar el chat al cargar la página
 window.onload = function() {
-    // Verificar si el usuario ya está registrado
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (currentUser) {
         document.getElementById("chatContainer").style.display = "block";
-        displayMessages(); // Cargar los mensajes almacenados al inicio
+        displayMessages();
     } else {
         document.getElementById("chatContainer").style.display = "none";
     }
 };
-</script>
-    <script>
+</script>    
+         <script>
         function toggleMenu() {
             const menu = document.getElementById("menu");
             menu.style.display = menu.style.display === "flex" ? "none" : "flex";
