@@ -262,7 +262,7 @@
     </div>
 
 <!-- Sección de chat -->
-<div class="chat-container" id="chatContainer" style="display:none;">
+<div class="chat-container" id="chatContainer">
     <h2>Chat</h2>
     <div id="chatMessages" class="chat-messages"></div>
     <input type="text" id="chatInput" placeholder="Escribe un mensaje..." onkeyup="checkEnter(event)">
@@ -339,11 +339,17 @@ function registerOrLoginUser() {
     }
 }
 
-// Función para obtener el nombre del usuario registrado
+// Función para obtener el nombre del usuario (si no hay, asignar "Invitado")
 function getUsername() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    return currentUser ? currentUser.name : "Invitado";
+    return currentUser ? currentUser.name : "Invitado"; // Si no hay usuario registrado, poner "Invitado"
 }
+
+// Mostrar el chat de inmediato
+document.getElementById("chatContainer").style.display = "block";
+
+// Cargar mensajes desde el localStorage (si los hay)
+displayMessages();
 
 // Función para enviar un mensaje
 function sendMessage() {
@@ -375,6 +381,26 @@ function sendMessage() {
         // Hacer scroll hacia el mensaje más reciente
         document.getElementById("chatMessages").scrollTop = document.getElementById("chatMessages").scrollHeight;
     }
+}
+
+// Función para mostrar los mensajes en el chat
+function displayMessages() {
+    const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    const chatMessagesContainer = document.getElementById("chatMessages");
+
+    chatMessagesContainer.innerHTML = ""; // Limpiar mensajes previos
+
+    // Mostrar los mensajes almacenados
+    messages.forEach(message => {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("chat-message");
+        messageElement.classList.add(message.user === "Invitado" ? "other-message" : "user-message");
+        messageElement.innerHTML = `<strong>${message.user}:</strong> ${message.text}`;
+        chatMessagesContainer.appendChild(messageElement);
+    });
+
+    // Hacer scroll hacia abajo para mostrar el último mensaje
+    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
 }
 
 // Función para mostrar los mensajes del chat
