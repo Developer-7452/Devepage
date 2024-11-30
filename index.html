@@ -144,13 +144,12 @@
         }
 
         .footer {
-            background-color: #444;
-            text-align: center;
-            padding: 5px;
-            position: relative;
-            bottom: 10;
-            width: 1001;
-        }
+    flex-shrink: 0; /* No permitir que el footer se comprima */
+    background-color: #444;
+    text-align: center;
+    padding: 5px;
+    width: 100%;
+                }
 
         .social-links {
             display: flex;
