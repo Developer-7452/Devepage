@@ -6,17 +6,23 @@
     <title>Developer7452 Página</title>
     <style>
         html, body {
-            height: 100%;
-            margin: 0;
-        }
-        body {
-            background-color: #333;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    height: 100%;
+}
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Mantener el contenido y el footer separados */
+}
+
+.footer {
+    background-color: #444;
+    text-align: center;
+    padding: 5px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
         header {
             display: flex;
             justify-content: space-between; /* Espacio entre los elementos */
@@ -140,14 +146,6 @@
             align-items: center;
         }
 
-        .footer {
-            background-color: #444;
-            text-align: center;
-            padding: 5px;
-            position: relative;
-            bottom: 10;
-            width: 1001;
-        }
 
         .social-links {
             display: flex;
