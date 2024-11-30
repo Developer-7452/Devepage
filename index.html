@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Developer7452 Página</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
         body {
             background-color: #333;
             color: #fff;
@@ -156,40 +160,6 @@
             width: 60px; /* Tamaño de los iconos */
             height: auto;
         }
-            .registration-form button:hover, .chat-container button:hover {
-        background-color: #555;
-    }
-
-    .chat-messages {
-        height: 200px;
-        overflow-y: scroll;
-        margin-bottom: 10px;
-        background-color: #333;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .chat-message {
-        margin: 5px 0;
-        padding: 5px;
-        border-radius: 5px;
-    }
-
-    .user-message {
-        background-color: #5c6bc0;
-        color: #fff;
-    }
-
-    .other-message {
-        background-color: #78909c;
-        color: #fff;
-    }
-
-    .login-message {
-        margin-top: 20px;
-        font-size: 16px;
-        color: #fff;
-    }
     </style>
 </head>
 <body>
@@ -216,16 +186,16 @@
     <div class="addons-container" id="addonsContainer">
         <h2>Addons de Developer7452</h2>
         <div class="addons-scroll" id="addonsScroll">
-            <div class="addon">
+            <div class="addon"> 
                 <img src="addon1.png" alt="Addon 1">
-                <h3>Addon 1</h3>
-                <p>Descripción del Addon 1.</p>
-                <a href="link-addon1">Link de descarga</a>
+                <h3>UI de Dedsafio 3</h3>
+                <p>esta ui esta hecha para recrear el cliente de dedsafio</p>
+                <a href="https://link-center.net/596250/dedsafio-3-ui-low-version">Link de descarga</a>
             </div>
             <div class="addon">
-                <img src="addon2.png" alt="Addon 2">
-                <h3>Addon 2</h3>
-                <p>Descripción del Addon 2.</p>
+                <img src="totem.png" alt="Addon 2">
+                <h3>Fast Totem</h3>
+                <p>Este addon esta hecho para equiparte rapido el totem</p>
                 <a href="link-addon2">Link de descarga</a>
             </div>
             <div class="addon">
@@ -252,22 +222,13 @@
 
     <!-- Formulario de registro -->
     <div class="register-form" id="registerForm">
-       <h2>Registrarse / Iniciar sesión</h2>
-    <div class="registration-form">
-        <input type="email" id="regEmail" placeholder="Correo electrónico" required>
-        <input type="text" id="regName" placeholder="Nombre de usuario" required>
-        <button onclick="registerOrLoginUser()">Registrar / Iniciar sesión</button>
+        <h2>Registro</h2>
+        <input type="file" id="profilePic" accept="image/*" placeholder="Agregar foto de perfil">
+        <input type="text" id="userName" placeholder="Nombre" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="registerUser()">Registrar</button>
+        <button onclick="toggleRegister()">Cancelar</button>
     </div>
-    <div id="loginMessage" class="login-message"></div>
-    </div>
-
-<!-- Sección de chat -->
-<div class="chat-container" id="chatContainer">
-    <h2>Chat</h2>
-    <div id="chatMessages" class="chat-messages"></div>
-    <input type="text" id="chatInput" placeholder="Escribe un mensaje..." onkeyup="checkEnter(event)">
-    <button onclick="sendMessage()">Enviar</button>
-</div>
 
     <div class="footer">
         <div class="social-links">
@@ -283,115 +244,8 @@
         </div>
         <p>© Copyright Developer7452</p>
     </div>
-<script>
-// Función para registrar o iniciar sesión del usuario
-function registerOrLoginUser() {
-    const regName = document.getElementById("regName").value.trim();
-    const regEmail = document.getElementById("regEmail").value.trim();
 
-    if (!regName || !regEmail) {
-        alert("Por favor, completa todos los campos.");
-        return;
-    }
-
-    // Obtener los usuarios registrados del localStorage
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // Verificar si el correo ya está registrado
-    const existingUser = users.find(user => user.email === regEmail);
-
-    if (existingUser) {
-        // Inicio de sesión exitoso
-        document.getElementById("loginMessage").textContent = "¡Inicio de sesión exitoso!";
-        document.getElementById("loginMessage").style.color = "green";
-
-        // Guardar el usuario actual en el localStorage
-        localStorage.setItem("currentUser", JSON.stringify(existingUser));
-    } else {
-        // Registrar nuevo usuario
-        const newUser = { name: regName, email: regEmail };
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-        localStorage.setItem("currentUser", JSON.stringify(newUser));
-
-        document.getElementById("loginMessage").textContent = "¡Registro exitoso!";
-        document.getElementById("loginMessage").style.color = "green";
-    }
-
-    // Limpiar campos del formulario
-    document.getElementById("regName").value = "";
-    document.getElementById("regEmail").value = "";
-
-    // Mostrar el chat
-    document.getElementById("chatContainer").style.display = "block";
-    displayMessages();
-}
-
-// Obtener el nombre del usuario actual o "Invitado" si no hay ninguno
-function getUsername() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    return currentUser ? currentUser.name : "Invitado";
-}
-
-// Enviar un mensaje al chat
-function sendMessage() {
-    const messageInput = document.getElementById("chatInput");
-    const messageText = messageInput.value.trim();
-
-    if (messageText) {
-        const username = getUsername();
-
-        const message = { user: username, text: messageText };
-
-        // Guardar mensajes en localStorage
-        let messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
-        messages.push(message);
-        localStorage.setItem("chatMessages", JSON.stringify(messages));
-
-        // Mostrar mensajes y limpiar el campo de entrada
-        displayMessages();
-        messageInput.value = "";
-    }
-}
-
-// Mostrar los mensajes en el chat
-function displayMessages() {
-    const chatMessagesContainer = document.getElementById("chatMessages");
-    chatMessagesContainer.innerHTML = "";
-
-    let messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
-
-    messages.forEach(message => {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("chat-message");
-        messageElement.classList.add(message.user === getUsername() ? "user-message" : "other-message");
-        messageElement.innerHTML = `<strong>${message.user}:</strong> ${message.text}`;
-        chatMessagesContainer.appendChild(messageElement);
-    });
-
-    // Hacer scroll al final del chat
-    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-}
-
-// Detectar la tecla Enter para enviar un mensaje
-function checkEnter(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-}
-
-// Inicializar el chat al cargar la página
-window.onload = function() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (currentUser) {
-        document.getElementById("chatContainer").style.display = "block";
-        displayMessages();
-    } else {
-        document.getElementById("chatContainer").style.display = "none";
-    }
-};
-</script>    
-         <script>
+    <script>
         function toggleMenu() {
             const menu = document.getElementById("menu");
             menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -441,6 +295,5 @@ window.onload = function() {
         // Llama a la función para ajustar la altura de addons al cargar la página
         window.onload = adjustAddonsHeight;
     </script>
-    
 </body>
 </html>
