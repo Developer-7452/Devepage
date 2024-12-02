@@ -189,12 +189,18 @@
 </head>
 <body>
 <header>
+    <div id="profileInfo" class="profile-info" style="display: none;">
+        <div class="profile-container">
+            <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
+            <span id="displayName"></span>
+        </div>
+    </div>
+
+    <div id="loginContainer" class="login-container">
+        <button onclick="loginWithDiscord()">Login</button>
+    </div>
 
     <h1 class="header-title">Developer7452 Página</h1>
-    
-    <div class="login-container">
-    <button onclick="loginWithDiscord()">Login</button>
-</div>
 
     <div class="menu-container">
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -205,15 +211,6 @@
         </div>
     </div>
 </header>
-
-
-
-<div id="profileInfo" class="profile-info">
-    <div class="profile-container">
-        <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
-        <span id="displayName"></span>
-    </div>
-</div>
 
 <div class="addons-container" id="addonsContainer">
     <h2>Addons de Developer7452</h2>
@@ -270,17 +267,9 @@
     const client_id = '1312966920907133028'; // Reemplaza con tu client_id
     const redirect_uri = 'https://developer-7452.github.io/Devepage/'; // Reemplaza con tu URI de redirección
 
-    function loginWithDiscord() {
-        // Redirige a Discord para iniciar sesión
-        const oauth_url = `https://discord.com/oauth2/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=identify email`;
-        window.location.href = oauth_url;
-    }
-
-    // Función para obtener los datos de Discord después de la autenticación
     async function fetchDiscordUserData(code) {
         const client_secret = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client_secret
 
-        // Intercambio de código por token
         const token_response = await fetch(`https://discord.com/api/oauth2/token`, {
             method: 'POST',
             headers: {
@@ -299,7 +288,6 @@
         const token_data = await token_response.json();
         const access_token = token_data.access_token;
 
-        // Obtener los datos del usuario desde Discord
         const user_response = await fetch('https://discord.com/api/v10/users/@me', {
             headers: {
                 'Authorization': `Bearer ${access_token}`
@@ -308,51 +296,17 @@
 
         const user_data = await user_response.json();
 
-        // Mostrar la información del usuario
         document.getElementById("profileImage").src = `https://cdn.discordapp.com/avatars/${user_data.id}/${user_data.avatar}.png`;
         document.getElementById("displayName").textContent = user_data.username;
-        document.getElementById("profileInfo").style.display = "flex"; // Muestra la información del perfil
+        document.getElementById("profileInfo").style.display = "flex";
+        document.getElementById("loginContainer").style.display = "none"; // Oculta el botón de Login
     }
 
-    // Obtener el código de la URL de la página de redirección
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
 
     if (code) {
         fetchDiscordUserData(code);
-    }
-
-    function toggleMenu() {
-        const menu = document.getElementById("menu");
-        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
-
-    function toggleRegister() {
-        const registerForm = document.getElementById("registerForm");
-        registerForm.style.display = registerForm.style.display === "block" ? "none" : "block";
-    }
-
-    function registerUser() {
-        const profilePic = document.getElementById("profilePic").files[0];
-        const userName = document.getElementById("userName").value;
-        const password = document.getElementById("password").value;
-
-        if (!profilePic || !userName || !password) {
-            alert("Por favor completa todos los campos.");
-            return;
-        }
-
-        // Muestra la imagen de perfil y el nombre
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById("profileImage").src = e.target.result;
-            document.getElementById("displayName").textContent = userName;
-            document.getElementById("profileInfo").style.display = "flex";
-        };
-        reader.readAsDataURL(profilePic);
-
-        // Aquí puedes agregar la lógica para registrar al usuario
-        alert('Usuario registrado correctamente');
     }
 </script>
 
