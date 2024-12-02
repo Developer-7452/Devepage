@@ -29,106 +29,75 @@
             width: 100%;
         }
 
-       header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #2c2c2c;
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #444;
+        }
 
-.navbar {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
 
-.menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-}
+        .header-title {
+            font-size: 24px;
+            color: #fff;
+            margin: 0 auto;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-.login-container {
-    display: flex;
-    align-items: center;
-}
-
-.profile-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-//
-
-.profile-container {
-    display: flex;
-    align-items: center;
-}
-
-.header-title {
-    font-size: 24px;
-    color: #fff;
-    margin: 0 auto;
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.menu-container {
-    display: flex;
-    align-items: center;
-}
-
-.menu {
-    display: none;
-    flex-direction: column;
-    background-color: #444;
-    position: absolute;
-    top: 60px;
-    right: 20px;    
-    border-radius: 5px;
-    z-index: 1000;
-}
-
-.menu-item {
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid #555;
-}
-
-.menu-item:hover {
-    background-color: #555;
-}
-
-.menu-toggle {
-    cursor: pointer;
-    background-color: #444;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.login-container button {
-    cursor: pointer;
-    background-color: #444;
-    padding: 10px;
-    border-radius: 5px;
-    color: #fff;
-}
+        .menu-container {
+            display: flex;
+            align-items: center;
+        }
 
         @media (max-width: 768px) {
             .header-title {
                 font-size: 18px;
             }
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            background-color: #444;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #555;
+        }
+
+        .menu-item:hover {
+            background-color: #555;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .register-button {
+            cursor: pointer;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
         }
 
         .addons-container {
@@ -164,6 +133,38 @@
             border-radius: 5px;
         }
 
+        .register-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1001;
+        }
+
+        .register-form input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+        }
+
         .footer {
             background-color: #444;
             text-align: center;
@@ -188,18 +189,20 @@
 </head>
 <body>
 <header>
-    <!-- Información del perfil (por defecto oculta) -->
-    <div class="profile-info" id="profileInfo" style="display: none;">
+    <div id="profileInfo" class="profile-info" style="display: none;">
         <div class="profile-container">
             <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
             <span id="displayName"></span>
         </div>
     </div>
 
-    <h1 class="header-title">Developer7452 Página Web</h1>
+    <h1 class="header-title">Developer7452 Página</h1>
+    
+    <div class="login-container">
+    <button onclick="loginWithDiscord()">Login</button>
+</div>
 
     <div class="menu-container">
-        <!-- Menú de tres rayas (íconos de menú) -->
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <div class="menu" id="menu">
             <a href="comprar.html" class="menu-item">Comprar</a>
@@ -207,12 +210,16 @@
             <a href="hud_screen.html" class="menu-item">Hud_screen</a>
         </div>
     </div>
-
-    <!-- Botón de Login (visible solo si el usuario no está logueado) -->
-    <div class="login-container">
-        <button id="loginButton" onclick="loginWithDiscord()">Login</button>
-    </div>
 </header>
+
+
+
+<div id="profileInfo" class="profile-info">
+    <div class="profile-container">
+        <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
+        <span id="displayName"></span>
+    </div>
+</div>
 
 <div class="addons-container" id="addonsContainer">
     <h2>Addons de Developer7452</h2>
@@ -266,89 +273,93 @@
 </div>
 
 <script>
-const CLIENT_ID = '1312966920907133028'; // Reemplaza con tu client ID de Discord
+    const client_id = '1312966920907133028'; // Reemplaza con tu client_id
+    const redirect_uri = 'https://developer-7452.github.io/Devepage/'; // Reemplaza con tu URI de redirección
 
-const REDIRECT_URI = 'https://developer-7452.github.io/Devepage/'; // Reemplaza con tu URI de redirección
-
-const CLIENT_SECRET = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client secret de Discord
-
-const API_BASE = 'https://discord.com/api';
-
-// Redirigir al usuario a la URL de OAuth2 de Discord para el inicio de sesión
-function loginWithDiscord() {
-    const oauthUrl = `${API_BASE}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=identify`;
-    window.location.href = oauthUrl;
-}
-
-// Al cargar la página, revisar si hay un código de autenticación en la URL
-window.onload = async function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-
-    if (code) {
-        // Si hay un código, solicitar el token de acceso
-        await fetchDiscordUserData(code);
+    function loginWithDiscord() {
+        // Redirige a Discord para iniciar sesión
+        const oauth_url = `https://discord.com/oauth2/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=identify email`;
+        window.location.href = oauth_url;
     }
-}
 
-// Función para obtener el token de acceso y los datos del usuario
-async function fetchDiscordUserData(code) {
-    try {
-        const tokenResponse = await fetch(`${API_BASE}/oauth2/token`, {
+    // Función para obtener los datos de Discord después de la autenticación
+    async function fetchDiscordUserData(code) {
+        const client_secret = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client_secret
+
+        // Intercambio de código por token
+        const token_response = await fetch(`https://discord.com/api/oauth2/token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: new URLSearchParams({
-                client_id: CLIENT_ID,
-                client_secret: CLIENT_SECRET,
+                client_id: client_id,
+                client_secret: client_secret,
                 code: code,
                 grant_type: 'authorization_code',
-                redirect_uri: REDIRECT_URI,
-                scope: 'identify'
+                redirect_uri: redirect_uri,
+                scope: 'identify email'
             })
         });
 
-        const tokenData = await tokenResponse.json();
+        const token_data = await token_response.json();
+        const access_token = token_data.access_token;
 
-        if (tokenData.access_token) {
-            // Obtener los datos del usuario
-            const userResponse = await fetch(`${API_BASE}/v10/users/@me`, {
-                headers: {
-                    'Authorization': `Bearer ${tokenData.access_token}`
-                }
-            });
+        // Obtener los datos del usuario desde Discord
+        const user_response = await fetch('https://discord.com/api/v10/users/@me', {
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
 
-            const userData = await userResponse.json();
-            mostrarPerfil(userData);
+        const user_data = await user_response.json();
 
-        } else {
-            console.error('Error al obtener el token de acceso:', tokenData);
+        // Mostrar la información del usuario
+        document.getElementById("profileImage").src = `https://cdn.discordapp.com/avatars/${user_data.id}/${user_data.avatar}.png`;
+        document.getElementById("displayName").textContent = user_data.username;
+        document.getElementById("profileInfo").style.display = "flex"; // Muestra la información del perfil
+    }
+
+    // Obtener el código de la URL de la página de redirección
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+        fetchDiscordUserData(code);
+    }
+
+    function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleRegister() {
+        const registerForm = document.getElementById("registerForm");
+        registerForm.style.display = registerForm.style.display === "block" ? "none" : "block";
+    }
+
+    function registerUser() {
+        const profilePic = document.getElementById("profilePic").files[0];
+        const userName = document.getElementById("userName").value;
+        const password = document.getElementById("password").value;
+
+        if (!profilePic || !userName || !password) {
+            alert("Por favor completa todos los campos.");
+            return;
         }
-    } catch (error) {
-        console.error('Error al autenticar con Discord:', error);
+
+        // Muestra la imagen de perfil y el nombre
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById("profileImage").src = e.target.result;
+            document.getElementById("displayName").textContent = userName;
+            document.getElementById("profileInfo").style.display = "flex";
+        };
+        reader.readAsDataURL(profilePic);
+
+        // Aquí puedes agregar la lógica para registrar al usuario
+        alert('Usuario registrado correctamente');
     }
-}
-
-// Mostrar la información del perfil del usuario
-function mostrarPerfil(userData) {
-    const profileInfo = document.getElementById("profileInfo");
-    const profileImage = document.getElementById("profileImage");
-    const displayName = document.getElementById("displayName");
-
-    if (profileInfo && profileImage && displayName) {
-        profileImage.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
-        displayName.textContent = userData.username;
-
-        // Mostrar la información del perfil
-        profileInfo.style.display = "flex";
-
-        // Ocultar el botón de login
-        document.getElementById("loginButton").style.display = "none";
-    } else {
-        console.error("No se pudieron cargar los elementos del perfil.");
-    }
-}
 </script>
 
     <script>
