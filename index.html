@@ -10,9 +10,9 @@
         }
         
         body {
-        display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Mantener el contenido y el footer separados */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             background-color: #333;
             color: #fff;
             font-family: Arial, sans-serif;
@@ -20,52 +20,48 @@
             padding: 0;
         }
 
-.footer {
-    background-color: #444;
-    text-align: center;
-    padding: 5px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
+        .footer {
+            background-color: #444;
+            text-align: center;
+            padding: 5px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
 
-header {
-    display: flex;
-    justify-content: space-between; /* Espacio entre los tres elementos principales */
-    align-items: center; /* Alineación vertical */
-    padding: 10px 20px;
-    background-color: #444;
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #444;
+        }
 
-/* Estilos para el contenedor del perfil */
-.profile-info {
-    display: flex;
-    align-items: center;
-}
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
 
-/* Estilos del título centrado */
-.header-title {
-    font-size: 24px;
-    color: #fff;
-    margin: 0 auto; /* Centra el título automáticamente */
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        .header-title {
+            font-size: 24px;
+            color: #fff;
+            margin: 0 auto;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-/* Estilos para el contenedor del menú */
-.menu-container {
-    display: flex;
-    align-items: center;
-}
+        .menu-container {
+            display: flex;
+            align-items: center;
+        }
 
-/* Ocultar el título del header en dispositivos móviles si es necesario */
-@media (max-width: 768px) {
-    .header-title {
-        font-size: 18px;
-    }
-}
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 18px;
+            }
+        }
 
         .menu {
             display: none;
@@ -91,14 +87,14 @@ header {
 
         .menu-toggle {
             cursor: pointer;
-            background-color: #444; /* Color gris de fondo para el menú */
+            background-color: #444;
             padding: 10px;
             border-radius: 5px;
         }
 
         .register-button {
             cursor: pointer;
-            background-color: #444; /* Color gris para el botón de registro */
+            background-color: #444;
             padding: 10px;
             border-radius: 5px;
             color: #fff;
@@ -115,8 +111,8 @@ header {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
-            max-height: 300px; /* Altura máxima */
-            overflow-y: hidden; /* Ocultar desplazamiento por defecto */
+            max-height: 300px;
+            overflow-y: hidden;
             transition: max-height 0.3s ease;
         }
 
@@ -132,14 +128,13 @@ header {
 
         .addon img {
             width: 100%;
-        height: 100%;
-        object-fit: contain; /* Mantiene la proporción de la imagen dentro del contenedor */
-        border-radius: 5px; /* Opcional: para bordes redondeados */
+            height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
         }
 
-        /* Estilo del formulario de registro */
         .register-form {
-            display: none; /* Ocultado por defecto */
+            display: none;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -161,7 +156,7 @@ header {
         .profile-pic {
             width: 50px;
             height: 50px;
-            border-radius: 50%; /* Imagen circular */
+            border-radius: 50%;
             margin-right: 10px;
         }
 
@@ -175,8 +170,8 @@ header {
             text-align: center;
             padding: 5px;
             position: relative;
-            bottom: 10;
-            width: 1001;
+            bottom: 10px;
+            width: 100%;
         }
 
         .social-links {
@@ -187,12 +182,10 @@ header {
         }
 
         .social-links img {
-            width: 60px; /* Tamaño de los iconos */
+            width: 60px;
             height: auto;
         }
     </style>
-</head>
-<body>
 </head>
 <body>
 <header>
@@ -215,12 +208,10 @@ header {
     </div>
 </header>
 
-<!-- Botón de login con Discord -->
 <div class="login-container">
     <button onclick="loginWithDiscord()">Iniciar sesión con Discord</button>
 </div>
 
-<!-- Información del perfil -->
 <div id="profileInfo" class="profile-info">
     <div class="profile-container">
         <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
@@ -228,9 +219,55 @@ header {
     </div>
 </div>
 
-<!-- Addons container -->
 <div class="addons-container" id="addonsContainer">
-    <!-- Tu contenido de addons aquí -->
+    <h2>Addons de Developer7452</h2>
+    <div class="addons-scroll" id="addonsScroll">
+        <div class="addon">
+            <img src="addon1.png" alt="Addon 1">
+            <h3>UI de Dedsafio 3</h3>
+            <p>Esta UI está hecha para recrear el cliente de Dedsafio</p>
+            <a href="https://link-center.net/596250/dedsafio-3-ui-low-version">Link de descarga</a>
+        </div>
+        <div class="addon">
+            <img src="totem.png" alt="Addon 2">
+            <h3>Fast Totem</h3>
+            <p>Este addon está hecho para equiparte rápido el totem</p>
+            <a href="link-addon2">Link de descarga</a>
+        </div>
+        <div class="addon">
+            <img src="addon3.png" alt="Addon 3">
+            <h3>Addon 3</h3>
+            <p>Descripción del Addon 3.</p>
+            <a href="link-addon3">Link de descarga</a>
+        </div>
+        <div class="addon">
+            <img src="addon4.png" alt="Addon 4">
+            <h3>Addon 4</h3>
+            <p>Descripción del Addon 4.</p>
+            <a href="link-addon4">Link de descarga</a>
+        </div>
+        <div class="addon">
+            <img src="addon5.png" alt="Addon 5">
+            <h3>Addon 5</h3>
+            <p>Descripción del Addon 5.</p>
+            <a href="link-addon5">Link de descarga</a>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="social-links">
+        <a href="https://discord.gg/qXmRGqNV5T" target="_blank">
+            <img src="discord.png" alt="Discord">
+        </a>
+        <a href="https://youtube.com/@developer-7452?si=B7OZrjGBbgobFJV5" target="_blank">
+            <img src="youtube.png" alt="YouTube">
+        </a>
+        <a href="https://x.com/Developer7452?t=KLm1dIgczPQzuSKrrwa4Mw&s=09" target="_blank">
+            <img src="twitter.png" alt="Twitter">
+        </a>
+    </div>
+    <p>© Copyright Developer7452</p>
 </div>
 
 <script>
@@ -288,60 +325,40 @@ header {
     if (code) {
         fetchDiscordUserData(code);
     }
+
+    function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleRegister() {
+        const registerForm = document.getElementById("registerForm");
+        registerForm.style.display = registerForm.style.display === "block" ? "none" : "block";
+    }
+
+    function registerUser() {
+        const profilePic = document.getElementById("profilePic").files[0];
+        const userName = document.getElementById("userName").value;
+        const password = document.getElementById("password").value;
+
+        if (!profilePic || !userName || !password) {
+            alert("Por favor completa todos los campos.");
+            return;
+        }
+
+        // Muestra la imagen de perfil y el nombre
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById("profileImage").src = e.target.result;
+            document.getElementById("displayName").textContent = userName;
+            document.getElementById("profileInfo").style.display = "flex";
+        };
+        reader.readAsDataURL(profilePic);
+
+        // Aquí puedes agregar la lógica para registrar al usuario
+        alert('Usuario registrado correctamente');
+    }
 </script>
-
-    <div class="addons-container" id="addonsContainer">
-        <h2>Addons de Developer7452</h2>
-        <div class="addons-scroll" id="addonsScroll">
-            <div class="addon"> 
-                <img src="addon1.png" alt="Addon 1">
-                <h3>UI de Dedsafio 3</h3>
-                <p>esta ui esta hecha para recrear el cliente de dedsafio</p>
-                <a href="https://link-center.net/596250/dedsafio-3-ui-low-version">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="totem.png" alt="Addon 2">
-                <h3>Fast Totem</h3>
-                <p>Este addon esta hecho para equiparte rapido el totem</p>
-                <a href="link-addon2">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="addon3.png" alt="Addon 3">
-                <h3>Addon 3</h3>
-                <p>Descripción del Addon 3.</p>
-                <a href="link-addon3">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="addon4.png" alt="Addon 4">
-                <h3>Addon 4</h3>
-                <p>Descripción del Addon 4.</p>
-                <a href="link-addon4">Link de descarga</a>
-            </div>
-            <div class="addon">
-                <img src="addon5.png" alt="Addon 5">
-                <h3>Addon 5</h3>
-                <p>Descripción del Addon 5.</p>
-                <a href="link-addon5">Link de descarga</a>
-            </div>
-            <!-- Agrega más addons aquí -->
-        </div>
-    </div>
-
-
-    <div class="footer">
-        <div class="social-links">
-            <a href="https://discord.gg/qXmRGqNV5T" target="_blank">
-                <img src="discord.png" alt="Discord">
-            </a>
-            <a href="https://youtube.com/@developer-7452?si=B7OZrjGBbgobFJV5" target="_blank">
-                <img src="youtube.png" alt="YouTube">
-            </a>
-            <a href="https://x.com/Developer7452?t=KLm1dIgczPQzuSKrrwa4Mw&s=09" target="_blank">
-                <img src="twitter.png" alt="Twitter">
-            </a>
-        </div>
-        <p>© Copyright Developer7452</p>
-    </div>
 
     <script>
         function toggleMenu() {
