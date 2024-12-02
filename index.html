@@ -11,8 +11,8 @@
         
         body {
         display: flex;
-            justify-content: space-between; /* Mantener el contenido y el footer separados */
     flex-direction: column;
+    justify-content: space-between; /* Mantener el contenido y el footer separados */
             background-color: #333;
             color: #fff;
             font-family: Arial, sans-serif;
@@ -31,7 +31,7 @@
 
 header {
     display: flex;
-        justify-content: space-between; /* Espacio entre los tres elementos principales */
+    justify-content: space-between; /* Espacio entre los tres elementos principales */
     align-items: center; /* Alineación vertical */
     padding: 10px 20px;
     background-color: #444;
@@ -193,8 +193,10 @@ header {
     </style>
 </head>
 <body>
+</head>
+<body>
 <header>
-    <div id="profileInfo" class="profile-info">
+    <div id="profileInfo" class="profile-info" style="display: none;">
         <div class="profile-container">
             <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
             <span id="displayName"></span>
@@ -212,6 +214,81 @@ header {
         </div>
     </div>
 </header>
+
+<!-- Botón de login con Discord -->
+<div class="login-container">
+    <button onclick="loginWithDiscord()">Iniciar sesión con Discord</button>
+</div>
+
+<!-- Información del perfil -->
+<div id="profileInfo" class="profile-info">
+    <div class="profile-container">
+        <img src="" id="profileImage" class="profile-pic" alt="Imagen de perfil">
+        <span id="displayName"></span>
+    </div>
+</div>
+
+<!-- Addons container -->
+<div class="addons-container" id="addonsContainer">
+    <!-- Tu contenido de addons aquí -->
+</div>
+
+<script>
+    const client_id = '1312966920907133028'; // Reemplaza con tu client_id
+    const redirect_uri = 'https://developer-7452.github.io/Devepage/'; // Reemplaza con tu URI de redirección
+
+    function loginWithDiscord() {
+        // Redirige a Discord para iniciar sesión
+        const oauth_url = `https://discord.com/oauth2/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=identify email`;
+        window.location.href = oauth_url;
+    }
+
+    // Función para obtener los datos de Discord después de la autenticación
+    async function fetchDiscordUserData(code) {
+        const client_secret = 'TU_CLIENT_SECRET'; // Reemplaza con tu client_secret
+
+        // Intercambio de código por token
+        const token_response = await fetch(`https://discord.com/api/oauth2/token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                client_id: client_id,
+                client_secret: client_secret,
+                code: code,
+                grant_type: 'authorization_code',
+                redirect_uri: redirect_uri,
+                scope: 'identify email'
+            })
+        });
+
+        const token_data = await token_response.json();
+        const access_token = token_data.access_token;
+
+        // Obtener los datos del usuario desde Discord
+        const user_response = await fetch('https://discord.com/api/v10/users/@me', {
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
+
+        const user_data = await user_response.json();
+
+        // Mostrar la información del usuario
+        document.getElementById("profileImage").src = `https://cdn.discordapp.com/avatars/${user_data.id}/${user_data.avatar}.png`;
+        document.getElementById("displayName").textContent = user_data.username;
+        document.getElementById("profileInfo").style.display = "flex"; // Muestra la información del perfil
+    }
+
+    // Obtener el código de la URL de la página de redirección
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+        fetchDiscordUserData(code);
+    }
+</script>
 
     <div class="addons-container" id="addonsContainer">
         <h2>Addons de Developer7452</h2>
@@ -250,15 +327,6 @@ header {
         </div>
     </div>
 
-    <!-- Formulario de registro -->
-    <div class="register-form" id="registerForm">
-        <h2>Registro</h2>
-        <input type="file" id="profilePic" accept="image/*" placeholder="Agregar foto de perfil">
-        <input type="text" id="userName" placeholder="Nombre" required>
-        <input type="password" id="password" placeholder="Contraseña" required>
-        <button onclick="registerUser()">Registrar</button>
-        <button onclick="toggleRegister()">Cancelar</button>
-    </div>
 
     <div class="footer">
         <div class="social-links">
