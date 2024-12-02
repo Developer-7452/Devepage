@@ -267,6 +267,12 @@
     const client_id = '1312966920907133028'; // Reemplaza con tu client_id
     const redirect_uri = 'https://developer-7452.github.io/Devepage/'; // Reemplaza con tu URI de redirección
 
+function loginWithDiscord() {
+        // Redirige a Discord para iniciar sesión
+        const oauth_url = `https://discord.com/oauth2/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=identify email`;
+        window.location.href = oauth_url;
+    }
+
     async function fetchDiscordUserData(code) {
         const client_secret = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client_secret
 
