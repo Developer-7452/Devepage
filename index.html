@@ -29,18 +29,44 @@
             width: 100%;
         }
 
-        header {
+       header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #444;
+    padding: 10px;
+    background-color: #2c2c2c;
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
 }
 
 .profile-info {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+//
 
 .profile-container {
     display: flex;
@@ -68,7 +94,7 @@
     background-color: #444;
     position: absolute;
     top: 60px;
-    right: 20px;
+    right: 20px;    
     border-radius: 5px;
     z-index: 1000;
 }
@@ -89,10 +115,6 @@
     background-color: #444;
     padding: 10px;
     border-radius: 5px;
-}
-
-.login-container {
-    display: block;
 }
 
 .login-container button {
@@ -314,14 +336,18 @@ function mostrarPerfil(userData) {
     const profileImage = document.getElementById("profileImage");
     const displayName = document.getElementById("displayName");
 
-    profileImage.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
-    displayName.textContent = userData.username;
+    if (profileInfo && profileImage && displayName) {
+        profileImage.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+        displayName.textContent = userData.username;
 
-    // Mostrar la información del perfil
-    profileInfo.style.display = "flex";
+        // Mostrar la información del perfil
+        profileInfo.style.display = "flex";
 
-    // Ocultar el botón de login
-    document.getElementById("loginButton").style.display = "none";
+        // Ocultar el botón de login
+        document.getElementById("loginButton").style.display = "none";
+    } else {
+        console.error("No se pudieron cargar los elementos del perfil.");
+    }
 }
 </script>
 
