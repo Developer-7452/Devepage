@@ -1,89 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer7452</title>
-    <style>
-        /* Reset del body y html */
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            background-color: #333;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #444;
-        }
-
-        .footer {
-            background-color: #444;
-            text-align: center;
-            padding: 10px 0;
-            width: 100%;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 10px;
-        }
-
-        .social-links img {
-            width: 60px;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* Contenedor principal */
-        .container {
-            flex: 1; /* Ocupa todo el espacio disponible */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot Discord</title>
 </head>
 <body>
-    <header>
-        <a href="index.html" style="color: white; text-decoration: none;">Volver al Inicio</a>
-        <h1>Developer7452</h1>
-    </header>
+  <button id="sendMessageButton">Enviar mensaje a Discord</button>
 
-    <div class="container">
-        <p>Hola, soy un creador de addons principiante. Estoy tratando de aprender más para poder crear addons que les gusten a los que los descargan.</p>
-    </div>
-
-    <div class="footer">
-        <div class="social-links">
-            <a href="https://discord.gg/qXmRGqNV5T" target="_blank">
-                <img src="discord.png" alt="Discord">
-            </a>
-            <a href="https://youtube.com/@developer-7452?si=B7OZrjGBbgobFJV5" target="_blank">
-                <img src="youtube.png" alt="YouTube">
-            </a>
-            <a href="https://x.com/Developer7452?t=KLm1dIgczPQzuSKrrwa4Mw&s=09" target="_blank">
-                <img src="twitter.png" alt="Twitter">
-            </a>
-        </div>
-        <p>© Copyright 2024 Developer7452</p>
-    </div>
+  <script>
+    document.getElementById('sendMessageButton').addEventListener('click', () => {
+      fetch('http://localhost:3000/send-to-discord', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: '¡Un usuario hizo clic en el botón!' }),
+      })
+      .then(response => response.text())
+      .then(data => alert(data))
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
 </body>
 </html>
