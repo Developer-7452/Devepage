@@ -273,68 +273,47 @@ function loginWithDiscord() {
         window.location.href = oauth_url;
     }
 
- async function fetchDiscordUserData(code) {
-    const client_secret = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client_secret
+    async function fetchDiscordUserData(code) {
+        const client_secret = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client_secret
 
-    const token_response = await fetch(`https://discord.com/api/oauth2/token`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            client_id: client_id,
-            client_secret: client_secret,
-            code: code,
-            grant_type: 'authorization_code',
-            redirect_uri: redirect_uri,
-            scope: 'identify email'
-        })
-    });
+        const token_response = await fetch(`https://discord.com/api/oauth2/token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                client_id: client_id,
+                client_secret: client_secret,
+                code: code,
+                grant_type: 'authorization_code',
+                redirect_uri: redirect_uri,
+                scope: 'identify email'
+            })
+        });
 
-    const token_data = await token_response.json();
-    const access_token = token_data.access_token;
+        const token_data = await token_response.json();
+        const access_token = token_data.access_token;
 
-    const user_response = await fetch('https://discord.com/api/v10/users/@me', {
-        headers: {
-            'Authorization': `Bearer ${access_token}`
-        }
-    });
+        const user_response = await fetch('https://discord.com/api/v10/users/@me', {
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
 
-    const user_data = await user_response.json();
+        const user_data = await user_response.json();
 
-    // Guardar los datos en LocalStorage
-    localStorage.setItem("userImage", `https://cdn.discordapp.com/avatars/${user_data.id}/${user_data.avatar}.png`);
-    localStorage.setItem("userName", user_data.username);
-
-    mostrarPerfilUsuario(); // Mostrar el perfil
-}
-
-// Función para mostrar el perfil del usuario
-function mostrarPerfilUsuario() {
-    const userImage = localStorage.getItem("userImage");
-    const userName = localStorage.getItem("userName");
-
-    if (userImage && userName) {
-        document.getElementById("profileImage").src = userImage;
-        document.getElementById("displayName").textContent = userName;
-        document.getElementById("profileInfo").style.display = "flex"; // Mostrar el perfil
-        document.getElementById("loginContainer").style.display = "none"; // Ocultar botón de login
+        document.getElementById("profileImage").src = `https://cdn.discordapp.com/avatars/${user_data.id}/${user_data.avatar}.png`;
+        document.getElementById("displayName").textContent = user_data.username;
+        document.getElementById("profileInfo").style.display = "flex";
+        document.getElementById("loginContainer").style.display = "none"; // Oculta el botón de Login
     }
-}
 
-// Recuperar datos del usuario al cargar la página
-window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
 
     if (code) {
         fetchDiscordUserData(code);
-    } else {
-        mostrarPerfilUsuario(); // Mostrar el perfil si ya existe en LocalStorage
     }
-
-    adjustAddonsHeight(); // Ajustar la altura de los addons
-};
 </script>
 
     <script>
