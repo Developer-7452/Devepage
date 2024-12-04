@@ -212,7 +212,7 @@
         <button onclick="loginWithDiscord()">Login</button>
     </div>
 
-    <h1 class="header-title">Developer7452 Página</h1>
+    <h1 class="header-title">Developer7452 Página Web</h1>
 
     <div class="menu-container">
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -285,40 +285,56 @@ function loginWithDiscord() {
         window.location.href = oauth_url;
     }
 
-    async function fetchDiscordUserData(code) {
-        const client_secret = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client_secret
+async function fetchDiscordUserData(code) {
+    const client_secret = 'p7vZmatuGEMcogSBJ8A1v4Xs4GLPhtEn'; // Reemplaza con tu client_secret
 
-        const token_response = await fetch(`https://discord.com/api/oauth2/token`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({
-                client_id: client_id,
-                client_secret: client_secret,
-                code: code,
-                grant_type: 'authorization_code',
-                redirect_uri: redirect_uri,
-                scope: 'identify email'
-            })
-        });
+    const token_response = await fetch(`https://discord.com/api/oauth2/token`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            client_id: client_id,
+            client_secret: client_secret,
+            code: code,
+            grant_type: 'authorization_code',
+            redirect_uri: redirect_uri,
+            scope: 'identify email'
+        })
+    });
 
-        const token_data = await token_response.json();
-        const access_token = token_data.access_token;
+    const token_data = await token_response.json();
+    const access_token = token_data.access_token;
 
-        const user_response = await fetch('https://discord.com/api/v10/users/@me', {
-            headers: {
-                'Authorization': `Bearer ${access_token}`
-            }
-        });
+    const user_response = await fetch('https://discord.com/api/v10/users/@me', {
+        headers: {
+            'Authorization': `Bearer ${access_token}`
+        }
+    });
 
-        const user_data = await user_response.json();
+    const user_data = await user_response.json();
 
-        document.getElementById("profileImage").src = `https://cdn.discordapp.com/avatars/${user_data.id}/${user_data.avatar}.png`;
-        document.getElementById("displayName").textContent = user_data.username;
+    // Guardar datos en localStorage
+    localStorage.setItem('profileImage', `https://cdn.discordapp.com/avatars/${user_data.id}/${user_data.avatar}.png`);
+    localStorage.setItem('displayName', user_data.username);
+
+    mostrarPerfil();
+}
+
+        function mostrarPerfil() {
+    const profileImage = localStorage.getItem('profileImage');
+    const displayName = localStorage.getItem('displayName');
+
+    if (profileImage && displayName) {
+        document.getElementById("profileImage").src = profileImage;
+        document.getElementById("displayName").textContent = displayName;
         document.getElementById("profileInfo").style.display = "flex";
-        document.getElementById("loginContainer").style.display = "none"; // Oculta el botón de Login
+        document.getElementById("loginContainer").style.display = "none";
     }
+}
+
+// Llamar a la función al cargar la página
+mostrarPerfil();
 
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
