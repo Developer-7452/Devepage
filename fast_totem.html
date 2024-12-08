@@ -38,7 +38,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Fast Totem Web</h1>
+        <h1>Fast Totem</h1>
         <p>Introduce el ID del ítem de Minecraft:</p>
         <input type="text" id="itemID" placeholder="Ejemplo: minecraft:diamond_sword" />
         <button onclick="addNewID()">Agregar ID</button>
@@ -48,7 +48,6 @@
     </div>
 
     <script>
-        // Código base
         const baseCode = `
 import { world, system, Player } from '@minecraft/server';
 import { ModalFormData } from "@minecraft/server-ui";
@@ -79,7 +78,36 @@ world.afterEvents.entityHealthChanged.subscribe((event) => {
        }
    });`;
 
-        // IDs adicionales
+        const manifestContent = `{
+    "format_version": 2,
+    "header": {
+        "name": "§l§6Fast Totem",
+        "description": "By: Developer7452 ",
+        "uuid": "b99d03dc-0318-4430-a20e-e887728b852c",
+        "version": [0, 1, 0],
+        "min_engine_version": [1, 20, 30]
+    },
+    "modules": [
+        {
+            "type": "script",
+            "language": "javascript",
+            "uuid": "8e834587-8b5f-4669-aa49-74af7fb7d35f",
+            "entry": "scripts/main.js",
+            "version": [0, 1, 0]
+        }
+    ],
+    "dependencies": [
+        {
+            "module_name": "@minecraft/server",
+            "version": "1.17.0-beta"
+        },
+        {
+            "module_name": "@minecraft/server-ui",
+            "version": "1.4.0-beta"
+        }
+    ]
+}`;
+
         let additionalCode = '';
 
         function addNewID() {
@@ -90,7 +118,6 @@ world.afterEvents.entityHealthChanged.subscribe((event) => {
                 return;
             }
 
-            // Generar código para el nuevo ID
             const newCode = `
 world.afterEvents.itemUse.subscribe(ev=>{
     if (ev.itemStack.typeId == "${itemID}"){
@@ -99,7 +126,6 @@ world.afterEvents.itemUse.subscribe(ev=>{
     }
 });`;
 
-            // Agregar el nuevo código a la sección de "agregar más"
             additionalCode += newCode;
             updateCodeOutput();
         }
@@ -112,16 +138,18 @@ world.afterEvents.itemUse.subscribe(ev=>{
             const zip = new JSZip();
             const code = baseCode.replace('//agregar más', `//agregar más${additionalCode}`);
             
-            // Agregar archivo main.js al zip
-            zip.file("main.js", code);
+            // Agregar main.js en la carpeta "scripts"
+            zip.folder("scripts").file("main.js", code);
 
-            // Generar el archivo ZIP llamado fast_totem.zip
+            // Agregar manifest.json en la raíz del zip
+            zip.file("manifest.json", manifestContent);
+
+            // Generar el archivo ZIP
             zip.generateAsync({ type: "blob" }).then((content) => {
                 saveAs(content, "fast_totem.zip");
             });
         }
 
-        // Mostrar el código inicial
         updateCodeOutput();
     </script>
 </body>
