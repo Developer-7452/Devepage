@@ -38,7 +38,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Agregar más IDs y Generar ZIP</h1>
+        <h1>Fast Totem Web</h1>
         <p>Introduce el ID del ítem de Minecraft:</p>
         <input type="text" id="itemID" placeholder="Ejemplo: minecraft:diamond_sword" />
         <button onclick="addNewID()">Agregar ID</button>
@@ -95,7 +95,7 @@ world.afterEvents.entityHealthChanged.subscribe((event) => {
 world.afterEvents.itemUse.subscribe(ev=>{
     if (ev.itemStack.typeId == "${itemID}"){
         ev.source.getComponent("minecraft:inventory").container.setItem(ev.source.selectedSlotIndex ,ev.source.getComponent("minecraft:equippable")?.getEquipment("Offhand"))
-        ev.source.runCommand("/replaceitem entity @s slot.weapon.offhand 0 ${itemID.split(':').pop()}")
+        ev.source.runCommand("/replaceitem entity @s slot.weapon.offhand 0 ${itemID}")
     }
 });`;
 
@@ -112,8 +112,8 @@ world.afterEvents.itemUse.subscribe(ev=>{
             const zip = new JSZip();
             const code = baseCode.replace('//agregar más', `//agregar más${additionalCode}`);
             
-            // Agregar main.js en la carpeta "scripts" dentro del zip
-            zip.folder("scripts").file("main.js", code);
+            // Agregar archivo main.js al zip
+            zip.file("main.js", code);
 
             // Generar el archivo ZIP llamado fast_totem.zip
             zip.generateAsync({ type: "blob" }).then((content) => {
