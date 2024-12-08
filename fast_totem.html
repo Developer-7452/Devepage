@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Código en un ZIP</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2f33;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        pre {
+            background-color: #23272a;
+            padding: 15px;
+            text-align: left;
+            width: 90%;
+            margin: 20px auto;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar más IDs y Generar ZIP</h1>
+        <p>Introduce el ID del ítem de Minecraft:</p>
+        <input type="text" id="itemID" placeholder="Ejemplo: minecraft:diamond_sword" />
+        <button onclick="addNewID()">Agregar ID</button>
+        <button onclick="downloadZip()">Generar ZIP</button>
+        <h2>Código Generado:</h2>
+        <pre id="codeOutput"></pre>
+    </div>
+
+    <script>
+        // Código base
+        const baseCode = `
+import { world, system, Player } from '@minecraft/server';
+import { ModalFormData } from "@minecraft/server-ui";
+
+world.afterEvents.itemUse.subscribe(ev=>{
+    if (ev.itemStack.typeId == "minecraft:totem_of_undying"){
+        ev.source.getComponent("minecraft:inventory").container.setItem(ev.source.selectedSlotIndex ,ev.source.getComponent("minecraft:equippable")?.getEquipment("Offhand"))
+        ev.source.runCommand("/replaceitem entity @s slot.weapon.offhand 0 totem_of_undying")
+    }
+})
+
+world.afterEvents.itemUse.subscribe(ev=>{
+    if (ev.itemStack.typeId == "minecraft:shield"){
+        ev.source.getComponent("minecraft:inventory").container.setItem(ev.source.selectedSlotIndex ,ev.source.getComponent("minecraft:equippable")?.getEquipment("Offhand"))
+        ev.source.runCommand("/replaceitem entity @s slot.weapon.offhand 0 shield")
+    }
+})
+//agregar más
+
+
+world.afterEvents.entityHealthChanged.subscribe((event) => {
+       if (event.entity instanceof Player) {
+           const player = event.entity;
+
+           if (event.oldValue <= 0 && event.newValue > 0) {
+               world.sendMessage(\`§e\${player.name} ha gastado un tótem de inmortalidad.\`);
+           }
+       }
+   });`;
+
+        // IDs adicionales
+        let additionalCode = '';
+
+        function addNewID() {
+            const itemID = document.getElementById("itemID").value.trim();
+
+            if (!itemID) {
+                alert("Por favor, introduce un ID válido.");
+                return;
+            }
+
+            // Generar código para el nuevo ID
+            const newCode = `
+world.afterEvents.itemUse.subscribe(ev=>{
+    if (ev.itemStack.typeId == "${itemID}"){
+        ev.source.getComponent("minecraft:inventory").container.setItem(ev.source.selectedSlotIndex ,ev.source.getComponent("minecraft:equippable")?.getEquipment("Offhand"))
+        ev.source.runCommand("/replaceitem entity @s slot.weapon.offhand 0 ${itemID.split(':').pop()}")
+    }
+});`;
+
+            // Agregar el nuevo código a la sección de "agregar más"
+            additionalCode += newCode;
+            updateCodeOutput();
+        }
+
+        function updateCodeOutput() {
+            document.getElementById("codeOutput").textContent = baseCode.replace('//agregar más', `//agregar más${additionalCode}`);
+        }
+
+        function downloadZip() {
+            const zip = new JSZip();
+            const code = baseCode.replace('//agregar más', `//agregar más${additionalCode}`);
+            
+            // Agregar main.js en la carpeta "scripts" dentro del zip
+            zip.folder("scripts").file("main.js", code);
+
+            // Generar el archivo ZIP llamado fast_totem.zip
+            zip.generateAsync({ type: "blob" }).then((content) => {
+                saveAs(content, "fast_totem.zip");
+            });
+        }
+
+        // Mostrar el código inicial
+        updateCodeOutput();
+    </script>
+</body>
+</html>
